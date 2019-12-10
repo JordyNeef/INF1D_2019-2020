@@ -9,11 +9,12 @@
 	</title>
 </head>
 	<body>
-		<div class="inlogBox">
-			<form class="inlogForm" action="login.php">
-				<div><input class="inlogVak" placeholder="Email...." type="text" name=""></div>
-				<div><input class="inlogVak" placeholder="Wachtwoord...." type="password" name="password"></div>
-				<div><input class="loginButton" type="submit" name="submit" value="login"></div>
+		<div id="container">
+			<form action="login.php">
+				<div id="logo"><img src="img/logo-wit.png"  alt="Niffoflix"></div>
+				<div class="inlogVak"><input placeholder="Username" type="text" name=""></div>
+				<div class="inlogVak"><input placeholder="Password" type="password" name="password"></div>
+				<div class="loginButton"><input type="submit" name="submit" value="inloggen"></div>
 			</form>
 		</div>
 	</body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2019 at 11:46 AM
+-- Generation Time: Dec 10, 2019 at 12:13 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -44,7 +44,8 @@ CREATE TABLE `gebruiker` (
   `gebruikersnaam` varchar(30) NOT NULL,
   `wachtwoord` varchar(30) NOT NULL,
   `admin` tinyint(1) NOT NULL,
-  `proefversie` tinyint(1) NOT NULL
+  `proefversie` tinyint(1) NOT NULL,
+  `userimagepath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

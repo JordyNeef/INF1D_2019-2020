@@ -1,15 +1,15 @@
-* {
+/* Browser Reset */
+*{
 	margin: 0px;
 	padding: 0px;
-
 }
+
 body{
 	background-image: linear-gradient(#203246, #1A1A1A);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	/*width: 1920px;*/
-	height: 1880px;
+	height: 1880px; /* Height maakt niet veel uit, dankzij overflow hidden */
 	margin: 0 auto;
-
+	overflow: hidden;
 }

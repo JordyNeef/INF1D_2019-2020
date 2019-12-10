@@ -3,25 +3,56 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 80%;
+	width: 100%;
 	height: 35%;
 }
 
 .flex-item {
 	margin: 10px;
 	text-align: center;
-	line-height: 75px;
+	line-height: 70px;
 }
 
 .changeitems{
-	width: 250px;
+	width: 350px;
 	height: 40px;
+	background-color: #443f44;
+	border: 1px solid white;
+	border-radius: 15px;
+	transition: 0.2s ease-in-out;
+}
+
+input[type=text]:focus {
+	outline: none;
+  	border: 3px solid white;
+	transition: 0.2s ease-in-out;
+	text-align: center;
+}
+
+input, select, text{
+    color: white;
 }
 
 .changebutton{
-	background-color: red;
+	background-color: #203246;
+	border: none;
+	color: white;
+	padding: 8px 24px;
+	border-radius: 10px;
+	transition: 0.2s ease-in-out;
+}
+
+.changebutton:hover{
+	padding: 9px 27px;
+	transition: 0.2s ease-in-out;
+	font-size: large;
+}
+
+input[type=submit]:focus {
+	outline: none;
 }
 
 ::-webkit-input-placeholder {
-   text-align: center;
+	text-align: center;
+	color: #969396;
 }

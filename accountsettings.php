@@ -13,7 +13,7 @@
 			<form action="accountsettings.php">
 				<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name=""></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name=""></div>
-				<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="change"></div>
+				<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Change"></div>
 			</form>
 		</div>
 	</body>

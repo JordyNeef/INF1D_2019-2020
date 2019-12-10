@@ -10,12 +10,11 @@
 </head>
 	<body>
 		<div class="inlogBox">
-			<form action="login.php">
-				<input class="inlogForm" placeholder="Email...." type="text" name="">
-				<input class="inlogForm" placeholder="Wachtwoord...." type="password" name="password">
-				<input class="loginButton" type="submit" name="submit" value="login">
+			<form class="inlogForm" action="login.php">
+				<div><input class="inlogVak" placeholder="Email...." type="text" name=""></div>
+				<div><input class="inlogVak" placeholder="Wachtwoord...." type="password" name="password"></div>
+				<div><input class="loginButton" type="submit" name="submit" value="login"></div>
 			</form>
 		</div>
-
 	</body>
 </html>

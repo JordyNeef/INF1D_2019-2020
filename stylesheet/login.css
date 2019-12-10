@@ -1,7 +1,18 @@
 .inlogBox{
 	margin: 0 auto;
-	width: 40%;
-	height: 60%;
+	width: 900px;
+	height: 1200px;
 	background-color: yellow;
-	
+	margin-top: 30%;
+}
+.inlogForm{
+	margin-top: 30%;
+}
+.inlogVak{
+	width: 200px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	align-items: center;
 }

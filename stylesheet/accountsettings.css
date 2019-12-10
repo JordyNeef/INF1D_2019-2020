@@ -17,9 +17,11 @@
 	width: 350px;
 	height: 40px;
 	background-color: #443f44;
+	color: white;
 	border: 1px solid white;
 	border-radius: 15px;
 	transition: 0.2s ease-in-out;
+	text-align: center;
 }
 
 input[type=text]:focus {
@@ -50,9 +52,4 @@ input, select, text{
 
 input[type=submit]:focus {
 	outline: none;
-}
-
-::-webkit-input-placeholder {
-	text-align: center;
-	color: #969396;
 }

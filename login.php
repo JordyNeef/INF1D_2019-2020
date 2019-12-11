@@ -14,7 +14,7 @@
 				<div id="logo"><img src="img/logo-wit.png"  alt="Niffoflix"></div>
 				<div class="inlogVak"><input placeholder="Username" type="text" name=""></div>
 				<div class="inlogVak"><input placeholder="Password" type="password" name="password"></div>
-				<div class="loginButton"><input type="submit" name="submit" value="inloggen"></div>
+				<p><div class="loginButton"><input type="submit" name="submit" value="Login"></div></p>
 			</form>
 		</div>
 	</body>

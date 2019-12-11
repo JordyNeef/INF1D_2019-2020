@@ -1,9 +1,3 @@
-body{
-	background-image: linear-gradient(#203246, #1A1A1A);
-	background-size: cover;
-	margin: auto;
-	overflow: hidden;
-}
 #container{
 	height: 1200px;
 	width: 100%;
@@ -15,9 +9,8 @@ body{
 #container form{
 	height: 1000px;
 	width: 800px;
-
-
 }
+
 #logo{
 	width: 800px;
 	height: 300px;
@@ -46,8 +39,9 @@ body{
 .loginButton{
 	height: 50px;
 	width: 750px;
-	padding: 20px;
+	padding: 10px 20px;
 	text-align: center;
+	font-size: 16pt;
 }
 
 .loginButton input{
@@ -58,22 +52,22 @@ body{
 	border-radius: 10px;
 	position: center;
 	border: none;
-	padding: 15px
-
+	padding: 15px 30px;
 }
 
 .loginButton input:hover{
 	transition: 0.2s ease-in-out;
-	padding: 15px 20px;
-	font-size: 200%;
-	border: none;
-	outline: none;
+	padding: 15px 50px;
+	font-size: large;
+	font-size: 150%;
+}
 
+.inlogVak input:focus{
+	border: 2px solid white;
+	opacity: 1.0;
 }
 
 .loginButton input:focus{
 	outline: none;
 	opacity: 1.0;
 }
-
-

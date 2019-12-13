@@ -17,7 +17,7 @@ function headerBar() { ?>
                 </div>
             </div>
             <div class="title">
-                <img src="img/logo-wit.png" alt="logo van niffoflix">
+                <img src="img/niffoflix_Logo.png" alt="logo van niffoflix">
             </div>
         </div>
     </div>

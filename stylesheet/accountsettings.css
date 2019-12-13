@@ -56,3 +56,12 @@ input, select, text{
 input[type=submit]:focus {
 	outline: none;
 }
+
+/* Responsive  */
+
+@media screen and (max-width: 600px) 
+{
+	.changeitems{
+	width: 80vw;
+	}
+}

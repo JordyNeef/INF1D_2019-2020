@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<div class="flex-container">
-			<form action="accountsettings.php">
+			<form action="login.php">
 				<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name=""></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name=""></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name=""></div>

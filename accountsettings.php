@@ -14,6 +14,9 @@
 			<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name=""></div>
 			<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name=""></div>
 			<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Change"></div>
+			<div class="flex-item">
+				Back to <a href="#">home</a>
+			</div>
 		</form>
 	</div>
 </body>

@@ -16,6 +16,9 @@
 				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name=""></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Confirm password" type="password" name=""></div>
 				<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Submit"></div>
+				<div class="flex-item">
+					Already have an account? <a href="login.php">Log in</a>
+				</div>
 			</form>
 		</div>
 	</body>

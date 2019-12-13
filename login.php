@@ -15,6 +15,7 @@
 				<div class="inlogVak"><input placeholder="Username" type="text" name=""></div>
 				<div class="inlogVak"><input placeholder="Password" type="password" name="password"></div>
 				<p><div class="loginButton"><input type="submit" name="submit" value="Login"></div></p>
+				<div id="signup"><p>  Don't have an account yet? <a href="signup.php"> Sign up</a></p></div> 
 			</form>
 		</div>
 	</body>

@@ -44,7 +44,7 @@ img{
 
 @media only screen and (max-width: 600px) {
  	.inlogVak input{
- 		width: 50vw;
+ 		width: 80vw;
     	
   	}
   	#logo img{
@@ -94,3 +94,9 @@ img{
 	outline: none;
 	opacity: 1.0;
 }
+ #signup{
+ 	padding-top: 20px;
+ 	text-align: center;
+ 	color: #969396;
+ 	font-family: Arial;
+ }

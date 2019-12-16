@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <link type="text/css" rel="stylesheet" href="stylesheet/index.css" />
+        <link type="text/css" rel="stylesheet" href="stylesheet/main.css" />
         <title>Home</title>
     </head>
     <body onresize="checkOpenForResponsive();">
@@ -71,12 +72,12 @@
             </div>
         </div>
         <div class="footer">
-            <p class="copyright"> Made by Niffo Productions 2019 <?php
+            <p> Made by Niffo Productions 2019 <?php
                 if (date("Y") != 2019) {
                     echo"-" . date("Y");
                 }
                 ?> &copy  </p>
-            <p class="footerTextRight">NHL Stenden</p>
+            <p>NHL Stenden</p>
         </div>
     </body>
     <?php navScript();?>

@@ -48,7 +48,7 @@ input, select, text{
     color: white;
 }
 
-.changebutton{
+.submitbutton{
 	background-color: #203246;
 	border: none;
 	color: white;
@@ -57,7 +57,7 @@ input, select, text{
 	transition: 0.2s ease-in-out;
 }
 
-.changebutton:hover{
+.submitbutton:hover{
 	padding: 9px 27px;
 	transition: 0.2s ease-in-out;
 	font-size: large;
@@ -65,6 +65,10 @@ input, select, text{
 
 input[type=submit]:focus {
 	outline: none;
+}
+
+.radiobuttons{
+	margin-left: 20px;
 }
 
 /* Responsive */

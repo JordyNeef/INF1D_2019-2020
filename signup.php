@@ -105,11 +105,15 @@
 	        }
 	    }
 
+	    if (isset($_POST['submit'])) {
+			$proefversie=$_POST['proefversie'];
+		}
+
 	    // Check input errors before inserting in database
 	    if(empty($username_err) && empty($email_err) && empty($password_err)){
 
 	    	//Prepare insert statement
-	    	$sql = "INSERT INTO gebruiker (gebruikersnaam, mail, wachtwoord) VALUES (?, ?, ?)";
+	    	$sql = "INSERT INTO gebruiker (gebruikersnaam, mail, wachtwoord, proefversie) VALUES (?, ?, ?, $proefversie)";
 
 	    	if($stmt = mysqli_prepare($conn, $sql)){
 	    		// Bind variables to the prepared statement as parameters
@@ -155,7 +159,12 @@
 				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email"></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name="password"></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Confirm password" type="password" name="confirm_password"></div>
-				<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Submit"></div>
+				<div class="flex-item">
+					I would like a trial version
+					<input class="radiobuttons" type="radio" name="proefversie" value="1" checked="checked">Yes</input>
+					<input class="radiobuttons" type="radio" name="proefversie" value="0">No</input>
+				</div>
+				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Submit"></div>
 				<div class="flex-item">
 					Already have an account? <a href="login.php">Log in</a>
 				</div>

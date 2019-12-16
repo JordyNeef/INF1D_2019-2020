@@ -4,7 +4,6 @@
 }
 
 h1{
-    font-family: "Catamaran";
     font-size: 40pt;
 }
 
@@ -23,28 +22,37 @@ body{
     justify-content: end;
 }
 
-#containersubmitlogo img{
-    margin: 20px 20px 0px 0px;
-}
+
 
 #containersubmit form{
     display: flex;
-    height: 100vh;
+    height: 90vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+#containersubmit input[type=number]{
+    -webkit-appearance: textfield;
+}
+
 #containersubmit h1{
     color: white;
     text-align: center; 
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 
 #formsubmit{
     display: flex;
     flex-direction: row;
     height: auto;
+}
+#formresult{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: start;
+    width: 420px;
 }
 
 .textfield{
@@ -82,7 +90,7 @@ body{
 }
 
 #submitrowright textarea{
-    margin: 50px 0px 50px 0px;
+    margin: 0px 0px 50px 0px;
 }
 
 #submitbutton{
@@ -100,7 +108,9 @@ body{
     align-items: end;
     justify-content: start;
 }
-
+#submitrowright input{
+    margin-bottom: 50px;
+}
 #wijzigvideo{
     display: flex;
     flex-direction: column;
@@ -131,9 +141,10 @@ body{
 @media only screen and (max-width: 925px){
     #containersubmit{
         overflow: scroll;
+        
     }
     #containersubmit h1{
-        margin-top: 40px;
+        margin-top: 150px;
         margin-bottom: 10px;
         font-size: 30pt;
     }

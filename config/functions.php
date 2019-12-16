@@ -74,7 +74,6 @@ function navScript() {
             } else {
                 //anders is hij zo breed als de website zelf
                 for (i = 0; i < navText.length; i++) {
-                    console.log(i);
                     navText[i].style.width = w + "px";
                 }
                 document.getElementById("navBar").style.width = w + "px";

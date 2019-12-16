@@ -10,7 +10,7 @@
                 <img src="img/logo.png" alt="logo">
             </div>
             <div id="form">
-                <form action="mailto:email@email.com" method="post">
+                <form action="" method="post">
                     <h1>Video Aanpassen</h1>
                     <div id="formsubmit">
                         <div id="submitrowleft">

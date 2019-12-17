@@ -13,16 +13,16 @@
 			// hier kijk je of de gebruikersnaam en het ww met elkaar matcht.
 			$query=    "SELECT gebruikersnaam, wachtwoord 
 						FROM gebruiker
-						WHERE gebruikersnaam = Koen"; 
+						WHERE gebruikersnaam = ?"; 
 			// or die("Password and or Username are incorrect.".mysqli_error($conn));
 		
 
 			if($stmt=mysqli_prepare($conn, $query)) 
 			{
-				mysqli_bind_param($stmt, "s", $username);
+				mysqli_stmt_bind_param($stmt, "s", $username);
 				if(mysqli_stmt_execute($stmt))
 				{
-					mysqli_bind_stmt_result($stmt, $usernameDB, $passwordDB);
+					mysqli_stmt_bind_result($stmt, $usernameDB, $passwordDB);
 					mysqli_stmt_fetch($stmt);
 					if(password_verify($password, $passwordDB))
 					{

@@ -11,47 +11,41 @@
 			$username = mysqli_real_escape_string($conn, $username);
 			$password = mysqli_real_escape_string($conn, $password);
 			// hier kijk je of de gebruikersnaam en het ww met elkaar matcht.
-			$query=    mysqli_query($conn,
-					   "SELECT gebruikersnaam, wachtwoord 
+			$query=    "SELECT gebruikersnaam, wachtwoord 
 						FROM gebruiker
-						WHERE gebruikersnaam = Koen"); 
+						WHERE gebruikersnaam = Koen"; 
 			// or die("Password and or Username are incorrect.".mysqli_error($conn));
-			
-			$row= mysqli_fetch_array($query);
+		
 
 			if($stmt=mysqli_prepare($conn, $query)) 
+			{
+				mysqli_bind_param($stmt, "s", $username);
+				if(mysqli_stmt_execute($stmt))
 				{
-					mysqli_bind_param($stmt, "s", $username);
-					if(mysqli_stmt_execute($stmt))
+					mysqli_bind_stmt_result($stmt, $usernameDB, $passwordDB);
+					mysqli_stmt_fetch($stmt);
+					if(password_verify($password, $passwordDB))
 					{
-						mysqli_bind_stmt_result($stmt, $usernameDB, $passwordDB);
-						mysqli_stmt_fetch($stmt);
-						if(password_verify($password, $passwordDB))
-						{
-							header("location: index.php");
-						}
-						else
-						{
-							echo "Password does not match Username.";
-						}
+						header("location: index.php");
 					}
 					else
 					{
-						die("Statement nog executed");
+						echo "Password does not match Username.";
 					}
-					mysqli_stmt_close($stmt);
 				}
+				else
+				{
+					die("Statement not executed");
+				}
+				mysqli_stmt_close($stmt);
+				
 			}
 			else
 			{
-				echo "Password and or Username are incorrect.";
+				die("Failed to prepare statement. Error: ".mysqli_error($conn));
 			}
-
-			
-		
-
-
-				mysqli_close($conn);
+			mysqli_close($conn);
+		}
 	?>
 <!DOCTYPE html>
 <html>

@@ -7,6 +7,7 @@
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <link type="text/css" rel="stylesheet" href="stylesheet/index.css" />
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
     </head>
     <body onresize="checkOpenForResponsive();">

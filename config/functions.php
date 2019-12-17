@@ -48,24 +48,24 @@ function navScript() {
     //    unqoute dit om de breede van de website te zien:
     //    alert("Browser inner window width: " + w + ".");
 
-    //check de groote van de website
+        //check de groote van de website
         function checkWidth() {
             w = window.innerWidth
                     || document.documentElement.clientWidth
                     || document.body.clientWidth;
             return w;
         }
-    //    veranderd de navbar van mobile naar computer en terug
+        //    veranderd de navbar van mobile naar computer en terug
         function checkOpenForResponsive() {
             if (open === true) {
                 navOpen();
             }
         }
-    //open de navbar
+        //open de navbar
         function navOpen() {
             checkWidth();
             //als de grote groter is dan 570px is de navbar 250px groot
-            if (w > 570) {
+            if (w > 415) {
                 document.getElementById("navBar").style.width = "250px";
                 for (i = 0; i < navText.length; i++) {
                     navText[i].style.width = "250px";
@@ -80,7 +80,7 @@ function navScript() {
             }
             open = true;
         }
-    //    close de navbar 
+        //    close de navbar 
         function navClose() {
             document.getElementById("navBar").style.width = "0px";
             document.getElementById("navBar").style.display = "hidden";

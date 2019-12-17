@@ -81,7 +81,8 @@ body{
     overflow-x: auto;
     overflow-y: hidden;
     float: left;
-    scrollbar-width: none;
+    scrollbar-color:#203246 #1A1A1A;
+/*    scrollbar-width: none;*/
 }
 
 h1{
@@ -109,7 +110,8 @@ h2{
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-width: none;
+    scrollbar-color:#203246 #1A1A1A;
+/*    scrollbar-width: none;*/
     float: left;
     width: 100%;
 }
@@ -128,4 +130,18 @@ h2{
     font-size: 15px;
     float: left;
     padding: 10px 10px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #203246; 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #1A1A1A; 
 }

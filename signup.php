@@ -110,32 +110,59 @@
 			$proefversie=$_POST['proefversie'];
 		}
 
+	    // The user may only upload .png or .jpg or .jpeg files and the file size must be under 600 kb:
+	    // Check on the extension and file size
+	    if ((($_FILES["uploadedFile"]["type"] == "image/jpg") || ($_FILES["uploadedFile"]["type"] == "image/jpeg") || ($_FILES["uploadedFile"]["type"] == "image/png")) && ($_FILES["uploadedFile"]["size"] < 600000))
+	    {
+	        if ($_FILES["uploadedFile"]["error"] > 0)
+	        {
+	            echo "Return Code: " . $_FILES["uploadedFile"]["error"] . "<br />";
+	        } 
+	        else
+	        {
+	            // Checks if the file already exists, if it does not, it copies the file to the specified folder.
+	            if (file_exists("img/avatar/" . $_FILES["uploadedFile"]["name"]))
+	            {
+	                echo $_FILES["uploadedFile"]["name"] . " already exists. ";
+	            } else
+	            {
+	            	$userimagepath = $_FILES["uploadedFile"]["name"];
+	                move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "img/avatar/" . $_FILES["uploadedFile"]["name"]);
+	            }
+	        }
+	    } 
+	    else
+	    {
+	        echo "Invalid file";
+	    }
+
 	    // Check input errors before inserting in database
 	    if(empty($username_err) && empty($email_err) && empty($password_err)){
 
 	    	//Prepare insert statement
-	    	$sql = "INSERT INTO gebruiker (gebruikersnaam, mail, wachtwoord, proefversie) VALUES (?, ?, ?, $proefversie)";
+	    	$sql = "INSERT INTO gebruiker (gebruikersnaam, mail, wachtwoord, proefversie, userimagepath) VALUES (?, ?, ?, $proefversie, ?)";
 
 	    	if($stmt = mysqli_prepare($conn, $sql)){
 	    		// Bind variables to the prepared statement as parameters
-	    		mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
+	    		mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_email, $param_password, $param_userimagepath);
 
 	    		// Set parameters
 	    		$param_username = $username;
 	    		$param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+	    		$param_userimagepath = $userimagepath;
 
 	    		// Attempt to execute the prepared statement
 	    		if(mysqli_stmt_execute($stmt)){
 	    			// Redirect to login page
-	    			header("location.php");
+	    			header("login.php");
 	    		}
 	    		else{
 	    			echo "Something went wrong. Please try again later.";
 	    		}
-	    	}
 
-	    	// Close statement
-	    	mysqli_stmt_close($stmt);
+	    	}
+			// Close statement
+	    	mysqli_stmt_close($stmt);	
 	    }
 
 	    // Close connection
@@ -155,7 +182,7 @@
 	</head>
 	<body>
 		<div class="flex-container">
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 				<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" /></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email" /></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name="password" /></div>
@@ -165,7 +192,7 @@
 					<input class="radiobuttons" type="radio" name="proefversie" value="1" checked="checked">Yes</input>
 					<input class="radiobuttons" type="radio" name="proefversie" value="0">No</input>
 				</div>
-				<div class="flex-item"><input type="file" name="uploadedFile" id="file" /></div>
+				<div class="flex-item"><input class="file" type="file" name="uploadedFile" /></div>
 				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Submit" /></div>
 				<div class="flex-item">
 					Already have an account? <a href="login.php">Log in</a>

@@ -3,6 +3,10 @@
     <head>
         <?php require 'config/functions.php'; ?>
         <?php require 'config/conn.php'; ?>
+        <?php require "config/sessions.php";
+        if($_SESSION["adming"] == false){
+            header("location:index.php");
+        }?>
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <title>Beheer</title>
@@ -53,7 +57,7 @@
                            } else{
                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
                                 $titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_SPECIAL_CHARS);
-                                $maker = filter_input(INPUT_POST, 'maker', FILTER_SANITIZE_SPECIAL_CHARS);
+                                $maker = $_SESSION["username"];
                                 $catagorie = filter_input(INPUT_POST, 'catagorie', FILTER_SANITIZE_SPECIAL_CHARS);
                                 $beschrijving = filter_input(INPUT_POST, 'beschrijving', FILTER_SANITIZE_SPECIAL_CHARS);
                                 $leeftijd = filter_input(INPUT_POST, 'leeftijd', FILTER_SANITIZE_SPECIAL_CHARS);;

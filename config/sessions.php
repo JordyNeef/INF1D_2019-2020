@@ -2,11 +2,11 @@
 session_start();
 if(isset($_POST["submit"])){
    if(isset($_SESSION["login"])){
-       $_SESSION["id"] = $id;
-       $_SESSION["username"] = $username;
-       $_SESSION["picture"] = $profilepic;
-       $_SESSION["admin"] = $admin;
-       $_SESSION["mail"] = $email;
+       $id = $_SESSION["id"];
+       $username = $_SESSION["username"];
+       $profilepic = $_SESSION["profilepic"];
+       $admin = $_SESSION["admin"];
+       $email = $_SESSION["email"];
    } 
 }
 ?>

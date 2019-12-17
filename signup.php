@@ -105,6 +105,7 @@
 	        }
 	    }
 
+	    // Validate trial version
 	    if (isset($_POST['submit'])) {
 			$proefversie=$_POST['proefversie'];
 		}
@@ -155,16 +156,17 @@
 	<body>
 		<div class="flex-container">
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-				<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username"></div>
-				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email"></div>
-				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name="password"></div>
-				<div class="flex-item"><input class="changeitems" placeholder="Confirm password" type="password" name="confirm_password"></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" /></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email" /></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name="password" /></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Confirm password" type="password" name="confirm_password" /></div>
 				<div class="flex-item">
 					I would like a trial version
 					<input class="radiobuttons" type="radio" name="proefversie" value="1" checked="checked">Yes</input>
 					<input class="radiobuttons" type="radio" name="proefversie" value="0">No</input>
 				</div>
-				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Submit"></div>
+				<div class="flex-item"><input type="file" name="uploadedFile" id="file" /></div>
+				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Submit" /></div>
 				<div class="flex-item">
 					Already have an account? <a href="login.php">Log in</a>
 				</div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2019 at 09:58 AM
+-- Generation Time: Dec 17, 2019 at 03:48 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -42,7 +42,7 @@ CREATE TABLE `categorie` (
 CREATE TABLE `gebruiker` (
   `gebruikerid` int(11) NOT NULL,
   `gebruikersnaam` varchar(30) NOT NULL,
-  `wachtwoord` varchar(30) NOT NULL,
+  `wachtwoord` varchar(75) NOT NULL,
   `admin` tinyint(1) NOT NULL,
   `proefversie` tinyint(1) NOT NULL,
   `userimagepath` varchar(255) DEFAULT NULL,
@@ -89,6 +89,15 @@ CREATE TABLE `video` (
   `videocatid` int(7) NOT NULL,
   `Leeftijd` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `video`
+--
+
+INSERT INTO `video` (`videoid`, `playbackid`, `titel`, `Beschrijving`, `UploadedBy`, `videocatid`, `Leeftijd`) VALUES
+(14, 'test', 'test', 'testvideo', 'testacount', 1, 13),
+(15, 'test', 'test', 'testvideo', 'testacount', 1, 13),
+(16, 'test', 'test', 'testvideo', 'testacount', 1, 13);
 
 -- --------------------------------------------------------
 
@@ -137,8 +146,7 @@ ALTER TABLE `rating`
 -- Indexes for table `video`
 --
 ALTER TABLE `video`
-  ADD PRIMARY KEY (`videoid`),
-  ADD KEY `videocatid` (`videocatid`);
+  ADD PRIMARY KEY (`videoid`);
 
 --
 -- Indexes for table `video_categorie`
@@ -174,7 +182,7 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `video`
 --
 ALTER TABLE `video`
-  MODIFY `videoid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `videoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `video_categorie`

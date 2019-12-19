@@ -1,5 +1,10 @@
 	<?php
 		include("config/conn.php");
+		session_start();
+		//checkt of je ingelogd bent
+		if(isset($_SESSION["login"])){
+			header("location:index.php");
+		}
 		if(isset($_POST["username"]) AND isset($_POST["password"]))
 		{
 			// values geven aan de invulbalkjes.
@@ -11,7 +16,7 @@
 			$username = mysqli_real_escape_string($conn, $username);
 			$password = mysqli_real_escape_string($conn, $password);
 			// hier kijk je of de gebruikersnaam en het ww met elkaar matcht.
-			$query=    "SELECT gebruikersnaam, wachtwoord 
+			$query=    "SELECT gebruikerid, gebruikersnaam, wachtwoord, admin, proefversie, userimagepath, mail 
 						FROM gebruiker
 						WHERE gebruikersnaam = ?"; 
 			// or die("Password and or Username are incorrect.".mysqli_error($conn));
@@ -22,10 +27,18 @@
 				mysqli_stmt_bind_param($stmt, "s", $username);
 				if(mysqli_stmt_execute($stmt))
 				{
-					mysqli_stmt_bind_result($stmt, $usernameDB, $passwordDB);
+					mysqli_stmt_bind_result($stmt, $id, $usernameDB, $passwordDB, $admin, $proefversie, $image, $mail);
 					mysqli_stmt_fetch($stmt);
 					if(password_verify($password, $passwordDB))
 					{
+						//sessies aanmaken//
+						$_SESSION["login"] = "true";
+						$_SESSION["ID"] = $id;
+						$_SESSION["username"] = $username; 
+						$_SESSION["admin"] = $admin;
+						$_SESSION["proefversie"] = $proefversie;
+						$_SESSION["profilepic"] = $profilepic; 
+						$_SESSION["email"] = $email;
 						header("location: index.php");
 					}
 					else

@@ -12,6 +12,7 @@
 		// Validate username
 		if(empty(trim($_POST["username"]))){
 			$username_err = "Please enter a username";
+			echo $username_err;
 		} 
 		else{
 
@@ -32,6 +33,7 @@
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
 						$username_err = "This username is already taken";
+						echo $username_err;
 					}
 					else{
 						$username = trim($_POST["username"]);
@@ -69,6 +71,7 @@
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
 						$email_err = "This email is already taken";
+						echo $email_err;
 					}
 					else{
 						$email = trim($_POST["email"]);
@@ -85,10 +88,12 @@
 
 		// Validate password
 		if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
+	        $password_err = "Please enter a password.";   
+	        echo $password_err;
 	    } 
 	    elseif(strlen(trim($_POST["password"])) < 6){
 	        $password_err = "Password must have atleast 6 characters.";
+	        echo $password_err;
 	    } 
 	    else{
 	        $password = trim($_POST["password"]);
@@ -96,12 +101,14 @@
 	    
 	    // Validate confirm password
 	    if(empty(trim($_POST["confirm_password"]))){
-	        $confirm_password_err = "Please confirm password.";     
+	        $confirm_password_err = "Please confirm password.";   
+	        echo $confirm_password_err;  
 	    } 
 	    else{
 	        $confirm_password = trim($_POST["confirm_password"]);
 	        if(empty($password_err) && ($password != $confirm_password)){
 	            $confirm_password_err = "Password did not match.";
+	            echo $confirm_password_err;
 	        }
 	    }
 
@@ -116,7 +123,7 @@
 	    {
 	        if ($_FILES["uploadedFile"]["error"] > 0)
 	        {
-	            echo "Return Code: " . $_FILES["uploadedFile"]["error"] . "<br />";
+	            echo "Return Code: " . $_FILES["uploadedFile"]["error"];
 	        } 
 	        else
 	        {
@@ -124,7 +131,8 @@
 	            if (file_exists("img/avatar/" . $_FILES["uploadedFile"]["name"]))
 	            {
 	                echo $_FILES["uploadedFile"]["name"] . " already exists. ";
-	            } else
+	            } 
+	            else
 	            {
 	            	$userimagepath = $_FILES["uploadedFile"]["name"];
 	                move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "img/avatar/" . $_FILES["uploadedFile"]["name"]);
@@ -135,6 +143,8 @@
 	    {
 	        echo "Invalid file";
 	    }
+
+	    // !!Alleen bestandsnaam wordt opgeslagen, die de mappen waar die in zit
 
 	    // Check input errors before inserting in database
 	    if(empty($username_err) && empty($email_err) && empty($password_err)){
@@ -154,7 +164,7 @@
 	    		// Attempt to execute the prepared statement
 	    		if(mysqli_stmt_execute($stmt)){
 	    			// Redirect to login page
-	    			header("login.php");
+	    			header("location: login.php");
 	    		}
 	    		else{
 	    			echo "Something went wrong. Please try again later.";
@@ -192,7 +202,10 @@
 					<input class="radiobuttons" type="radio" name="proefversie" value="1" checked="checked">Yes</input>
 					<input class="radiobuttons" type="radio" name="proefversie" value="0">No</input>
 				</div>
-				<div class="flex-item"><input class="file" type="file" name="uploadedFile" /></div>
+				<div class="flex-item">
+					Add your own avatar:
+					<input class="file" type="file" name="uploadedFile" />
+				</div>
 				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Submit" /></div>
 				<div class="flex-item">
 					Already have an account? <a href="login.php">Log in</a>

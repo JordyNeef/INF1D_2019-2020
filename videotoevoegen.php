@@ -4,7 +4,7 @@
         <?php require 'config/functions.php'; ?>
         <?php require 'config/conn.php'; ?>
         <?php require "config/sessions.php";
-        if($_SESSION["adming"] == false){
+        if($_SESSION["admin"] == false){
             header("location:index.php");
         }?>
         <meta charset="UTF-8">

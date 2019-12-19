@@ -33,6 +33,7 @@ function navBar() {
         <a class="navText" href="#">just some text</a>
         <a class="navText" href="#">bla bla bla</a>
     </div>
+<div id="transparentFakeContainer" onclick="navClose();"></div>
     <?php
 }
 
@@ -67,6 +68,7 @@ function navScript() {
             //als de grote groter is dan 570px is de navbar 250px groot
             if (w > 415) {
                 document.getElementById("navBar").style.width = "250px";
+                document.getElementById("transparentFakeContainer").style.width = "calc(100% - 250px)";
                 for (i = 0; i < navText.length; i++) {
                     navText[i].style.width = "250px";
                 }
@@ -84,6 +86,7 @@ function navScript() {
         function navClose() {
             document.getElementById("navBar").style.width = "0px";
             document.getElementById("navBar").style.display = "hidden";
+            document.getElementById("transparentFakeContainer").style.width = "0px";
             open = false;
 
         }

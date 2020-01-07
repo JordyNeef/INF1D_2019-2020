@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2020 at 03:26 PM
+-- Generation Time: Jan 07, 2020 at 04:03 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorie` (
-  `categorieid` int(7) DEFAULT NULL,
+  `categorieid` int(7) NOT NULL,
   `naam` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -54,8 +54,8 @@ CREATE TABLE `gebruiker` (
 --
 
 CREATE TABLE `kijksessie` (
-  `gebruikerid` int(10) DEFAULT NULL,
-  `videoid` int(7) DEFAULT NULL,
+  `gebruikerid` int(10) NOT NULL,
+  `videoid` int(7) NOT NULL,
   `tijdstip` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,7 +66,7 @@ CREATE TABLE `kijksessie` (
 --
 
 CREATE TABLE `rating` (
-  `ratingid` int(7) DEFAULT NULL,
+  `ratingid` int(7) NOT NULL,
   `gebruikerid` int(10) DEFAULT NULL,
   `videoid` int(7) DEFAULT NULL,
   `beoordeling` tinyint(1) DEFAULT NULL
@@ -83,12 +83,19 @@ CREATE TABLE `video` (
   `titel` varchar(30) DEFAULT NULL,
   `beschrijving` varchar(500) DEFAULT NULL,
   `uploadedby` int(10) DEFAULT NULL,
-  `leeftijd` int(2) DEFAULT NULL
+  `leeftijd` int(2) DEFAULT NULL,
+  `videoid` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`categorieid`);
 
 --
 -- Indexes for table `gebruiker`
@@ -97,8 +104,32 @@ ALTER TABLE `gebruiker`
   ADD PRIMARY KEY (`gebruikerid`);
 
 --
+-- Indexes for table `kijksessie`
+--
+ALTER TABLE `kijksessie`
+  ADD PRIMARY KEY (`videoid`,`gebruikerid`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`ratingid`);
+
+--
+-- Indexes for table `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`videoid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `categorieid` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `gebruiker`

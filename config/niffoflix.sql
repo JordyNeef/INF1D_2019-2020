@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 03:48 PM
+-- Generation Time: Jan 07, 2020 at 03:26 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorie` (
-  `categorieid` int(11) NOT NULL,
-  `naam` varchar(20) NOT NULL
+  `categorieid` int(7) DEFAULT NULL,
+  `naam` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -40,13 +40,11 @@ CREATE TABLE `categorie` (
 --
 
 CREATE TABLE `gebruiker` (
-  `gebruikerid` int(11) NOT NULL,
+  `gebruikerid` int(10) NOT NULL,
   `gebruikersnaam` varchar(30) NOT NULL,
   `wachtwoord` varchar(75) NOT NULL,
   `admin` tinyint(1) NOT NULL,
-  `proefversie` tinyint(1) NOT NULL,
-  `userimagepath` varchar(255) DEFAULT NULL,
-  `mail` varchar(50) DEFAULT NULL
+  `proefversie` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -56,9 +54,9 @@ CREATE TABLE `gebruiker` (
 --
 
 CREATE TABLE `kijksessie` (
-  `gebruikerid` int(7) NOT NULL,
-  `videoid` int(7) NOT NULL,
-  `tijdstip` varchar(50) NOT NULL
+  `gebruikerid` int(10) DEFAULT NULL,
+  `videoid` int(7) DEFAULT NULL,
+  `tijdstip` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,9 +66,9 @@ CREATE TABLE `kijksessie` (
 --
 
 CREATE TABLE `rating` (
-  `ratingid` int(11) NOT NULL,
-  `gebruikerid` int(7) NOT NULL,
-  `videoid` int(7) NOT NULL,
+  `ratingid` int(7) DEFAULT NULL,
+  `gebruikerid` int(10) DEFAULT NULL,
+  `videoid` int(7) DEFAULT NULL,
   `beoordeling` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,45 +79,16 @@ CREATE TABLE `rating` (
 --
 
 CREATE TABLE `video` (
-  `videoid` int(11) NOT NULL,
-  `playbackid` varchar(30) NOT NULL,
-  `titel` varchar(30) NOT NULL,
-  `Beschrijving` varchar(500) NOT NULL,
-  `UploadedBy` varchar(30) NOT NULL,
-  `videocatid` int(7) NOT NULL,
-  `Leeftijd` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `video`
---
-
-INSERT INTO `video` (`videoid`, `playbackid`, `titel`, `Beschrijving`, `UploadedBy`, `videocatid`, `Leeftijd`) VALUES
-(14, 'test', 'test', 'testvideo', 'testacount', 1, 13),
-(15, 'test', 'test', 'testvideo', 'testacount', 1, 13),
-(16, 'test', 'test', 'testvideo', 'testacount', 1, 13);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `video_categorie`
---
-
-CREATE TABLE `video_categorie` (
-  `videocatid` int(11) NOT NULL,
-  `categorieid` int(7) NOT NULL,
-  `videoid` int(7) NOT NULL
+  `playbackid` varchar(30) DEFAULT NULL,
+  `titel` varchar(30) DEFAULT NULL,
+  `beschrijving` varchar(500) DEFAULT NULL,
+  `uploadedby` int(10) DEFAULT NULL,
+  `leeftijd` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `categorie`
---
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`categorieid`);
 
 --
 -- Indexes for table `gebruiker`
@@ -128,98 +97,14 @@ ALTER TABLE `gebruiker`
   ADD PRIMARY KEY (`gebruikerid`);
 
 --
--- Indexes for table `kijksessie`
---
-ALTER TABLE `kijksessie`
-  ADD PRIMARY KEY (`gebruikerid`,`videoid`),
-  ADD KEY `videoid` (`videoid`);
-
---
--- Indexes for table `rating`
---
-ALTER TABLE `rating`
-  ADD PRIMARY KEY (`ratingid`),
-  ADD KEY `gebruikerid` (`gebruikerid`),
-  ADD KEY `videoid` (`videoid`);
-
---
--- Indexes for table `video`
---
-ALTER TABLE `video`
-  ADD PRIMARY KEY (`videoid`);
-
---
--- Indexes for table `video_categorie`
---
-ALTER TABLE `video_categorie`
-  ADD PRIMARY KEY (`videocatid`),
-  ADD KEY `categorieid` (`categorieid`),
-  ADD KEY `videoid` (`videoid`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `categorie`
---
-ALTER TABLE `categorie`
-  MODIFY `categorieid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
-  MODIFY `gebruikerid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rating`
---
-ALTER TABLE `rating`
-  MODIFY `ratingid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `video`
---
-ALTER TABLE `video`
-  MODIFY `videoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `video_categorie`
---
-ALTER TABLE `video_categorie`
-  MODIFY `videocatid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `kijksessie`
---
-ALTER TABLE `kijksessie`
-  ADD CONSTRAINT `kijksessie_ibfk_1` FOREIGN KEY (`gebruikerid`) REFERENCES `gebruiker` (`gebruikerid`),
-  ADD CONSTRAINT `kijksessie_ibfk_2` FOREIGN KEY (`videoid`) REFERENCES `video` (`videoid`);
-
---
--- Constraints for table `rating`
---
-ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`gebruikerid`) REFERENCES `gebruiker` (`gebruikerid`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`videoid`) REFERENCES `video` (`videoid`);
-
---
--- Constraints for table `video`
---
-ALTER TABLE `video`
-  ADD CONSTRAINT `video_ibfk_1` FOREIGN KEY (`videocatid`) REFERENCES `video_categorie` (`videocatid`);
-
---
--- Constraints for table `video_categorie`
---
-ALTER TABLE `video_categorie`
-  ADD CONSTRAINT `video_categorie_ibfk_1` FOREIGN KEY (`categorieid`) REFERENCES `categorie` (`categorieid`),
-  ADD CONSTRAINT `video_categorie_ibfk_2` FOREIGN KEY (`videoid`) REFERENCES `video` (`videoid`);
+  MODIFY `gebruikerid` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

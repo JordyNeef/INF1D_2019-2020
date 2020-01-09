@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2020 at 12:31 PM
+-- Generation Time: Jan 09, 2020 at 12:48 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -46,8 +46,15 @@ CREATE TABLE `gebruiker` (
   `admin` tinyint(1) NOT NULL,
   `proefversie` tinyint(1) NOT NULL,
   `userimagepath` varchar(255) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL
+  `mail` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gebruiker`
+--
+
+INSERT INTO `gebruiker` (`gebruikerid`, `gebruikersnaam`, `wachtwoord`, `admin`, `proefversie`, `userimagepath`, `mail`) VALUES
+(1, 'jordy', '$2y$10$/UCWjkpqOV6r4oST5NvwCecExF09f0dDlnH8MMq2xEJFFisFsDBx2', 1, 0, NULL, 'jordy@mail.nl');
 
 -- --------------------------------------------------------
 
@@ -138,7 +145,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
-  MODIFY `gebruikerid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `gebruikerid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -81,14 +81,12 @@
 					else{
 						$email = trim($_POST["email"]);
 					}
-				}
-				else{
+					// Close statement
+				mysqli_stmt_close($stmt);
+				}else{
 					echo "Oops! Something went wrong. Please try again later.";
 				}
-			}
-
-			// Close statement
-			mysqli_stmt_close($stmt);
+			}	
 		}
 
 		// Validate password
@@ -174,14 +172,15 @@
 	    		else{
 	    			echo "Something went wrong. Please try again later.";
 	    		}
-
-	    	}
-			// Close statement
-	    	mysqli_stmt_close($stmt);	
+				 // Close connection
+				 mysqli_close($conn);
+	    	}else{
+				echo "qeury werkt niet";
+			}
+	
 	    }
 
-	    // Close connection
-	    mysqli_close($conn);
+	   
 	}
 ?>
 

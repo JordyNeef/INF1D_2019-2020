@@ -4,7 +4,7 @@
         <?php require 'config/functions.php'; ?>
         <?php require 'config/conn.php'; ?>
         <?php require "config/sessions.php";
-        if(!isset($_SESSION['login'])){
+        if(!isset($_SESSION['login']) && !isset($_SESSION['admin'])){
             header("login.php");
         }?>
         <meta charset="UTF-8">

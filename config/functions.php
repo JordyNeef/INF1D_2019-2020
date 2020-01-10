@@ -11,9 +11,9 @@ function headerBar() { ?>
             <div class="accountButton">
                 <img src="img/account.png" alt="account icoontje">
                 <div class="dropdown-content">
-                    <a href="#">Account</a>
-                    <a href="#">Settings</a>
-                    <a href="#">Logout</a>
+                    <a href="accountsettings.php">Account</a>
+                    <a href="accountsettings.php">Settings</a>
+                    <a href="config/logout.php">Logout</a>
                 </div>
             </div>
             <div class="title">

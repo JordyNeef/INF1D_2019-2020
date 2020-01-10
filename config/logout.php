@@ -1,3 +1,4 @@
 <?php
-session_die();
+session_destroy();
+header("login.php");
 ?>

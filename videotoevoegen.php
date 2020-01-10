@@ -70,10 +70,10 @@
                                                 $countCategorie = count($explodeCategorie);
                                                 $videoTable = "video";
                                                 $categorieTable = "categorie";
-                                                $checkQuery = "SELECT * FROM categorie";
+                                                $checkQuery = "SELECT max(categorieid) as topid, categorieid, naam FROM categorie";
                                                 if($checkStmt = mysqli_prepare($conn, $checkQuery)){
                                                     mysqli_execute($checkStmt);
-                                                    mysqli_stmt_bind_result($checkStmt, $catId, $naam);
+                                                    mysqli_stmt_bind_result($checkStmt, $topId, $catId, $naam);
                                                     mysqli_stmt_store_result($checkStmt);
                                                     if(mysqli_stmt_num_rows($checkStmt) > 0){
                                                         // echo "<pre>";
@@ -82,10 +82,10 @@
                                                         $a = 0;
                                                         while($a <$countCategorie){
                                                             mysqli_stmt_fetch($checkStmt);
-                                                            $controleQeury = "SELECT naam FROM $categorieTable WHERE naam = '$explodeCategorie[$a]'";
+                                                            $controleQeury = "SELECT categorieid, naam FROM categorie WHERE naam = '$explodeCategorie[$a]'";
                                                             if($checkStmt = mysqli_prepare($conn, $controleQeury)){
                                                                 mysqli_execute($checkStmt);
-                                                                mysqli_stmt_bind_result($checkStmt, $controleNaam);
+                                                                mysqli_stmt_bind_result($checkStmt, $controleId, $controleNaam);
                                                                 mysqli_stmt_store_result($checkStmt);
                                                             }
                                                             mysqli_stmt_fetch($checkStmt);
@@ -93,14 +93,12 @@
                                                                 $categorieinsertQeury = "INSERT INTO categorie VALUES (NULL, '$explodeCategorie[$a]')";
                                                                 if(mysqli_query($conn, $categorieinsertQeury)){
                                                                     echo "$explodeCategorie[$a] toegevoegd.";
-                                                                    
-                                                                    $categorieen .= (mysqli_stmt_num_rows($checkStmt) + 1);
+                                                                    $categorieen .= ($topId += 1) . ",";
                                                                 } else {
                                                                     echo "categorie kon niet worden toegevoegd.";
                                                                 }
-                                                                
                                                             } else {
-                                                                $categorieen .=$catId . "| ";
+                                                                $categorieen .= "$controleId,";
                                                             }
                                                             // $insertQeury = "INSERT INTO categorie VALUES (NULL, '$explodeCategorie[$a]')";
                                                             // if(mysqli_query($conn, $insertQeury)){
@@ -109,7 +107,6 @@
                                                             //     echo "De categorie(en) kon(den) niet worden toegevoegd!";
                                                             // }
                                                             $a++;
-                                                        
                                                         }
                                                     } else {
                                                         $a = 0;
@@ -117,23 +114,19 @@
                                                             $categorieInsertQeury = "INSERT INTO categorie VALUES (NULL, '$explodeCategorie[$a]')";
                                                             if(mysqli_query($conn, $categorieInsertQeury)){
                                                                 echo "$explodeCategorie[$a] toegevoegd ";
-                                                                $categorieen .=$catId . "| ";
+                                                                $categorieen .= "$catId,";
                                                             } else {
                                                                 echo "De categorie(en) kon(den) niet worden toegevoegd!";
                                                             }
                                                             $a++;
-                                                        }
-                                                        
+                                                        } 
                                                     }
                                                 }   
                                             } 
                                             $insertQeury = "INSERT INTO " . $table . " VALUES(?, ?, ?, ?, ?, NULL, ?)";
                                             if($stmt = mysqli_prepare($conn, $insertQeury)){
-                                                
-                                                mysqli_stmt_bind_param($stmt, 'ssssii', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd, $categorieen);
-                                                echo $categorieen;
+                                                mysqli_stmt_bind_param($stmt, 'ssssis', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd, $categorieen);
                                                 $insertResult = mysqli_stmt_execute($stmt);
-                                                
                                                 if($insertResult === FALSE){
                                                     echo "<p>Unable to execute the query.</p>"
                                                     . "<p>Error code "
@@ -142,7 +135,6 @@
                                                     . mysqli_error($conn)
                                                     . "</p>";
                                                 } else{
-                                                    
                                                     echo "<br>Video succesfully uploaded";
                                                 }
                                                 mysqli_stmt_close($stmt);

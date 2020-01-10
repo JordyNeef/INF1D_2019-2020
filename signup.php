@@ -2,7 +2,7 @@
 	//checkt of je ingelogd bent
 	session_start();
 	if(isset($_SESSION["login"])){
-		header("location:index.php");
+		//header("location:index.php");
 	}
 	// Include connection file
 	require_once "config/conn.php";
@@ -16,7 +16,7 @@
 
 		// Validate username
 		if(empty(trim($_POST["username"]))){
-			$username_err = "Please enter a username";
+			$username_err = "Please enter a username ";
 			echo $username_err;
 		} 
 		else{
@@ -37,7 +37,7 @@
 					mysqli_stmt_store_result($stmt);
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
-						$username_err = "This username is already taken";
+						$username_err = "This username is already taken ";
 						echo $username_err;
 					}
 					else{
@@ -91,11 +91,11 @@
 
 		// Validate password
 		if(empty(trim($_POST["password"]))){
-	        $password_err = "Please enter a password.";   
+	        $password_err = "Please enter a password ";   
 	        echo $password_err;
 	    } 
 	    elseif(strlen(trim($_POST["password"])) < 6){
-	        $password_err = "Password must have atleast 6 characters.";
+	        $password_err = "Password must have atleast 6 characters ";
 	        echo $password_err;
 	    } 
 	    else{
@@ -104,13 +104,13 @@
 	    
 	    // Validate confirm password
 	    if(empty(trim($_POST["confirm_password"]))){
-	        $confirm_password_err = "Please confirm password.";   
+	        $confirm_password_err = "Please confirm password ";   
 	        echo $confirm_password_err;  
 	    } 
 	    else{
 	        $confirm_password = trim($_POST["confirm_password"]);
 	        if(empty($password_err) && ($password != $confirm_password)){
-	            $confirm_password_err = "Password did not match.";
+	            $confirm_password_err = "Password did not match. ";
 	            echo $confirm_password_err;
 	        }
 	    }
@@ -145,6 +145,7 @@
 	    else
 	    {
 	        echo "Invalid file";
+	        $userimagepath = account.png;
 	    }
 
 	    // !!Alleen bestandsnaam wordt opgeslagen, die de mappen waar die in zit

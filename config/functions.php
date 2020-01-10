@@ -9,10 +9,10 @@ function headerBar() { ?>
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <?php require ('config/sessions.php'); ?>
-                <?php echo $_SESSION["profilepic"]?>
-                <?php if(isset($_POST["userimagepath"])){   ?>
-                    <img src="img/avatar/<?php $_SESSION["profilepic"]?>" alt="account icoontje">
+                <?php require ('sessions.php');
+                $locatiefile = "img/avatar/" . $profilepic;?>
+                <?php if(isset($profilepic)){ ?>
+                    <img src= '<?php echo $locatiefile; ?>' alt="account icoontje">  
                     <div class="dropdown-content">
                         <a href="login.php">Account</a>
                         <a href="accountsettings.php">Settings</a>
@@ -20,7 +20,7 @@ function headerBar() { ?>
                     </div>
                 <?php } 
                 else{
-                    echo "<img src=img/account.png' alt='account icoontje'>"
+                    echo "<img src='img/account.png' alt='account icoontje'>"
                     . "<div class='dropdown-content'>" 
                         . "<a href='login.php'>Account</a>"
                        . "<a href='accountsettings.php'>Settings</a>"

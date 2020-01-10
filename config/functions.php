@@ -11,8 +11,9 @@ function headerBar() { ?>
             <div class="accountButton">
                 <?php require ('sessions.php'); ?>
                 <?php echo $_SESSION["profilepic"]?>
-                <?php if(isset($_SESSION["profilepic"])){   ?>
-                    <img src="../img/avatar/<?php $_SESSION["profilepic"]?>" alt="account icoontje">
+                <?php echo $profilepic?>
+                <?php if(empty($_SESSION["profilepic"])){   ?>
+                    <img src="../img/avatar/<?php $profilepic?>" alt="account icoontje">
                     <div class="dropdown-content">
                         <a href="login.php">Account</a>
                         <a href="accountsettings.php">Settings</a>

@@ -9,15 +9,30 @@ function headerBar() { ?>
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <img src="img/account.png" alt="account icoontje">
-                <div class="dropdown-content">
-                    <a href="#">Account</a>
-                    <a href="#">Settings</a>
-                    <a href="#">Logout</a>
-                </div>
+                <?php require ('config/sessions.php'); ?>
+                <?php echo $_SESSION["profilepic"]?>
+                <?php echo $profilepic?>
+                <?php if(!empty($_SESSION["profilepic"])){   ?>
+                    <img src="../img/avatar/<?php $profilepic?>" alt="account icoontje">
+                    <div class="dropdown-content">
+                        <a href="login.php">Account</a>
+                        <a href="accountsettings.php">Settings</a>
+                        <a href="config/logout.php">Logout</a>
+                    </div>
+                <?php } 
+                else{
+                    echo "<img src=img/account.png alt='account icoontje'>"
+                    . "geen eigen profiel foto"
+                    . "<div class='dropdown-content'>" 
+                        . "<a href='login.php'>Account</a>"
+                       . "<a href='accountsettings.php'>Settings</a>"
+                        . "<a href='config/logout.php'>Logout</a>"
+                    . "</div>"; 
+                }
+                ?>
             </div>
             <div class="title">
-                <img src="img/niffoflix_Logo.png" alt="logo van niffoflix">
+                <a href="index.php"><img src="img/niffoflix_Logo.png" alt="logo van niffoflix"></a>
             </div>
         </div>
     </div>
@@ -79,6 +94,7 @@ function navScript() {
                     navText[i].style.width = w + "px";
                 }
                 document.getElementById("navBar").style.width = w + "px";
+                document.getElementById("transparentFakeContainer").style.width = "0px";
             }
             open = true;
         }

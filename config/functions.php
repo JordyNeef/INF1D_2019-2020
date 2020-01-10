@@ -9,12 +9,25 @@ function headerBar() { ?>
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <img src="img/account.png" alt="account icoontje">
-                <div class="dropdown-content">
-                    <a href="accountsettings.php">Account</a>
-                    <a href="accountsettings.php">Settings</a>
-                    <a href="config/logout.php">Logout</a>
-                </div>
+                <?php require 'sessions.php'; ?>
+                <?php if(isset($_POST["userimagepath"])){   ?>
+
+                    <img src="img/avatar/<?php $_SESSION["profilepic"]?>" alt="account icoontje">
+                    <div class="dropdown-content">
+                        <a href="login.php">Account</a>
+                        <a href="accountsettings.php">Settings</a>
+                        <a href="config/logout.php">Logout</a>
+                    </div>
+                <?php } 
+                else{
+                    echo "<img src=img/account.png' alt='account icoontje'>"
+                    . "<div class='dropdown-content'>" 
+                        . "<a href='login.php'>Account</a>"
+                       . "<a href='accountsettings.php'>Settings</a>"
+                        . "<a href='config/logout.php'>Logout</a>"
+                    . "</div>"; 
+                }
+                ?>
             </div>
             <div class="title">
                 <a href="index.php"><img src="img/niffoflix_Logo.png" alt="logo van niffoflix"></a>

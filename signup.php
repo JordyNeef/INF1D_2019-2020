@@ -2,7 +2,7 @@
 	//checkt of je ingelogd bent
 	session_start();
 	if(isset($_SESSION["login"])){
-		header("location:index.php");
+		//header("location:index.php");
 	}
 	// Include connection file
 	require_once "config/conn.php";

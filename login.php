@@ -3,7 +3,7 @@
 		session_start();
 		//checkt of je ingelogd bent
 		if(isset($_SESSION["login"])){
-			header("location:index.php");
+			//header("location:index.php");
 		}
 		if(isset($_POST["username"]) AND isset($_POST["password"]))
 		{
@@ -37,9 +37,9 @@
 						$_SESSION["username"] = $username; 
 						$_SESSION["admin"] = $admin;
 						$_SESSION["proefversie"] = $proefversie;
-						$_SESSION["profilepic"] = $profilepic; 
-						$_SESSION["email"] = $email;
-						header("location: index.php");
+						$_SESSION["profilepic"] = $image; 
+						$_SESSION["email"] = $mail;
+						header("location:index.php");
 					}
 					else
 					{

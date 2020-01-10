@@ -12,7 +12,7 @@ function headerBar() { ?>
                 <?php require ('sessions.php');
                 $locatiefile = "img/avatar/" . $profilepic;?>
                 <?php if(isset($profilepic)){ ?>
-                    <img src= '<?php echo $locatiefile; ?>' alt="account icoontje">  
+                    <img class='profileimg' src= '<?php echo $locatiefile; ?>' alt="account icoontje">  
                     <div class="dropdown-content">
                         <a href="login.php">Account</a>
                         <a href="accountsettings.php">Settings</a>
@@ -20,7 +20,7 @@ function headerBar() { ?>
                     </div>
                 <?php } 
                 else{
-                    echo "<img src='img/account.png' alt='account icoontje'>"
+                    echo "<img class='profileimg' src='img/account.png' alt='account icoontje'>"
                     . "<div class='dropdown-content'>" 
                         . "<a href='login.php'>Account</a>"
                        . "<a href='accountsettings.php'>Settings</a>"

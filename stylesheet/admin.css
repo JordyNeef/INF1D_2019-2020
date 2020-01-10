@@ -64,6 +64,9 @@ body{
     color: white;
     padding-left: 80px;
 }
+textarea, input{
+    outline: none;
+}
 
 #containersubmit textarea{
     height: 150px;

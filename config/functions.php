@@ -9,10 +9,18 @@ function headerBar() { ?>
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
+<<<<<<< HEAD
                 <?php require ('sessions.php');
                 $locatiefile = "img/avatar/" . $profilepic;?>
                 <?php if(isset($profilepic)){ ?>
                     <img src= '<?php echo $locatiefile; ?>' alt="account icoontje">  
+=======
+                <?php require ('config/sessions.php'); ?>
+                <?php echo $_SESSION["profilepic"]?>
+                <?php echo $profilepic?>
+                <?php if(!empty($_SESSION["profilepic"])){   ?>
+                    <img src="../img/avatar/<?php $profilepic?>" alt="account icoontje">
+>>>>>>> 23f6cd3de5be0f2b6c96b780c44eadd4517a464a
                     <div class="dropdown-content">
                         <a href="login.php">Account</a>
                         <a href="accountsettings.php">Settings</a>
@@ -20,7 +28,12 @@ function headerBar() { ?>
                     </div>
                 <?php } 
                 else{
+<<<<<<< HEAD
                     echo "<img src='img/account.png' alt='account icoontje'>"
+=======
+                    echo "<img src=img/account.png alt='account icoontje'>"
+                    . "geen eigen profiel foto"
+>>>>>>> 23f6cd3de5be0f2b6c96b780c44eadd4517a464a
                     . "<div class='dropdown-content'>" 
                         . "<a href='login.php'>Account</a>"
                        . "<a href='accountsettings.php'>Settings</a>"

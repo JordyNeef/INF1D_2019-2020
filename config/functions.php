@@ -17,7 +17,7 @@ function headerBar() { ?>
                 </div>
             </div>
             <div class="title">
-                <img src="img/niffoflix_Logo.png" alt="logo van niffoflix">
+                <a href="index.php"><img src="img/niffoflix_Logo.png" alt="logo van niffoflix"></a>
             </div>
         </div>
     </div>
@@ -79,6 +79,7 @@ function navScript() {
                     navText[i].style.width = w + "px";
                 }
                 document.getElementById("navBar").style.width = w + "px";
+                document.getElementById("transparentFakeContainer").style.width = "0px";
             }
             open = true;
         }

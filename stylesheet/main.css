@@ -107,6 +107,10 @@ a{
     width: auto;
 }
 
+.profileimg{
+    border-radius: 50%;
+    object-fit: cover;
+}
 @media screen and (max-width: 540px) {
     .title img{
         height: 30px;
@@ -129,8 +133,11 @@ a{
     .header{
         height: 50px;
     }
-    .accountButton img{
-        height: 30px;
+
+    .profileimg{
+        width: 30px;
+        height: 30px !important;
+
     }
 }
 
@@ -157,8 +164,9 @@ a{
     .title img{
         height: 70px;
     }
-    .accountButton img{
+    .profileimg{
         height: 70px;
+        width: 70px;
     }
     .navStreep{
         width: 50px;

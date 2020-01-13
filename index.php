@@ -3,6 +3,7 @@
 <html>
     <head>
         <?php require 'config/functions.php'; ?>
+        <?php require 'config/videos.php'; ?>
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <link type="text/css" rel="stylesheet" href="stylesheet/index.css" />
@@ -21,7 +22,9 @@
         <div class="topVideoContainer">
             <!--dit zijn placeholders-->
             <div class="video">
-                
+                <?php
+                frontvid()
+                ?>
             </div>
             <div class="video">
 

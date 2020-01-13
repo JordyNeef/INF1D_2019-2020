@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
     session_start();
     //checkt of je ingelogd bent
     if(isset($_SESSION["login"])){
@@ -14,6 +15,24 @@
         header("location:login.php");
     }
 function headerBar() { ?>
+=======
+session_start();
+//checkt of je ingelogd bent
+if (isset($_SESSION["login"])) {
+    //sessies definen
+    $id = $_SESSION["ID"];
+    $username = $_SESSION["username"];
+    $admin = $_SESSION["admin"];
+    $proefversie = $_SESSION["proefversie"];
+    $profilepic = $_SESSION["profilepic"];
+    $email = $_SESSION["email"];
+} else {
+    header("location:login.php");
+}
+
+function headerBar() {
+    ?>
+>>>>>>> 25325d4680736bb8573b9343f34e806f155791ce
     <div class='header'>
         <div class="navOpenButton" onclick="navOpen();">
             <div class="navStreep"></div>
@@ -22,25 +41,25 @@ function headerBar() { ?>
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <?php 
-                $profile_avatar = "img/avatar/" . $_SESSION["profilepic"];?>
-                <?php if(isset($_SESSION["profilepic"])){ ?>
-                    <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">  
-                    <div class="dropdown-content">
-                        <a href="login.php">Account</a>
-                        <a href="accountsettings.php">Settings</a>
-                        <a href="config/logout.php">Logout</a>
-                    </div>
-                <?php } 
-                else{
-                    echo "<img class='profileimg' src='img/avatar/account.png' alt='account icoontje'>"
-                    . "<div class='dropdown-content'>" 
-                        . "<a href='login.php'>Account</a>"
-                       . "<a href='accountsettings.php'>Settings</a>"
-                        . "<a href='config/logout.php'>Logout</a>"
-                    . "</div>"; 
+                <?php $profile_avatar = "img/avatar/" . $_SESSION["profilepic"]; ?>
+                <?php if (isset($_SESSION["profilepic"])) { ?>
+                    <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">
+                    <?php
+                } else {
+                    echo "<img class='profileimg' src='img/avatar/account.png' alt='account icoontje'>";
                 }
                 ?>
+                <div class="dropdown-content">
+                    <a href="accountsettings.php">Account settings</a>
+                    <?php
+                    if ($_SESSION['admin'] == 1) {
+                        echo"<a href='videotoevoegen.php'>video toevoegen</a>";
+                        echo"<a href='videowijzigen.php'>video wijzigen</a>";
+                        echo"<a href='admintoewijzen.php'>admin toewijzen</a>";
+                    }
+                    ?>
+                    <a href="config/logout.php">Logout</a>
+                </div>
             </div>
             <div class="title">
                 <a href="index.php"><img src="img/niffoflix_Logo.png" alt="logo van niffoflix"></a>
@@ -55,11 +74,12 @@ function navBar() {
     <div id="navBar">
         <div class="navCloseButton"  onclick="navClose();">&#10005;</div>
         <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
-        <a class="navText" href="#">bla bla bla</a>
+        <!--vul hier catergorieen in-->
+        <a class="navText" href="#">cartergorie naam</a>
         <a class="navText" href="#">just some text</a>
         <a class="navText" href="#">bla bla bla</a>
     </div>
-<div id="transparentFakeContainer" onclick="navClose();"></div>
+    <div id="transparentFakeContainer" onclick="navClose();"></div>
     <?php
 }
 
@@ -72,8 +92,8 @@ function navScript() {
         var navText = document.getElementsByClassName("navText");
         var open = false;
 
-    //    unqoute dit om de breede van de website te zien:
-    //    alert("Browser inner window width: " + w + ".");
+        //    unqoute dit om de breede van de website te zien:
+        //    alert("Browser inner window width: " + w + ".");
 
         //check de groote van de website
         function checkWidth() {
@@ -115,15 +135,6 @@ function navScript() {
             document.getElementById("navBar").style.display = "hidden";
             document.getElementById("transparentFakeContainer").style.width = "0px";
             open = false;
-
-        }    
-        //video displayen W.I.P
-        function frontvid() {
-        $videosarray = "SELECT videoid, titel, beschrijving FROM video";
-        // shuffle($videosarray)
-        echo  
-            $videosarray;
         }
-    </script>
-    
+    </script>    
 <?php } ?>

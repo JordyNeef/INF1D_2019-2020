@@ -117,7 +117,7 @@
 		}
 		else
 		{
-			echo "something went horrible wrong......";
+			echo "something went horribly wrong......";
 		}
 
 	}

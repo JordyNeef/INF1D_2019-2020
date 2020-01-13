@@ -121,10 +121,9 @@ function navScript() {
         function frontvid() {
         $videosarray = "SELECT videoid, titel, beschrijving FROM video";
         // shuffle($videosarray)
-        echo{ 
-            $videosarray
+        echo  
+            $videosarray;
         }
-    }
     </script>
     
 <?php } ?>

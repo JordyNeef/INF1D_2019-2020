@@ -21,7 +21,7 @@
         <div class="topVideoContainer">
             <!--dit zijn placeholders-->
             <div class="video">
-
+                
             </div>
             <div class="video">
 

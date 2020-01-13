@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php require 'config/functions.php'; ?>
-<?php require 'config/conn.php'; ?>
+<?php require 'config/conn.php'; 
+if(!$_SESSION['admin'] == 1){
+    header("location:index.php");
+}
+?>
 <html>
     <head>
         <title>Admin Portal</title>

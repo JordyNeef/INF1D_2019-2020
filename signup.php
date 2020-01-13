@@ -145,7 +145,7 @@
 	    else
 	    {
 	        echo "Invalid file";
-	        $userimagepath = account.png;
+	        $userimagepath = "account.png";
 	    }
 
 	    // !!Alleen bestandsnaam wordt opgeslagen, die de mappen waar die in zit

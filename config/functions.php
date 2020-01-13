@@ -1,5 +1,4 @@
 <?php
-
 function headerBar() { ?>
     <div class='header'>
         <div class="navOpenButton" onclick="navOpen();">
@@ -9,10 +8,10 @@ function headerBar() { ?>
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <?php require ('sessions.php');
-                $locatiefile = "img/avatar/" . $profilepic;?>
-                <?php if(isset($profilepic)){ ?>
-                    <img class='profileimg' src= '<?php echo $locatiefile; ?>' alt="account icoontje">  
+                <?php 
+                $profile_avatar = "img/avatar/" . $_SESSION['profilepic'];?>
+                <?php if(isset($_SESSION['profilepic'])){ ?>
+                    <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">  
                     <div class="dropdown-content">
                         <a href="login.php">Account</a>
                         <a href="accountsettings.php">Settings</a>
@@ -104,5 +103,10 @@ function navScript() {
             open = false;
 
         }
+        
+        function frontvid() {
+            shuffle($videosarray)
+        }
     </script>
+    
 <?php } ?>

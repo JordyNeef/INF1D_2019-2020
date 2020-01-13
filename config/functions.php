@@ -113,11 +113,15 @@ function navScript() {
             document.getElementById("transparentFakeContainer").style.width = "0px";
             open = false;
 
-        }
-        
+        }    
+        //video displayen W.I.P
         function frontvid() {
-            shuffle($videosarray)
+        $videosarray = "SELECT videoid, titel, beschrijving FROM video";
+        // shuffle($videosarray)
+        echo{ 
+            $videosarray
         }
+    }
     </script>
     
 <?php } ?>

@@ -23,7 +23,7 @@
             <!--dit zijn placeholders-->
             <div class="video">
                 <?php
-                frontvid()
+//                frontvid()
                 ?>
             </div>
             <div class="video">

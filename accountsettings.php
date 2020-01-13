@@ -4,7 +4,6 @@
     <?php require 'config/functions.php';?>
     <?php require 'config/conn.php';?>
     <?php 
-        require "config/sessions.php";
         if(!isset($_SESSION["login"]) && !isset($_SESSION['admin'])){
             header("login.php");
         }
@@ -99,32 +98,34 @@
 			mysqli_stmt_close($stmt);
 		}
 
-	}
-	$sql = "UPDATE gebruiker SET gebruikersnaam = ?, mail = ? WHERE gebruikerid = ?";
+		$sql = "UPDATE gebruiker SET gebruikersnaam = ?, mail = ? WHERE gebruikerid = ?";
 
-	if($stmt = mysqli_prepare($conn, $sql))
-	{
-		mysqli_stmt_bind_param($stmt, "ssi", $param_username, $param_email, $id);
-
-		if(mysqli_stmt_execute($stmt))
+		if($stmt = mysqli_prepare($conn, $sql))
 		{
-			echo "Account has been updated";
+			mysqli_stmt_bind_param($stmt, "ssi", $param_username, $param_email, $id);
+
+			if(mysqli_stmt_execute($stmt))
+			{
+				echo "Account has been updated";
+				header("location: index.php");
+			}
+			else
+			{
+				echo "Something went wrong.";
+			}
+			mysqli_stmt_close($stmt);
 		}
 		else
 		{
-			echo "Something went wrong.";
+			echo "something went horrible wrong......";
 		}
-		mysqli_stmt_close($stmt);
-	}
-	else
-	{
-		echo "something went horrible wrong......";
+
 	}
 	mysqli_close($conn);
 
 	?>
 	<div class="flex-container">
-		<form action="accountsettings.php">
+		<form action="accountsettings.php" method="POST">
 			<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" value="<?php echo $username ?>"></div>
 			<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email" value="<?php echo $email ?>"></div>
 			<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Change"></div>

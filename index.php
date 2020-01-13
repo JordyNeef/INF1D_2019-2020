@@ -21,9 +21,7 @@
         <div class="topVideoContainer">
             <!--dit zijn placeholders-->
             <div class="video">
-                <?php
-                frontvid()
-                ?>
+                
             </div>
             <div class="video">
 

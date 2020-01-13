@@ -3,7 +3,7 @@
 		session_start();
 		//checkt of je ingelogd bent
 		if(isset($_SESSION["login"])){
-			//header("location:index.php");
+			header("location:index.php");
 		}
 		if(isset($_POST["username"]) AND isset($_POST["password"]))
 		{

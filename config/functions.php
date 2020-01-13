@@ -1,4 +1,15 @@
 <?php
+    session_start();
+    //checkt of je ingelogd bent
+    if(isset($_SESSION["login"])){
+        //sessies definen
+        $id = $_SESSION["ID"];
+        $username = $_SESSION["username"];
+        $admin = $_SESSION["admin"];
+        $proefversie = $_SESSION["proefversie"];
+        $profilepic = $_SESSION["profilepic"];
+        $email = $_SESSION["email"];
+    } 
 function headerBar() { ?>
     <div class='header'>
         <div class="navOpenButton" onclick="navOpen();">
@@ -9,8 +20,8 @@ function headerBar() { ?>
         <div class="titleAndAccountButton">
             <div class="accountButton">
                 <?php 
-                $profile_avatar = "img/avatar/" . $_SESSION['profilepic'];?>
-                <?php if(isset($_SESSION['profilepic'])){ ?>
+                $profile_avatar = "img/avatar/" . $_SESSION["profilepic"];?>
+                <?php if(isset($_SESSION["profilepic"])){ ?>
                     <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">  
                     <div class="dropdown-content">
                         <a href="login.php">Account</a>
@@ -19,7 +30,7 @@ function headerBar() { ?>
                     </div>
                 <?php } 
                 else{
-                    echo "<img class='profileimg' src='img/account.png' alt='account icoontje'>"
+                    echo "<img class='profileimg' src='img/avatar/account.png' alt='account icoontje'>"
                     . "<div class='dropdown-content'>" 
                         . "<a href='login.php'>Account</a>"
                        . "<a href='accountsettings.php'>Settings</a>"

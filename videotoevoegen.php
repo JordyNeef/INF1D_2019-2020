@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-        <?php 
-            require "config/sessions.php";
-            if(!$_SESSION["admin"] == 1){
-                header("location:index.php");
-            }
-        ?>
 <html>
     <head>
         <?php require 'config/functions.php'; ?>
-        <?php require 'config/conn.php'; ?>
+        <?php require 'config/conn.php'; 
+            if(!$_SESSION["admin"] == 1){
+                header("location:index.php");
+            }
+            ?>
         <meta charset="UTF-8">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <title>Beheer</title>

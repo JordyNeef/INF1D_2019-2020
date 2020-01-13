@@ -10,6 +10,9 @@
         $profilepic = $_SESSION["profilepic"];
         $email = $_SESSION["email"];
     } 
+    else{
+        header("location:login.php");
+    }
 function headerBar() { ?>
     <div class='header'>
         <div class="navOpenButton" onclick="navOpen();">

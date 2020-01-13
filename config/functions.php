@@ -117,13 +117,6 @@ function navScript() {
             open = false;
 
         }    
-        //video displayen W.I.P
-        function frontvid() {
-        $videosarray = "SELECT videoid, titel, beschrijving FROM video";
-        // shuffle($videosarray)
-        echo  
-            $videosarray;
-        }
     </script>
     
 <?php } ?>

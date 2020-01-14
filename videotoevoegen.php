@@ -56,7 +56,9 @@
                                             if($conn === FALSE){
                                                 echo "Unable to connect to database.";
                                             } else{
+                                                
                                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
+                                                $videoUrl = str_replace("https://www.youtube.com/watch?v=","",$videoUrl);
                                                 $titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $uploader = $id;
                                                 $checkCategorie = filter_input(INPUT_POST, 'catagorie', FILTER_SANITIZE_SPECIAL_CHARS);

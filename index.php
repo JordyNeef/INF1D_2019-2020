@@ -21,19 +21,9 @@
         <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
         <div class="topVideoContainer">
             <!--dit zijn placeholders-->
-            <div class="video">
-            <?php
-                frontvid()
-            ?>
-            </div>
-            <div class="video">
-            <?php
-                frontvid()
-            ?>
-            </div>
-            <div class="video">
-
-            </div>
+        <?php 
+            frontvid()
+        ?>
         </div>
         <div class="CatagorieVideoLists">
             <h2> Subcategorie </h2>

@@ -11,13 +11,13 @@
                 mysqli_stmt_bind_result($stmt, $playbackid, $titel, $uploadedby, $leeftijd, $categorieid, $videoid);
                 while(mysqli_stmt_fetch($stmt)){
                     explode( '?=', $playbackid);
-                    str_replace("https://www.youtube.com/watch?v=","","$playbackid");
-                    echo "<div class='video'>"
-                    . '<iframe width="fill" height="fill" 
-                    src="https://www.youtube-nocookie.com/embed/'.$playbackid.'"
+                    $urlid = str_replace("https://www.youtube.com/watch?v=","",$playbackid);
+                    echo 
+                    '<iframe class="video" width="100%" height="100%"
+                    src="https://www.youtube-nocookie.com/embed/'.$urlid.'"
                         frameborder="0"  allow="autoplay; encrypted-media" allowfullscreen>
                         </iframe>'
-                    . "</div>";
+                    ;
                 }
             }
             else {

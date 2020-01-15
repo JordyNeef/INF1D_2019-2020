@@ -31,10 +31,10 @@
                         $videoId = filter_input(INPUT_GET, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                         if(isset($videoId)){
                             $table = "video";
-                            $selectQeury = "SELECT playbackid, titel, beschrijving, UploadedBy, videocatid, leeftijd FROM $table WHERE videoid = $videoId";
+                            $selectQeury = "SELECT playbackid, titel, beschrijving, UploadedBy, categorieid, leeftijd FROM $table WHERE videoid = $videoId";
                             if($stmt = mysqli_prepare($conn, $selectQeury)){
                                     mysqli_execute($stmt);
-                                    mysqli_stmt_bind_result($stmt, $pId, $titel, $beschrijving, $_SESSION["ID"], $vcId, $leeftijdR);
+                                    mysqli_stmt_bind_result($stmt, $pId, $titel, $beschrijving, $uploadBy, $vcId, $leeftijdR);
                                     mysqli_stmt_store_result($stmt);
                                     if(mysqli_stmt_num_rows($stmt) == 0){
                                         echo "deze videoid is niet bekend, kies een andere.";
@@ -71,13 +71,12 @@
                                             if(empty($_POST["beschrijving"])){
                                                 echo "Voer een beschrijving in.";
                                             } else{
-                                                
                                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $maker = filter_input(INPUT_POST, 'maker', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $categorie = filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $beschrijving = filter_input(INPUT_POST, 'beschrijving', FILTER_SANITIZE_SPECIAL_CHARS);
-                                                $updateQeury = "UPDATE video SET playbackid= '$videoId', titel= '$titel', beschrijving='$beschrijving', uploadedby= '$maker' WHERE videoid=$videoId";
+                                                $updateQeury = "UPDATE video SET playbackid= '$videoUrl', titel= '$titel', beschrijving='$beschrijving', uploadedby= '$maker', categorieid='$categorie' WHERE videoid=$videoId";
                                                 if(mysqli_query($conn, $updateQeury)){
                                                     echo "<p>video is met succes ge-update.</p><p><a href='videowijzigen.php'>Video wijzigen</a></p>";
                                                 } else{

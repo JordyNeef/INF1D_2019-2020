@@ -13,6 +13,7 @@
     else{
         header("location:login.php");
     }
+    
 function headerBar() { ?>
     <div class='header'>
         <div class="navOpenButton" onclick="navOpen();">
@@ -51,15 +52,31 @@ function headerBar() { ?>
 }
 
 function navBar() {
+    require 'conn.php';
     ?>
-    <div id="navBar">
+<div id="navBar">
         <div class="navCloseButton"  onclick="navClose();">&#10005;</div>
-        <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
-        <!--vul hier catergorieen in-->
-        <a class="navText" href="#">cartergorie naam</a>
-        <a class="navText" href="#">just some text</a>
-        <a class="navText" href="#">bla bla bla</a>
-    </div>
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get">
+            <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
+            <button type="submit" class="searchButton">
+               <!-- <img src="img\search-solid.svg" alt="Zoek Knop"> -->
+               <i class="fas fa-search"></i>
+            </button>
+        </form> 
+    <?php
+    //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
+    $categorieQeury = "SELECT naam FROM categorie ORDER BY RAND() LIMIT 10;";
+        mysqli_execute($categorieStmt);
+        mysqli_stmt_bind_result($categorieStmt, $categorieNaam);
+        mysqli_stmt_store_result($categorieStmt);
+        echo '<!--vul hier catergorieen in-->';
+        while(mysqli_stmt_fetch($categorieStmt)){
+            echo '
+        <a class="navText" href="index.php?='.$categorieNaam .'">'.$categorieNaam.'</a>';
+        }
+        echo '</div>';
+    }
+    ?>
     <div id="transparentFakeContainer" onclick="navClose();"></div>
     <?php
 }

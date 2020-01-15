@@ -5,13 +5,11 @@
         <?php require 'config/functions.php'; ?>
         <?php require 'config/videos.php'; ?>
         <meta charset="UTF-8">
-        <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <link type="text/css" rel="stylesheet" href="stylesheet/index.css" />
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
     </head>
-    <i id="searchknop" class="fa fa-search"></i>
     <body onresize="checkOpenForResponsive();">
         <?php
         headerBar();

@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
     </head>
+    <i id="searchknop" class="fa fa-search"></i>
     <body onresize="checkOpenForResponsive();">
         <?php
         headerBar();

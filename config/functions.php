@@ -66,6 +66,7 @@ function navBar() {
     <?php
     //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
     $categorieQeury = "SELECT naam FROM categorie ORDER BY RAND() LIMIT 10;";
+    if($categorieStmt = mysqli_prepare($conn, $categorieQeury)){
         mysqli_execute($categorieStmt);
         mysqli_stmt_bind_result($categorieStmt, $categorieNaam);
         mysqli_stmt_store_result($categorieStmt);

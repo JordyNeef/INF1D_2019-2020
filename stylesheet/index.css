@@ -17,7 +17,10 @@ body{
 ::-webkit-scrollbar {
     display: none;
 }
-
+#searchknop{
+    width: 40px;
+    height: 40px;
+}
 @media screen and (max-width: 415px) {
     .video {
         border-radius: 27px;

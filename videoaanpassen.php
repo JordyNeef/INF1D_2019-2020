@@ -71,6 +71,7 @@
                                             if(empty($_POST["beschrijving"])){
                                                 echo "Voer een beschrijving in.";
                                             } else{
+                                                
                                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $maker = filter_input(INPUT_POST, 'maker', FILTER_SANITIZE_SPECIAL_CHARS);

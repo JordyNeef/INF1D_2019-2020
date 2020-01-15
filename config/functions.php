@@ -1,20 +1,20 @@
 <?php
-    session_start();
-    //checkt of je ingelogd bent
-    if(isset($_SESSION["login"])){
-        //sessies definen
-        $id = $_SESSION["ID"];
-        $usernamesession = $_SESSION["username"];
-        $admin = $_SESSION["admin"];
-        $proefversie = $_SESSION["proefversie"];
-        $profilepic = $_SESSION["profilepic"];
-        $email = $_SESSION["email"];
-    } 
-    else{
-        header("location:login.php");
-    }
-    
-function headerBar() { ?>
+session_start();
+//checkt of je ingelogd bent
+if (isset($_SESSION["login"])) {
+    //sessies definen
+    $id = $_SESSION["ID"];
+    $usernamesession = $_SESSION["username"];
+    $admin = $_SESSION["admin"];
+    $proefversie = $_SESSION["proefversie"];
+    $profilepic = $_SESSION["profilepic"];
+    $email = $_SESSION["email"];
+} else {
+    header("location:login.php");
+}
+
+function headerBar() {
+    ?>
     <div class='header'>
         <div class="navOpenButton" onclick="navOpen();">
             <div class="navStreep"></div>
@@ -54,83 +54,100 @@ function headerBar() { ?>
 function navBar() {
     require 'conn.php';
     ?>
-<div id="navBar">
+    <div id="navBar">
         <div class="navCloseButton"  onclick="navClose();">&#10005;</div>
         <!-- <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> -->
-            <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
-            
+        <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
+
         <!-- </form>  -->
-    <?php
-    //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
-    $categorieQeury = "SELECT naam FROM categorie ORDER BY RAND() LIMIT 10;";
-    if($categorieStmt = mysqli_prepare($conn, $categorieQeury)){
-        mysqli_execute($categorieStmt);
-        mysqli_stmt_bind_result($categorieStmt, $categorieNaam);
-        mysqli_stmt_store_result($categorieStmt);
-        echo '<!--vul hier catergorieen in-->';
-        while(mysqli_stmt_fetch($categorieStmt)){
-            echo '
-        <a class="navText" href="index.php?naam='.$categorieNaam .'">'.$categorieNaam.'</a>';
+        <?php
+        //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
+        $categorieQeury = "SELECT naam FROM categorie ORDER BY RAND() LIMIT 10;";
+        if ($categorieStmt = mysqli_prepare($conn, $categorieQeury)) {
+            mysqli_execute($categorieStmt);
+            mysqli_stmt_bind_result($categorieStmt, $categorieNaam);
+            mysqli_stmt_store_result($categorieStmt);
+            echo '<!--vul hier catergorieen in-->';
+            while (mysqli_stmt_fetch($categorieStmt)) {
+                echo '
+        <a class="navText" href="index.php?naam=' . $categorieNaam . '">' . $categorieNaam . '</a>';
+            }
+            echo '</div>';
         }
-        echo '</div>';
+        ?>
+        <div id="transparentFakeContainer" onclick="navClose();"></div>
+        <?php
     }
-    ?>
-    <div id="transparentFakeContainer" onclick="navClose();"></div>
-    <?php
-}
 
-function navScript() {
-    ?>
-    <script type="text/javascript">
-        var w = window.innerWidth
-                || document.documentElement.clientWidth
-                || document.body.clientWidth;
-        var navText = document.getElementsByClassName("navText");
-        var open = false;
-
-        //    unqoute dit om de breede van de website te zien:
-        //    alert("Browser inner window width: " + w + ".");
-
-        //check de groote van de website
-        function checkWidth() {
-            w = window.innerWidth
+    function navScript() {
+        ?>
+        <script type="text/javascript">
+            var w = window.innerWidth
                     || document.documentElement.clientWidth
                     || document.body.clientWidth;
-            return w;
-        }
-        //    veranderd de navbar van mobile naar computer en terug
-        function checkOpenForResponsive() {
-            if (open === true) {
-                navOpen();
-            }
-        }
-        //open de navbar
-        function navOpen() {
-            checkWidth();
-            //als de grote groter is dan 570px is de navbar 250px groot
-            if (w > 415) {
-                document.getElementById("navBar").style.width = "250px";
-                document.getElementById("transparentFakeContainer").style.width = "calc(100% - 250px)";
-                for (i = 0; i < navText.length; i++) {
-                    navText[i].style.width = "250px";
-                }
+            var navText = document.getElementsByClassName("navText");
+            var open = false;
 
-            } else {
-                //anders is hij zo breed als de website zelf
-                for (i = 0; i < navText.length; i++) {
-                    navText[i].style.width = w + "px";
-                }
-                document.getElementById("navBar").style.width = w + "px";
-                document.getElementById("transparentFakeContainer").style.width = "0px";
+            //    unqoute dit om de breede van de website te zien:
+            //    alert("Browser inner window width: " + w + ".");
+
+            //check de groote van de website
+            function checkWidth() {
+                w = window.innerWidth
+                        || document.documentElement.clientWidth
+                        || document.body.clientWidth;
+                return w;
             }
-            open = true;
-        }
-        //    close de navbar 
-        function navClose() {
-            document.getElementById("navBar").style.width = "0px";
-            document.getElementById("navBar").style.display = "hidden";
-            document.getElementById("transparentFakeContainer").style.width = "0px";
-            open = false;
-        }
-    </script>    
-<?php } ?>
+            //    veranderd de navbar van mobile naar computer en terug
+            function checkOpenForResponsive() {
+                if (open === true) {
+                    navOpen();
+                }
+            }
+            //open de navbar
+            function navOpen() {
+                checkWidth();
+                //als de grote groter is dan 570px is de navbar 250px groot
+                if (w > 415) {
+                    document.getElementById("navBar").style.width = "250px";
+                    document.getElementById("transparentFakeContainer").style.width = "calc(100% - 250px)";
+                    for (i = 0; i < navText.length; i++) {
+                        navText[i].style.width = "250px";
+                    }
+
+                } else {
+                    //anders is hij zo breed als de website zelf
+                    for (i = 0; i < navText.length; i++) {
+                        navText[i].style.width = w + "px";
+                    }
+                    document.getElementById("navBar").style.width = w + "px";
+                    document.getElementById("transparentFakeContainer").style.width = "0px";
+                }
+                open = true;
+            }
+            //    close de navbar 
+            function navClose() {
+                document.getElementById("navBar").style.width = "0px";
+                document.getElementById("navBar").style.display = "hidden";
+                document.getElementById("transparentFakeContainer").style.width = "0px";
+                open = false;
+            }
+
+    //            open video popup
+    //            
+            function popup(playback, videoTitel, besch) {
+                url = "https://www.youtube-nocookie.com/embed/" + playback + "?autoplay=1";
+                document.getElementById("popup").src = url;
+                document.getElementById("titel").innerHTML = videoTitel;
+                document.getElementById("beschrijving").innerHTML = besch;
+    //            window.frames['frame'].location = url;
+    //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
+                document.getElementById("frame").style.display = "block";
+            }
+    //            sluit video popup
+            function closePopup() {
+                document.getElementById("popup").src = '';
+                document.getElementById("frame").style.display = "none";
+            }
+        </script>    
+    <?php } ?>

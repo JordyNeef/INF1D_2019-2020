@@ -1,6 +1,6 @@
 <?php
 
-function frontvid() {
+function frontvidthumb() {
     require 'conn.php';
 
     $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, categorieid, videoid

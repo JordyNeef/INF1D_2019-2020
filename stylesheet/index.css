@@ -48,16 +48,24 @@ body{
     h2{
         margin: 10px 0;
     }
+    h3{
+        display: none;
+    }
+    .video:hover .titel{
+        transition-delay: 4s;
+        display: block;
+    }
+    .videoInfo{
+        border-radius: 27px;
+    }
 }
-
 @media screen and (min-width: 415px) {
     .video {
         border-radius: 20px;
         margin-right: 50px;
         width: 800px;
-        
     }
-    
+
     .topVideoContainer{
         height: 450px;
         margin: 0px 50px ;
@@ -74,6 +82,9 @@ body{
     h1{
         margin-left: 50px;
     }
+    .videoInfo{
+        border-radius: 20px;
+    }
 }
 
 .titleAndAccountButton{
@@ -88,7 +99,7 @@ body{
     overflow-y: hidden;
     float: left;
     scrollbar-color:#203246 #1A1A1A;
-/*    scrollbar-width: none;*/
+    /*    scrollbar-width: none;*/
 }
 
 h1{
@@ -119,7 +130,7 @@ h2{
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-color:#203246 #1A1A1A;
-/*    scrollbar-width: none;*/
+    /*    scrollbar-width: none;*/
     float: left;
     width: 100%;
 }
@@ -143,13 +154,56 @@ h2{
 ::-webkit-scrollbar {
     width: 12px;
 }
- 
+
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px #203246; 
     border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px #1A1A1A; 
+}
+
+.videoInfo{
+    opacity: 0;
+    background: radial-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+    height: 100%;
+    transition: .7s ease;
+    display: grid;
+    grid-template-columns:25% 25% 25% 25%;
+    grid-template-areas:
+        'titel titel titel titel'
+        'cat cat cat cat'
+        'besch besch besch age'
+        'besch besch besch like'
+        'besch besch besch .';
+}
+
+.video:hover .videoInfo{
+    opacity: 1;
+}
+
+.titel{
+    grid-area:titel;
+    font-size: 45px;
+    font-weight: bold;
+}
+.categorie{
+    grid-area:cat;
+}
+.beschrijving{
+    grid-area:besch;
+}
+.leeftijd{
+    grid-area:age;
+}
+.likes{
+    grid-area:like;
+}
+h3{
+    text-align: left;
+    padding-left: 10px;
+    font-weight: lighter;
+    font-size: 20px;
 }

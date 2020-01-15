@@ -11,7 +11,7 @@
                 mysqli_stmt_bind_result($stmt, $playbackid, $titel, $uploadedby, $leeftijd, $categorieid, $videoid);
                 while(mysqli_stmt_fetch($stmt)){
                     explode( '?=', $playbackid);
-                    $urlid = str_replace("https://www.youtube.com/watch?v=","",$playbackid);
+                    $urlid = str_replace("https://www.youtube.com/watch?v=","",$playbackid."?autoplay=1");
                     echo 
                     '<iframe class="video" width="100%" height="100%"
                     src="https://www.youtube-nocookie.com/embed/'.$urlid.'"

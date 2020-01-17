@@ -98,25 +98,20 @@ function navBar() {
                         || document.body.clientWidth;
                 return w;
             }
-
             //    veranderd de navbar van mobile naar computer en terug
             function checkOpenForResponsive() {
-                //als de navbar open is
                 if (open === true) {
-                    //ga naar de functie die de breede bepaalt
                     navOpen();
                 }
             }
-
             //open de navbar
             function navOpen() {
                 checkWidth();
-                //als de grote groter is dan 415px is de navbar 250px groot
+                //als de grote groter is dan 570px is de navbar 250px groot
                 if (w > 415) {
                     document.getElementById("navBar").style.width = "250px";
                     document.getElementById("transparentFakeContainer").style.width = "calc(100% - 250px)";
                     for (i = 0; i < navText.length; i++) {
-                        //text in de navbar moet de zelfde breede want anders gaat hij bij het sluiten de text naast de navbar zetten (en is dus nog zichtbaar op het scherm)
                         navText[i].style.width = "250px";
                     }
 
@@ -130,47 +125,28 @@ function navBar() {
                 }
                 open = true;
             }
-
-            //    close de navbar
+            //    close de navbar 
             function navClose() {
-                //maak alle breedes 0 en maak hem display hidden
                 document.getElementById("navBar").style.width = "0px";
                 document.getElementById("navBar").style.display = "hidden";
                 document.getElementById("transparentFakeContainer").style.width = "0px";
                 open = false;
             }
 
-    //
-    //        video afspeler
-    //
-
-    //            open video frame (popup) (wanneer je op thumbnail klikt)
-
-            //kan nog meer displayen onder video door , wat je wilt tussen de haakjes te zetten en op die plek in video_thumbnail de variable in te vullen
+    //            open video popup
+    //            
             function popup(playback, videoTitel, besch) {
-                //maak de scr van de iframe door de playbackid in te vullen (kan de tijd nog ingevult door &t='aantal minuten'm'aantal seconden's (t=0m00s voor 0:00) achter autoplay in te vullen )
                 url = "https://www.youtube-nocookie.com/embed/" + playback + "?autoplay=1";
-                //zet de src van de iframe op die je meekrijgt van de placeholder
                 document.getElementById("popup").src = url;
-                //geeft de titel aan de h4 met als id titel heeft (onder de iframe)
                 document.getElementById("titel").innerHTML = videoTitel;
-                //geeft de beschrijving aan de p met als id beschrijving heeft (onder de de titel van het filmpje)
                 document.getElementById("beschrijving").innerHTML = besch;
     //            window.frames['frame'].location = url;
     //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
                 document.getElementById("frame").style.display = "block";
             }
-
-    //            sluit video frame (wanneer je op kruisje klikt)
-
+    //            sluit video popup
             function closePopup() {
-                //
-                //kan hier timestamp ophalen
-                //
-
-                //zet src op niks zodat hij stopt met spelen
                 document.getElementById("popup").src = '';
-                //zet display terug op none
                 document.getElementById("frame").style.display = "none";
             }
         </script>    

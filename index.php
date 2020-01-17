@@ -68,19 +68,16 @@
             </div>
 
         </div>
-        <!--niet zichtbaar als je niet op filmpje hebt geklikt-->
+        <!--niet zichtbaar als je niet op filmpje klikt-->
         <div id="frame" >
             <div id="popupHouder">
                 <div class="navCloseButton" onclick="closePopup()">&#10005;</div> 
                 <div id="info">
                 <!--scr wordt met javascript gezet-->
-<!--                    moet nog responsive (iframe kan zelf geen hoogte bepalen)-->
                 <iframe width="100%" height="100%" id="popup" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<!--                    video info wordt er ook met javascript ingezet door de id -->
-<!--                    zie function popup() in functions-->
+                    <!--video info wordt er ook met javascript ingezet-->
                     <h4 id="titel"></h4>
                     <p id="beschrijving"></p>
-<!--                    kan nog meer info bij-->
                 </div>
             </div>
         </div>

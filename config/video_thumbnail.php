@@ -13,16 +13,16 @@ function frontvidthumb() {
             mysqli_stmt_bind_result($stmt, $playbackid, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid);
             while (mysqli_stmt_fetch($stmt)) {
                 $url = "https://img.youtube.com/vi/" . $playbackid . "/0.jpg";
-                $informatieArray = array($url, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid);
+                $informatieArray = array($url, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid, $playbackid);
                 array_push($videoArray, $informatieArray);
                 $i++;
             }
         }
         mysqli_stmt_close($stmt);
         while ($a < $i) {
-            echo"<a class='video' href='index.php?videoId=";
+            echo"<a class='video' onclick='popup(\"".$videoArray[$a][7]."\",\"".$videoArray[$a][1]."\",\"".$videoArray[$a][2]."\")'";
             echo $videoArray[$a][6];
-            echo"' style='background-image: url(\"" . $videoArray[$a][0] . "\")'><div class='videoInfo'>"
+            echo" style='background-image: url(\"" . $videoArray[$a][0] . "\")'><div class='videoInfo'>"
             . "<h3 class='titel'>" . $videoArray[$a][1] . "</h3>"
             . "<h3 class='categorie'>Categorie(en):<br>";
             $categorieArray = explode(',', $videoArray[$a][5]);
@@ -42,7 +42,6 @@ function frontvidthumb() {
             echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$a][2] . "</h3>"
             . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "</h3>"
             . "<h3 class='likes'>Beoordeling:<br>sdfghj</h3></div></a>";
-            echo "";
             $a++;
         }
     } else {

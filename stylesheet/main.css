@@ -38,7 +38,6 @@ body{
     width: 0px;
     background-color: rgba(26, 26, 26,0.85);
     transition: 1s;
-    z-index: 2;
 }
 
 #transparentFakeContainer{
@@ -49,7 +48,6 @@ body{
     width: 0px;
     background-color: rgba(0, 0, 0,0);
     transition: 1s;
-    z-index: 2;
 }
 
 .navCloseButton{

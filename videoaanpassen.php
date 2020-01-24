@@ -72,6 +72,7 @@
                                                 echo "Voer een beschrijving in.";
                                             } else{
                                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
+                                                $videoUrl = str_replace("https://www.youtube.com/watch?v=","",$videoUrl);
                                                 $titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $maker = filter_input(INPUT_POST, 'maker', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $categorie = filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_SPECIAL_CHARS);

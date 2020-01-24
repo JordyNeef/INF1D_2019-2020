@@ -87,23 +87,27 @@ function navBar() {
                     || document.body.clientWidth;
             var navText = document.getElementsByClassName("navText");
             var open = false;
+            var clickedVideo = false;
 
             //    unqoute dit om de breede van de website te zien:
-            //    alert("Browser inner window width: " + w + ".");
+            //                alert("Browser inner window width: " + w + ".");
 
             //check de groote van de website
+
             function checkWidth() {
                 w = window.innerWidth
                         || document.documentElement.clientWidth
                         || document.body.clientWidth;
                 return w;
             }
+
             //    veranderd de navbar van mobile naar computer en terug
             function checkOpenForResponsive() {
                 if (open === true) {
                     navOpen();
                 }
             }
+
             //open de navbar
             function navOpen() {
                 checkWidth();
@@ -125,6 +129,7 @@ function navBar() {
                 }
                 open = true;
             }
+
             //    close de navbar 
             function navClose() {
                 document.getElementById("navBar").style.width = "0px";
@@ -133,21 +138,70 @@ function navBar() {
                 open = false;
             }
 
-    //            open video popup
-    //            
+            //            open video popup
+            //            
             function popup(playback, videoTitel, besch) {
                 url = "https://www.youtube-nocookie.com/embed/" + playback + "?autoplay=1";
                 document.getElementById("popup").src = url;
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
-    //            window.frames['frame'].location = url;
-    //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
+                //            window.frames['frame'].location = url;
+                //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
                 document.getElementById("frame").style.display = "block";
+                //            let video scroll stop
+                clickedVideo = true;
             }
-    //            sluit video popup
+
+            //            sluit video popup
             function closePopup() {
                 document.getElementById("popup").src = '';
                 document.getElementById("frame").style.display = "none";
+                //            start de scroll again
+                clickedVideo = false;
+            }
+
+            const container = document.getElementsByClassName("topVideoContainer")[0];
+            const width = container.scrollWidth;
+            var aantalInDiv = container.getElementsByTagName('a').length;
+            function scrollTopVideos() {
+
+                if (w > 415) {
+                    lengte = aantalInDiv * 850  - 1314;
+                    snelheidHeen = 1;
+                    snelheidTerug = 8;
+                } else {
+                    lengte = aantalInDiv * 334 - 258;
+                    snelheidHeen = 1;
+                    snelheidTerug = 3;
+                }
+
+                console.log(width);
+                console.log(lengte);
+
+                var start = setInterval(() => {
+                    if (container.scrollLeft !== lengte && clickedVideo === false) {
+                        container.scroll(container.scrollLeft + snelheidHeen, 0, 'smooth');
+
+                    }
+                    if (container.scrollLeft >= lengte) {
+                        clearInterval(start);
+//                        returnToStart();
+                    }
+
+                }, 15);
+                console.log(container.scrollLeft);
+            }
+
+            function returnToStart() {
+                var eind = setInterval(() => {
+                    if (container.scrollLeft !== 0 && clickedVideo === false) {
+                        container.scroll(container.scrollLeft - snelheidTerug, 0, 'smooth');
+                    }
+                    if (container.scrollLeft === 0) {
+                        clearInterval(eind);
+                        scrollTopVideos();
+                    }
+                }, 1);
             }
         </script>    
     <?php } ?>

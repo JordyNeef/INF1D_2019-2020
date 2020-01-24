@@ -163,35 +163,26 @@ function navBar() {
             const container = document.getElementsByClassName("topVideoContainer")[0];
             const width = container.scrollWidth;
             var aantalInDiv = container.getElementsByTagName('a').length;
+            var oldPosition = 0;
             function scrollTopVideos() {
-
                 if (w > 415) {
-                    lengte = aantalInDiv * 850  - 1314;
-                    snelheidHeen = 1;
                     snelheidTerug = 8;
                 } else {
-                    lengte = aantalInDiv * 334 - 258;
-                    snelheidHeen = 1;
                     snelheidTerug = 3;
                 }
-
-                console.log(width);
-                console.log(lengte);
-
                 var start = setInterval(() => {
-                    if (container.scrollLeft !== lengte && clickedVideo === false) {
-                        container.scroll(container.scrollLeft + snelheidHeen, 0, 'smooth');
-
+                    if (clickedVideo === false) {
+                        oldPosition = container.scrollLeft;
+                        container.scrollLeft = container.scrollLeft + 1;
                     }
-                    if (container.scrollLeft >= lengte) {
+                    if (container.scrollLeft === oldPosition) {
+                        console.log('stop');
                         clearInterval(start);
-//                        returnToStart();
+    //                        returnToStart();
                     }
 
                 }, 15);
-                console.log(container.scrollLeft);
             }
-
             function returnToStart() {
                 var eind = setInterval(() => {
                     if (container.scrollLeft !== 0 && clickedVideo === false) {

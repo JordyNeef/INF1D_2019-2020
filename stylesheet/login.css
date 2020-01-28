@@ -112,6 +112,8 @@ img{
 	margin-left: 10px;
 	position: absolute;
 	border-radius: 10px;
+	top: 50%;
+	left: 38%;
 }
 
 /* The close button */

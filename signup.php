@@ -219,12 +219,13 @@
 	    		else{
 	    			echo "Something went wrong. Please try again later.";
 	    		}
-				 // Close connection
-				 mysqli_close($conn);
+				//Close statement
+				mysqli_stmt_close($stmt);
 	    	}else{
 				echo "qeury werkt niet";
 			}
-	
+	 			// Close connection
+				 mysqli_close($conn);
 	    }
 
 	   

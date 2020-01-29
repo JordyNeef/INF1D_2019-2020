@@ -2,17 +2,11 @@
 
 function frontvidthumb() {
     require 'conn.php';
-<<<<<<< HEAD
-    $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, categorieid, videoid
-                    FROM video";
-=======
-
     $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, video_categorie.categorieid, video.videoid
     FROM video
     JOIN video_categorie ON video.videoid=video_categorie.videoid
     GROUP BY video.videoid
     LIMIT 10 ";
->>>>>>> 08ea29e1f7afe25b00fb2c567fb00a9e35d24b35
     $videoArray = array();
     $i = 0;
     $a = 0;

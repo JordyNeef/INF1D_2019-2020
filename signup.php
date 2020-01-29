@@ -17,7 +17,12 @@
 		// Validate username
 		if(empty(trim($_POST["username"]))){
 			$username_err = "Please enter a username ";
-			echo $username_err;
+			echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $username_err . "
+				</div>
+				";
 		} 
 		else{
 
@@ -38,7 +43,12 @@
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
 						$username_err = "This username is already taken ";
-						echo $username_err;
+						echo "
+							<div class='alert'>
+								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+								. $username_err . "
+							</div>
+							";
 					}
 					else{
 						$username = trim($_POST["username"]);
@@ -56,6 +66,12 @@
 		// Validate email
 		if(empty(trim($_POST["email"]))){
 			$email_err = "Please enter a email";
+			echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $email_err . "
+				</div>
+				";
 		} 
 		else{
 
@@ -76,10 +92,27 @@
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
 						$email_err = "This email is already taken";
-						echo $email_err;
+						echo "
+							<div class='alert'>
+								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+								. $email_err . "
+							</div>
+							";
 					}
 					else{
 						$email = trim($_POST["email"]);
+						if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+							$email_err = "Invalid email format";
+							echo "
+							<div class='alert'>
+								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+								. $email_err . "
+							</div>
+							";
+						}
+						else{
+							$email = trim($_POST['email']);
+						}
 					}
 					// Close statement
 				mysqli_stmt_close($stmt);
@@ -92,11 +125,21 @@
 		// Validate password
 		if(empty(trim($_POST["password"]))){
 	        $password_err = "Please enter a password ";   
-	        echo $password_err;
+	        echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $password_err . "
+				</div>
+				";
 	    } 
 	    elseif(strlen(trim($_POST["password"])) < 6){
 	        $password_err = "Password must have atleast 6 characters ";
-	        echo $password_err;
+	        echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $password_err . "
+				</div>
+				";
 	    } 
 	    else{
 	        $password = trim($_POST["password"]);
@@ -105,13 +148,23 @@
 	    // Validate confirm password
 	    if(empty(trim($_POST["confirm_password"]))){
 	        $confirm_password_err = "Please confirm password ";   
-	        echo $confirm_password_err;  
+	        echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $confirm_password_err . "
+				</div>
+				";  
 	    } 
 	    else{
 	        $confirm_password = trim($_POST["confirm_password"]);
 	        if(empty($password_err) && ($password != $confirm_password)){
 	            $confirm_password_err = "Password did not match. ";
-	            echo $confirm_password_err;
+	            echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $confirm_password_err . "
+				</div>
+				";
 	        }
 	    }
 
@@ -144,7 +197,12 @@
 	    } 
 	    else
 	    {
-	        echo "Invalid file";
+	        echo "
+				<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+					. $confirm_password_err . "
+				</div>
+				";
 	        $userimagepath = "account.png";
 	    }
 
@@ -173,12 +231,13 @@
 	    		else{
 	    			echo "Something went wrong. Please try again later.";
 	    		}
-				 // Close connection
-				 mysqli_close($conn);
+				//Close statement
+				mysqli_stmt_close($stmt);
 	    	}else{
 				echo "qeury werkt niet";
 			}
-	
+	 			// Close connection
+				 mysqli_close($conn);
 	    }
 
 	   

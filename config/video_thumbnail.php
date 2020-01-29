@@ -2,8 +2,17 @@
 
 function frontvidthumb() {
     require 'conn.php';
+<<<<<<< HEAD
     $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, categorieid, videoid
                     FROM video";
+=======
+
+    $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, video_categorie.categorieid, video.videoid
+    FROM video
+    JOIN video_categorie ON video.videoid=video_categorie.videoid
+    GROUP BY video.videoid
+    LIMIT 10 ";
+>>>>>>> 08ea29e1f7afe25b00fb2c567fb00a9e35d24b35
     $videoArray = array();
     $i = 0;
     $a = 0;
@@ -34,20 +43,23 @@ function frontvidthumb() {
 //            scheid de categorieids van elkaar
             $categorieArray = explode(',', $videoArray[$a][5]);
 //            echo alle categorieen waar een filmpje onder valt
-            foreach ($categorieArray as $categorie) {
+            //foreach ($categorieArray as $categorie) {
 //                maak van de string een int (want hij zag het als string)
-                $cat = intval($categorie);
-                $categorieStatement = "SELECT naam FROM `categorie` WHERE categorieid = " . $cat;
+                //$cat = intval($categorie);
+                $categorieStatement = "SELECT naam FROM `video_categorie` 
+                JOIN categorie ON video_categorie.categorieid = categorie.categorieid
+                WHERE videoid = " . $videoid;
                 if ($stmt = mysqli_prepare($conn, $categorieStatement)) {
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_bind_result($stmt, $categorieNaam);
-                    mysqli_stmt_fetch($stmt);
-                    echo $categorieNaam . " ";
+                    while(mysqli_stmt_fetch($stmt)){
+                        echo $categorieNaam . " ";
+                    }
                     mysqli_stmt_close($stmt);
                 } else {
                     echo"prepare failed";
                 }
-            }
+            //}
             echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$a][2] . "</h3>"
             . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "</h3>"
             . "<h3 class='likes'>Beoordeling:<br>moet nog toegevoegd worden</h3></div></a>";

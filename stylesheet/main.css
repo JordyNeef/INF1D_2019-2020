@@ -39,6 +39,7 @@ body{
     background-color: rgba(26, 26, 26,0.85);
     transition: 1s;
     z-index: 2;
+    overflow: auto;
 }
 
 #transparentFakeContainer{

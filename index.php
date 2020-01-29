@@ -24,7 +24,7 @@
         <!-- h1 niet zichtbaar op mobiel!!!!-->
         <h1>Populair</h1>
         <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
-        <div class="topVideoContainer">
+        <div onwheel="scrollHorizantal(event,'topVideoContainer', 0)" class="topVideoContainer">
             <!--dit zijn placeholders-->
             <?php
 //            frontvid();
@@ -38,7 +38,7 @@
         <div class="CatagorieVideoLists">
             <h2> Subcategorie </h2>
             <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
-            <div class="videoCategorie">
+            <div onwheel="scrollHorizantal(event,'videoCategorie', 0)" class="videoCategorie">
                 <div class="video">
 
                 </div>
@@ -53,10 +53,10 @@
                 </div>
             </div>
         </div>
-        <div class="CatagorieVideoLists">
+        <div  class="CatagorieVideoLists">
             <h2> Subcategorie </h2>
             <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
-            <div class="videoCategorie">
+            <div onwheel="scrollHorizantal(event,'videoCategorie', 1)" class="videoCategorie">
                 <div class="video">
 
                 </div>

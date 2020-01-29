@@ -43,7 +43,10 @@
 					}
 					else
 					{
-						echo "Password does not match Username.";
+						echo "<div class='alert'>
+							<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+							Password does not match Username.
+							</div>";
 					}
 				}
 				else

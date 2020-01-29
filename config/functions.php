@@ -90,7 +90,7 @@ function navBar() {
             var clickedVideo = false;
 
             //    unqoute dit om de breede van de website te zien:
-            //                alert("Browser inner window width: " + w + ".");
+            //    alert("Browser inner window width: " + w + ".");
 
             //check de groote van de website
 
@@ -175,9 +175,9 @@ function navBar() {
                 videoidtest = 0; 
             }
 
+            //de auto slide show
+
             const container = document.getElementsByClassName("topVideoContainer")[0];
-            const width = container.scrollWidth;
-            var aantalInDiv = container.getElementsByTagName('a').length;
             var oldPosition = 0;
             function scrollTopVideos() {
                 if (w > 415) {
@@ -186,18 +186,23 @@ function navBar() {
                     snelheidTerug = 3;
                 }
                 var start = setInterval(() => {
+                    //als er niet op een video is geklikt
                     if (clickedVideo === false) {
+                        //sla de postie aan vast wanneer er nog niet is gescrolled
                         oldPosition = container.scrollLeft;
+                        //verplaats hem 1px
                         container.scrollLeft = container.scrollLeft + 1;
                     }
+                    //als hij niet meer een px is verschoven
                     if (container.scrollLeft === oldPosition) {
                         console.log('stop');
+                        //stopt hij met scrollen
                         clearInterval(start);
-    //                        returnToStart();
                     }
-
+                //hij doet dit elke 15 miliseconden tot hij is gestopt
                 }, 15);
             }
+
             function returnToStart() {
                 var eind = setInterval(() => {
                     if (container.scrollLeft !== 0 && clickedVideo === false) {
@@ -209,5 +214,23 @@ function navBar() {
                     }
                 }, 1);
             }
+
+            // function die wordt geactieveerd wanneer je in een div scrollt
+            // naam en nummer geven aan welke div het is
+            function scrollHorizantal(e , naam, nummer) {
+                var item = document.getElementsByClassName(naam)[nummer];
+                // zorg ervoor dat hij de body niet scrollt als je in een scrollbare div scrollt
+                e.preventDefault();
+                if (e.deltaY > 0) {
+                    // als je naar beneden scrollt
+                    item.scrollLeft += 50;
+                }
+                else {
+                    //en als je om hoog scrolt
+                    item.scrollLeft -= 50;
+
+                }
+            };
+
         </script>    
     <?php } ?>

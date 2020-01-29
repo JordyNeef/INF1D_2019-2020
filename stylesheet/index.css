@@ -14,15 +14,12 @@ body{
     cursor: pointer;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
 
 @media screen and (max-width: 415px) {
     .video {
         border-radius: 27px;
         margin-right: 15px;
-        width: 320px;
+        width: 350px;
         font-size: 15px;
     }
     .titel{
@@ -43,7 +40,7 @@ body{
     .CatagorieVideoLists .video {
         border-radius: 15px;
         max-height: 100%;
-        width: 175px;
+        width: 220px;
     }
     .videoCategorie{
         height: 125px;
@@ -53,6 +50,7 @@ body{
     }
     h2{
         margin: 10px 0;
+
     }
     h3{
         display: none;
@@ -62,9 +60,10 @@ body{
         display: block;
     }
     .videoInfo{
-        border-radius: 27px;
+        border-radius: 15px;
     }
 }
+
 @media screen and (min-width: 415px) {
     .video {
         border-radius: 20px;
@@ -88,7 +87,7 @@ body{
     }
     .videoCategorie .video{
         height: 175px;
-        width: 300px;
+        width: 320px;
     }
     h1{
         margin-left: 50px;
@@ -109,9 +108,13 @@ body{
     overflow-x: auto;
     overflow-y: hidden;
     float: left;
-    scrollbar-color:#203246 #1A1A1A;
-    /*    scrollbar-width: none;*/
+    /*scrollbar-color:#203246 #1A1A1A;*/
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
 }
+
+.topVideoContainer::-webkit-scrollbar { width: 0 !important }
+.videoCategorie::-webkit-scrollbar { width: 0 !important }
 
 h1{
     float: left;
@@ -120,7 +123,7 @@ h1{
 }
 
 h2{
-    margin: 10px 0;
+    margin: 20px 0;
 }
 .video{
     max-height: 100%;
@@ -140,8 +143,9 @@ h2{
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-color:#203246 #1A1A1A;
-    /*    scrollbar-width: none;*/
+    /*scrollbar-color:#203246 #1A1A1A;*/
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
     float: left;
     width: 100%;
 }
@@ -160,20 +164,6 @@ h2{
     font-size: 15px;
     float: left;
     padding: 10px 10px;
-}
-
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px #203246; 
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px #1A1A1A; 
 }
 
 .videoInfo{
@@ -214,6 +204,8 @@ h3{
     font-size: 20px;
 }
 
+/*alles voor de popup video*/
+
 #frame{
     position: fixed; 
     display:none;
@@ -221,15 +213,11 @@ h3{
     top:0;
     bottom: 0;
     width: 100%;
-}
-#popup{
-    width: 100%;
-    height: 500px;
+    overflow: auto;
 }
 
-#popupHouder{
-    width: calc(100% - 600px);
-    margin: 20px 300px ;
+.videoCategorie .video h3{
+    font-size:12px;
 }
 
 #info{
@@ -256,3 +244,71 @@ h4{
     cursor: pointer;
     font-size:120px;
 }
+<<<<<<< HEAD
+=======
+
+#popupHouder{
+    transition: 1s;
+}
+
+#popup{
+    width: 100%;
+}
+
+#popupHouder{
+    margin: 20px auto ;
+}
+
+
+
+@media screen and (max-width: 430px){
+    #popupHouder{
+        width: auto;
+        margin: 20px 3% ;
+    }
+
+    #popup{
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 700px)and (min-width: 430px){
+    #popupHouder{
+        width: 400px;
+    }
+
+    #popup{
+        height: 230px;
+    }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    #popupHouder{
+        width: 600px;
+    }
+
+    #popup{
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1000px) {
+    #popupHouder{
+        width: 800px;
+    }
+
+    #popup{
+        height: 450px;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    #popupHouder{
+        width: 1000px;
+    }
+
+    #popup{
+        height: 500px;
+    }
+}
+>>>>>>> 08ea29e1f7afe25b00fb2c567fb00a9e35d24b35

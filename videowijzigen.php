@@ -12,7 +12,7 @@
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
         <link href="stylesheet/admin.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body onresize="checkOpenForResponsive();">
         <div id="containersubmit">
             <div id="containersubmitlogo">
                 <?php

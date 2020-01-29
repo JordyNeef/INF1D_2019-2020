@@ -126,7 +126,7 @@
 	?>
 	<div class="flex-container">
 		<form action="accountsettings.php" method="POST">
-			<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" value="<?php echo $username ?>"></div>
+			<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" value="<?php echo $usernamesession ?>"></div>
 			<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email" value="<?php echo $email ?>"></div>
 			<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Change"></div>
 			<div class="flex-item">

@@ -101,6 +101,18 @@
 					}
 					else{
 						$email = trim($_POST["email"]);
+						if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+							$email_err = "Invalid email format";
+							echo "
+							<div class='alert'>
+								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
+								. $email_err . "
+							</div>
+							";
+						}
+						else{
+							$email = trim($_POST['email']);
+						}
 					}
 					// Close statement
 				mysqli_stmt_close($stmt);

@@ -129,15 +129,17 @@
                                                 }
                                                 mysqli_stmt_close($maxvideoSTMT);
                                                 foreach($explodeCategorie as $vidCatCategorie){
-                                                    $videocatInsert = "INSERT INTO video_categorie VALUES(NULL, '$maxvideoid', '$categorieid')";
-                                                    if($VideoCatInsertstmt = mysqli_prepare($conn, $videocatInsert)){
-                                                        // mysqli_stmt_bind_param($VideoInsertstmt, 'ssssii', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd, $categorieid);
-                                                        $SelectcategorieId = "SELECT naam, categorieid FROM $categorieTable where naam ='" . $vidCatCategorie . "'";
-                                                        if($categorieSTMT = mysqli_prepare($conn, $SelectcategorieId)){
-                                                            mysqli_execute($categorieSTMT);
-                                                            mysqli_stmt_bind_result($categorieSTMT, $naam, $categorieid);
-                                                            mysqli_stmt_store_result($categorieSTMT);
-                                                            if(mysqli_stmt_fetch($categorieSTMT) > 0){
+                                                    $SelectcategorieId = "SELECT naam, categorieid FROM $categorieTable WHERE naam =?";
+                                                    
+                                                    if($categorieSTMT = mysqli_prepare($conn, $SelectcategorieId)){
+                                                        mysqli_stmt_bind_param($categorieSTMT, 's',  $vidCatCategorie);
+                                                        mysqli_execute($categorieSTMT);
+                                                        mysqli_stmt_bind_result($categorieSTMT, $naam, $categorieid);
+                                                        mysqli_stmt_store_result($categorieSTMT);
+                                                        if(mysqli_stmt_fetch($categorieSTMT) > 0){
+                                                            $videocatInsert = "INSERT INTO video_categorie VALUES(NULL, '$maxvideoid', '$categorieid')";
+                                                            if($VideoCatInsertstmt = mysqli_prepare($conn, $videocatInsert)){
+                                                                // mysqli_stmt_bind_param($VideoInsertstmt, 'ssssii', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd, $categorieid);
                                             
                                                                 $videoCatInsertResult = mysqli_stmt_execute($VideoCatInsertstmt);
                                                                 if($videoCatInsertResult === FALSE){
@@ -149,19 +151,22 @@
                                                                     . "</p>";
                                                                 }
                                                             }
-                                                        }  
+                                                            
+                                                        } 
+                                                    }
+                                                    mysqli_stmt_close($categorieSTMT); 
+                                                } 
                                                     } else {
                                                         echo "De video kon niet worden toegevoegd.<br>";
                                                     }
                                                 }
+                                            }
+                                            mysqli_stmt_close($VideoInsertstmt); 
                                             } else {
                                             
                                                 echo "<br> Dikke error";
                                             }
-                                        //mysqli_stmt_close($VideoInsertstmt); 
-                                    }
-                                }
-                            }
+                                   
                                 ?>
                             </div>
                             <input type="submit" name="submit" value="Voeg video toe..." id="submitbutton">

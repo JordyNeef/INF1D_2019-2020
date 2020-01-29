@@ -169,6 +169,7 @@ function navBar() {
             //sluit video popup
             function closePopup() {
                 document.getElementById("popup").innnerHTML = '';
+                document.getElementById("popup").src="placeholder";
                 document.getElementById("frame").style.display = "none";
                 //start de scroll again
                 clickedVideo = false;

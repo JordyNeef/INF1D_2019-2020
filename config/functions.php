@@ -140,24 +140,39 @@ function navBar() {
 
             //            open video popup
             //            
-            function popup(playback, videoTitel, besch) {
-                url = "https://www.youtube-nocookie.com/embed/" + playback + "?autoplay=1";
-                document.getElementById("popup").src = url;
+            function popup(playback, videoTitel, besch, videoid, gebruikerid) {
+                var currenttime;
+                $.ajax({
+                        method: "POST",
+                        dataType: "json",
+                        url: "config/gettimestamp.php",
+                        data: { gebruikerid: gebruikerid, videoid: videoid},
+                        success: function(data, succes){
+                            currenttime = data["timestamp"];
+                            console.log(currenttime);
+                            document.getElementById("popup").src = "https://www.youtube.com/embed/" + playback + "?enablejsapi=1&origin=http%3A%2F%2Flocalhost&widgetid=1&start=" + currenttime;
+                        }
+                    })
+                console.log(gebruikerid);
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
+                console.log(videoid);
                 //            window.frames['frame'].location = url;
                 //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
                 document.getElementById("frame").style.display = "block";
                 //            let video scroll stop
-                clickedVideo = true;
+                    clickedVideo = true;
             }
+            
+            
 
-            //            sluit video popup
+            //sluit video popup
             function closePopup() {
-                document.getElementById("popup").src = '';
+                document.getElementById("player").innnerHTML = '';
                 document.getElementById("frame").style.display = "none";
-                //            start de scroll again
+                //start de scroll again
                 clickedVideo = false;
+                videoidtest = 0; 
             }
 
             const container = document.getElementsByClassName("topVideoContainer")[0];

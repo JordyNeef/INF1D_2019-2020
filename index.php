@@ -11,6 +11,10 @@
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="config/ytapi.js">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
     </head>
     <body onload="scrollTopVideos();" onresize="checkOpenForResponsive();" >
         <?php
@@ -77,10 +81,11 @@
                 <div class="navCloseButton" onclick="closePopup()">&#10005;</div> 
                 <div id="info">
                     <!--scr wordt met javascript gezet-->
-                    <iframe width="100%" height="100%" id="popup" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div id="popup"></div>
                     <!--video info wordt er ook met javascript ingezet-->
                     <h4 id="titel"></h4>
                     <p id="beschrijving"></p>
+                    </script>
                 </div>
             </div>
         </div>

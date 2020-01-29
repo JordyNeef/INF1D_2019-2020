@@ -2,9 +2,8 @@
 
 function frontvidthumb() {
     require 'conn.php';
-
     $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, categorieid, videoid
-                            FROM video ";
+                    FROM video";
     $videoArray = array();
     $i = 0;
     $a = 0;
@@ -21,11 +20,12 @@ function frontvidthumb() {
             }
         }
         mysqli_stmt_close($stmt);
+        $gebruikerid = $_SESSION["ID"];
         while ($a < $i) {
 //             <a> tag die als achtergrond plaatje de thumbnail heeft
 //            en een onklik event die de functie popup uitvoert (openen van videospeler)
 //            functie ziet er uit als: popup(playbackid, titel, beschrijving); (geef je mee voor het displayen in de popup in het text vak)
-            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\")'";
+            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] .  "\",\"" . $_SESSION["ID"] . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\")'";
             echo" style='background-image: url(\"" . $videoArray[$a][0] . "\")'>";
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"

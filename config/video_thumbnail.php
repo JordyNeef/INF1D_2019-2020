@@ -10,9 +10,15 @@ function frontvidthumb() {
     $videoArray = array();
     $i = 0;
     $a = 0;
+    $novideos = FALSE;
     if ($stmt = mysqli_prepare($conn, $vidstatement)) {
         if (mysqli_stmt_execute($stmt)) {
             mysqli_stmt_bind_result($stmt, $playbackid, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid);
+            mysqli_stmt_store_result($stmt);
+            if (mysqli_stmt_num_rows($stmt) == 0) {
+                echo"Sorry but unfortunately there are no videos to display.";
+                $novideos = TRUE;
+            }
             while (mysqli_stmt_fetch($stmt)) {
                 explode('?=', $playbackid);
                 $playbackid1 = str_replace("https://www.youtube.com/watch?v=", "", $playbackid);
@@ -24,11 +30,11 @@ function frontvidthumb() {
         }
         mysqli_stmt_close($stmt);
         $gebruikerid = $_SESSION["ID"];
-        while ($a < $i) {
+        while ($a < $i && $novideos == FALSE) {
 //             <a> tag die als achtergrond plaatje de thumbnail heeft
 //            en een onklik event die de functie popup uitvoert (openen van videospeler)
 //            functie ziet er uit als: popup(playbackid, titel, beschrijving); (geef je mee voor het displayen in de popup in het text vak)
-            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] .  "\",\"" . $_SESSION["ID"] . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\")'";
+            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\")'";
             echo" style='background-image: url(\"" . $videoArray[$a][0] . "\")'>";
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"
@@ -39,20 +45,20 @@ function frontvidthumb() {
 //            echo alle categorieen waar een filmpje onder valt
             //foreach ($categorieArray as $categorie) {
 //                maak van de string een int (want hij zag het als string)
-                //$cat = intval($categorie);
-                $categorieStatement = "SELECT naam FROM `video_categorie` 
+            //$cat = intval($categorie);
+            $categorieStatement = "SELECT naam FROM `video_categorie` 
                 JOIN categorie ON video_categorie.categorieid = categorie.categorieid
-                WHERE videoid = " . $videoid;
-                if ($stmt = mysqli_prepare($conn, $categorieStatement)) {
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_bind_result($stmt, $categorieNaam);
-                    while(mysqli_stmt_fetch($stmt)){
-                        echo $categorieNaam . " ";
-                    }
-                    mysqli_stmt_close($stmt);
-                } else {
-                    echo"prepare failed";
+                WHERE videoid = " . $videoArray[$a][6];
+            if ($stmt = mysqli_prepare($conn, $categorieStatement)) {
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt, $categorieNaam);
+                while (mysqli_stmt_fetch($stmt)) {
+                    echo $categorieNaam . " ";
                 }
+                mysqli_stmt_close($stmt);
+            } else {
+                echo"prepare failed";
+            }
             //}
             echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$a][2] . "</h3>"
             . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "</h3>"

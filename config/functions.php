@@ -56,10 +56,10 @@ function navBar() {
     ?>
     <div id="navBar">
         <div class="navCloseButton"  onclick="navClose();">&#10005;</div>
-        <!-- <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> -->
+         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> 
         <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
 
-        <!-- </form>  -->
+         </form>  
         <?php
         //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
         $categorieQeury = "SELECT naam FROM categorie ORDER BY RAND() LIMIT 10;";
@@ -152,7 +152,7 @@ function navBar() {
                             console.log(currenttime);
                             document.getElementById("popup").src = "https://www.youtube.com/embed/" + playback + "?enablejsapi=1&origin=http%3A%2F%2Flocalhost&widgetid=1&start=" + currenttime;
                         }
-                    })
+                    });
                 console.log(gebruikerid);
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
@@ -181,11 +181,6 @@ function navBar() {
             const container = document.getElementsByClassName("topVideoContainer")[0];
             var oldPosition = 0;
             function scrollTopVideos() {
-                if (w > 415) {
-                    snelheidTerug = 8;
-                } else {
-                    snelheidTerug = 3;
-                }
                 var start = setInterval(() => {
                     //als er niet op een video is geklikt
                     if (clickedVideo === false) {
@@ -199,39 +194,51 @@ function navBar() {
                         console.log('stop');
                         //stopt hij met scrollen
                         clearInterval(start);
+                        setTimeout(function () {
+                            returnToStart();
+                        }, 2500);
                     }
-                //hij doet dit elke 15 miliseconden tot hij is gestopt
+                    //hij doet dit elke 15 miliseconden tot hij is gestopt
                 }, 15);
             }
 
             function returnToStart() {
                 var eind = setInterval(() => {
                     if (container.scrollLeft !== 0 && clickedVideo === false) {
-                        container.scroll(container.scrollLeft - snelheidTerug, 0, 'smooth');
+                        container.scroll(0, 0, 'smooth');
                     }
                     if (container.scrollLeft === 0) {
                         clearInterval(eind);
-                        scrollTopVideos();
+                        setTimeout(function () {
+                            scrollTopVideos();
+                        }, 2500);
                     }
                 }, 1);
             }
 
-            // function die wordt geactieveerd wanneer je in een div scrollt
+             // function die wordt geactieveerd wanneer je in een div scrollt
             // naam en nummer geven aan welke div het is
-            function scrollHorizantal(e , naam, nummer) {
+            function scrollHorizantal(e, naam, nummer) {
                 var item = document.getElementsByClassName(naam)[nummer];
+                var oldLoc = 0;
                 // zorg ervoor dat hij de body niet scrollt als je in een scrollbare div scrollt
-                e.preventDefault();
-                if (e.deltaY > 0) {
-                    // als je naar beneden scrollt
-                    item.scrollLeft += 50;
-                }
-                else {
-                    //en als je om hoog scrolt
-                    item.scrollLeft -= 50;
 
+                if (e.deltaY > 0) {
+                    oldLoc = item.scrollLeft;
+                    // als je naar beneden scrollt
+                    item.scrollLeft += 25;
+                    if (oldLoc !== item.scrollLeft) {
+                        e.preventDefault();
+                    }
+                } else {
+                    oldLoc = item.scrollLeft;
+                    //en als je om hoog scrolt
+                    item.scrollLeft -= 25;
+                    if (oldLoc !== item.scrollLeft) {
+                        e.preventDefault();
+                    }
                 }
-            };
+            }
 
         </script>    
     <?php } ?>

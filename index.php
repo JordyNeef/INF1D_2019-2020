@@ -3,6 +3,7 @@
 <html>
     <head>
         <?php require 'config/functions.php'; ?>
+        <?php require 'config/categorie_video.php'; ?>
         <?php require 'config/video_thumbnail.php'; ?>
         <?php require 'config/videos.php'; ?>
         <meta charset="UTF-8">
@@ -14,7 +15,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="config/ytapi.js">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
+
     </head>
     <body onload="scrollTopVideos();" onresize="checkOpenForResponsive();" >
         <?php
@@ -23,9 +24,7 @@
         ?>
         <!-- h1 niet zichtbaar op mobiel!!!!-->
         <h1>Populair</h1>
-        <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
-        <div onwheel="scrollHorizantal(event,'topVideoContainer', 0)" class="topVideoContainer">
-            <!--dit zijn placeholders-->
+        <div class="topVideoContainer">
             <?php
 //            frontvid();
 
@@ -35,46 +34,9 @@
                 <p>&#8634;</p>
             </div>
         </div>
-        <div class="CatagorieVideoLists">
-            <h2> Subcategorie </h2>
-            <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
-            <div onwheel="scrollHorizantal(event,'videoCategorie', 0)" class="videoCategorie">
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-            </div>
-        </div>
-        <div  class="CatagorieVideoLists">
-            <h2> Subcategorie </h2>
-            <!--style moet nog aangepast voor inladen (niet scroll en al dat)-->
-            <div onwheel="scrollHorizantal(event,'videoCategorie', 1)" class="videoCategorie">
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-                <div class="video">
-
-                </div>
-            </div>
-
-        </div>
+        <?php
+            categorieVideos();
+        ?>
         <!--niet zichtbaar als je niet op filmpje klikt-->
         <div id="frame" >
             <div id="popupHouder">
@@ -91,10 +53,10 @@
         </div>
         <div class="footer">
             <p> Made by Niffo Productions 2019 <?php
-            if (date("Y") != 2019) {
-                echo"-" . date("Y");
-            }
-            ?> &copy  </p>
+                if (date("Y") != 2019) {
+                    echo"-" . date("Y");
+                }
+                ?> &copy  </p>
             <p>NHL Stenden</p>
         </div>
     </body>

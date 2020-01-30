@@ -26,7 +26,7 @@ function headerBar() {
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <?php $profile_avatar = "img/avatar/" . $_SESSION["profilepic"]; ?>
+                <?php $profile_avatar = "../img/avatar/" . $_SESSION["profilepic"]; ?>
                 <?php if (isset($_SESSION["profilepic"])) { ?>
                     <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">
                     <?php

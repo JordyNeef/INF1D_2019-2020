@@ -183,14 +183,14 @@
 	        else
 	        {
 	            // Checks if the file already exists, if it does not, it copies the file to the specified folder.
-	            if (file_exists("img/avatar/" . $_FILES["uploadedFile"]["name"]))
+	            if (file_exists("../img/avatar/" . $_FILES["uploadedFile"]["name"]))
 	            {
 	                echo $_FILES["uploadedFile"]["name"] . " already exists. ";
 	            } 
 	            else
 	            {
 	            	$userimagepath = $_FILES["uploadedFile"]["name"];
-	                move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "img/avatar/" . $_FILES["uploadedFile"]["name"]);
+	                move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "../img/avatar/" . $_FILES["uploadedFile"]["name"]);
 	            }
 	        }
 	    } 

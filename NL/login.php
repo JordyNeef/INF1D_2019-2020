@@ -45,7 +45,7 @@
 					{
 						echo "<div class='alert'>
 							<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-							Password does not match Username.
+							Wachtwoord komt niet overeen met de gebruikersnaam.
 							</div>";
 					}
 				}
@@ -79,10 +79,10 @@
 		<div id="container">
 			<form action="login.php" method="post">
 				<div id="logo"><img src="img/logo-wit.png"  alt="Niffoflix"></div>
-				<div class="inlogVak"><input placeholder="Username" type="text" name="username"></div>
-				<div class="inlogVak"><input placeholder="Password" type="password" name="password"></div>
+				<div class="inlogVak"><input placeholder="Gebruikersnaam" type="text" name="username"></div>
+				<div class="inlogVak"><input placeholder="Wachtwoord" type="password" name="password"></div>
 				<p><div class="loginButton"><input type="submit" name="submit" value="Login"></div></p>
-				<div id="signup"><p>  Don't have an account yet? <a href="signup.php"> Sign up</a></p></div> 
+				<div id="signup"><p>  Heeft u nog geen account? <a href="signup.php"> Meld je aan</a></p></div> 
 			</form>
 		</div>
 

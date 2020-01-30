@@ -39,24 +39,24 @@
                                     if(isset($_POST['submit'])){
                                         if(empty($_POST['videourl']) || empty($_POST['titel']) || empty($_POST['catagorie']) || 
                                         empty($_POST['beschrijving']) || empty($_POST['leeftijd'])){
-                                            echo "<p>de volgende velden zijn nog leeg";
+                                            echo "<p>De volgende velden zijn nog leeg";
                                             if(empty($_POST['videourl'])){
-                                                echo ", video url";
+                                                echo ", Video-url";
                                             }
                                             if(empty($_POST['titel'])){
-                                                echo ", titel";
+                                                echo ", Titel";
                                             }
                                             if(empty($_POST['catagorie'])){
-                                                echo ", catagorie";
+                                                echo ", Categorie";
                                             }
                                             if(empty($_POST['beschrijving'])){
-                                                echo ", beschrijving";
+                                                echo ", Beschrijving";
                                             }   
                                             echo ".</p>";
                                             exit;
                                         } else{
                                             if($conn === FALSE){
-                                                echo "Unable to connect to database.";
+                                                echo "Er kon geen verbinding worden gemaakt met de database. Probeer het later opnieuw.";
                                             } else{
                                                 
                                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -94,7 +94,7 @@
                                             //---------------------------------Filter om niet de bestaande categorieën toe toevoegen maken----------------------------------------------------//
                                                                     mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
                                                                     if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
-                                                                        echo "Het was niet mogelijk om de query uittevoeren". "<p>Error code "
+                                                                        echo "Het was niet mogelijk om de query uit te voeren". "<p>Error code "
                                                                         . mysqli_errno($conn)
                                                                         . ": "
                                                                         . mysqli_error($conn)
@@ -113,14 +113,14 @@
                                                 mysqli_stmt_bind_param($VideoInsertstmt, 'ssssi', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd);
                                                 $insertResult = mysqli_stmt_execute($VideoInsertstmt);
                                                 if($insertResult === FALSE){
-                                                    echo "<p>Unable to execute the query.</p>"
+                                                    echo "<p>Het was niet mogelijk om de qeury uit te voeren.</p>"
                                                     . "<p>Error code "
                                                     . mysqli_errno($conn)
                                                     . ": "
                                                     . mysqli_error($conn)
                                                     . "</p>";
                                                 } else{
-                                                    echo "<br>Video succesfully uploaded";
+                                                    echo "<br>Video succesvol geüpload";
                                                 }
                                                 $videoIdQeury = "SELECT MAX(videoid) as maxvideoid FROM video";
                                                 if($maxvideoSTMT = mysqli_prepare($conn, $videoIdQeury)){
@@ -145,7 +145,7 @@
                                             
                                                                 $videoCatInsertResult = mysqli_stmt_execute($VideoCatInsertstmt);
                                                                 if($videoCatInsertResult === FALSE){
-                                                                    echo "<p>Unable to execute the query.</p>"
+                                                                    echo "<p>Het was niet mogelijk om te query uit te voeren.</p>"
                                                                     . "<p>Error code "
                                                                     . mysqli_errno($conn)
                                                                     . ": "

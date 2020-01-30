@@ -100,7 +100,7 @@ function categorieVideos() {
                 mysqli_stmt_close($stmt);
             } else {
 //                        stop loop zodat hij heel lege videos echoed
-                echo'failed to select videos';
+                echo'videos selecteren is niet gelukt';
                 break;
             }
             // haalt de likes op uit de database

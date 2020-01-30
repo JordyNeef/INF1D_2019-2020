@@ -21,8 +21,7 @@
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 					. $username_err . "
-				</div>
-				";
+				</div>";
 		} 
 		else{
 
@@ -47,15 +46,18 @@
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 								. $username_err . "
-							</div>
-							";
+							</div>";
 					}
 					else{
 						$username = trim($_POST["username"]);
 					}
 				}
 				else{
-					echo "Oops! Something went wrong. Please try again later.";
+					echo "
+					<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+						Oops! Something went wrong. Please try again later.
+					</div>";
 				}
 			}
 
@@ -70,8 +72,7 @@
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 					. $email_err . "
-				</div>
-				";
+				</div>";
 		} 
 		else{
 
@@ -96,8 +97,7 @@
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 								. $email_err . "
-							</div>
-							";
+							</div>";
 					}
 					else{
 						$email = trim($_POST["email"]);
@@ -107,8 +107,7 @@
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 								. $email_err . "
-							</div>
-							";
+							</div>";
 						}
 						else{
 							$email = trim($_POST['email']);
@@ -117,7 +116,11 @@
 					// Close statement
 				mysqli_stmt_close($stmt);
 				}else{
-					echo "Oops! Something went wrong. Please try again later.";
+					echo "
+					<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+						Oops! Something went wrong. Please try again later.
+					</div>";
 				}
 			}	
 		}
@@ -129,8 +132,7 @@
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 					. $password_err . "
-				</div>
-				";
+				</div>";
 	    } 
 	    elseif(strlen(trim($_POST["password"])) < 6){
 	        $password_err = "Password must have atleast 6 characters ";
@@ -138,8 +140,7 @@
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 					. $password_err . "
-				</div>
-				";
+				</div>";
 	    } 
 	    else{
 	        $password = trim($_POST["password"]);
@@ -152,8 +153,7 @@
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 					. $confirm_password_err . "
-				</div>
-				";  
+				</div>";  
 	    } 
 	    else{
 	        $confirm_password = trim($_POST["confirm_password"]);
@@ -163,8 +163,7 @@
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
 					. $confirm_password_err . "
-				</div>
-				";
+				</div>";
 	        }
 	    }
 
@@ -200,7 +199,7 @@
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-					Invalid File
+					Invalid File, default picture selected
 				</div>
 				";
 	        $userimagepath = "account.png";
@@ -229,12 +228,20 @@
 	    			header("location: login.php");
 	    		}
 	    		else{
-	    			echo "Something went wrong. Please try again later.";
+	    			echo "
+					<div class='alert'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+	    				Something went wrong. Please try again later.
+	    			</div>";
 	    		}
 				//Close statement
 				mysqli_stmt_close($stmt);
 	    	}else{
-				echo "qeury werkt niet";
+				echo "
+				<div class='alert'>
+				<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+					qeury werkt niet
+				</div>";
 			}
 	 			// Close connection
 				 mysqli_close($conn);

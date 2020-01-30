@@ -275,12 +275,12 @@
 					<input class="radiobuttons" type="radio" name="proefversie" value="0">Nee</input>
 				</div>
 				<div class="flex-item">
-					Voeg je avatar toe:
+					Voeg uw avatar toe:
 					<input class="file" type="file" name="uploadedFile" />
 				</div>
 				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Verzend" /></div>
 				<div class="flex-item">
-					Heb je al een account? <a href="login.php">Log in</a>
+					Heeft u al een account? <a href="login.php">Log in</a>
 				</div>
 			</form>
 		</div>

@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="footer">
-                <p> Made by Niffo Productions 2019 <?php
+                <p> Gemaakt door Niffo Productions 2019 <?php
                     if (date("Y") != 2019) {
                         echo"-" . date("Y");
                     }

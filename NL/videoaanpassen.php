@@ -141,9 +141,9 @@
                                                 // mysqli_stmt_close($maxvideoSTMT);
                                                 $deleteCategorie = "DELETE FROM video_categorie WHERE videoid =" . $videoId;
                                                 if (mysqli_query($conn, $deleteCategorie)) {
-                                                    echo "Record deleted successfully";
+                                                    echo "Recordis met success verwijderd.";
                                                 } else {
-                                                    echo "Error deleting record: " . mysqli_error($conn);
+                                                    echo "er ging iets fout tijdens het record verwijderen: " . mysqli_error($conn);
                                                 }
                                                
                                                 foreach($explodeCategorie as $vidCatCategorie){

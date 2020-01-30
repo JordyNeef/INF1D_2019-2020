@@ -119,7 +119,7 @@
 			if(mysqli_stmt_execute($stmt))
 			{
 				echo "de gebruiker is ge-update.";
-				// header("location: index.php");
+				header("location: index.php");
 			}
 			else
 			{

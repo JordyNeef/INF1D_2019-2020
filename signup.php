@@ -199,8 +199,8 @@
 	    {
 	        echo "
 				<div class='alert'>
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
-					. $confirm_password_err . "
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+					Invalid File
 				</div>
 				";
 	        $userimagepath = "account.png";

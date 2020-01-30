@@ -77,6 +77,8 @@ function navBar() {
                 echo '
         <a class="navText" href="index.php?naam=' . $categorieNaam . '">' . $categorieNaam . '</a>';
             }
+            echo "<div class='taal' ><a  href='../NL/index.php'>
+            NL /  <a href='index.php'><u><b>EN</b></u></a></div>";
             echo '</div>';
         }
         ?>

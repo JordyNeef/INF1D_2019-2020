@@ -166,6 +166,8 @@ function navBar() {
                 document.getElementById("beschrijving").innerHTML = besch;
                 document.getElementById("likes").innerHTML = likes;
                 document.getElementById("dislikes").innerHTML = dislikes;
+                document.getElementById("upniffo").src = "img/upniffo-unclicked.png";
+                document.getElementById("downniffo").src = "img/downniffo-unclicked.png";
                 console.log(videoid);
                 //            window.frames['frame'].location = url;
                 //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");

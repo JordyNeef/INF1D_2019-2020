@@ -105,7 +105,7 @@ function categorieVideos() {
             }
             $sqllikes = "SELECT COUNT(ratingid) FROM rating WHERE videoid = ? && beoordeling = 1";
             if($stmt = mysqli_prepare($conn, $sqllikes)){
-                mysqli_stmt_bind_param($stmt, "i", $videoArray[$a][6]); 
+                mysqli_stmt_bind_param($stmt, "i", $videoArray[$c][6]); 
                 if(mysqli_stmt_execute($stmt)){
                     mysqli_stmt_bind_result($stmt, $likes);
                     mysqli_stmt_fetch($stmt);
@@ -122,7 +122,7 @@ function categorieVideos() {
             //haalt de dislikes op van de videos
             $sqldislikes = "SELECT COUNT(ratingid) FROM rating WHERE videoid = ? && beoordeling = 0";
             if($stmt = mysqli_prepare($conn, $sqldislikes)){
-                mysqli_stmt_bind_param($stmt, "i", $videoArray[$a][6]);
+                mysqli_stmt_bind_param($stmt, "i", $videoArray[$c][6]);
                 if(mysqli_stmt_execute($stmt)){
                     mysqli_stmt_bind_result($stmt, $dislikes);
                     mysqli_stmt_fetch($stmt);
@@ -135,7 +135,7 @@ function categorieVideos() {
                 echo mysqli_error($connect);
             }
             mysqli_stmt_close($stmt);
-            echo"<a class='video' onclick='popup(\"" . $videoArray[$c][7] . "\",\"" . htmlentities($videoArray[$c][1]) . "\",\"" . htmlentities($videoArray[$c][2]) . "\",\"" . $videoArray[$c][6] .  "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\"); timestamp(\"" . $videoArray[$c][7] . "\",\"" . $videoArray[$c][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
+            echo"<a class='video' onclick='popup(\"" . $videoArray[$c][7] . "\",\"" . htmlentities($videoArray[$c][1]) . "\",\"" . htmlentities($videoArray[$c][2]) . "\",\"" . $videoArray[$c][6] .  "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes. "\",\"" . $_SESSION['admin'] . "\"); timestamp(\"" . $videoArray[$c][7] . "\",\"" . $videoArray[$c][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$c][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
             echo" style='background-image: url(\"" . $videoArray[$c][0] . "\")'>";
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"

@@ -145,7 +145,7 @@ function navBar() {
 
             //            open video popup
             //            
-            function popup(playback, videoTitel, besch, videoid, gebruikerid, likes, dislikes) {
+            function popup(playback, videoTitel, besch, videoid, gebruikerid, likes, dislikes, admin) {
                 var currenttime;
                 $.ajax({
                     method: "POST",
@@ -159,6 +159,9 @@ function navBar() {
                     }
                 });
                 console.log(gebruikerid);
+                if(admin === '1'){
+                    document.getElementById("videoId").innerHTML = "videoid = " + videoid;
+                }
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
                 document.getElementById("likes").innerHTML = likes;
@@ -176,6 +179,8 @@ function navBar() {
                 document.getElementById("popup").innnerHTML = '';
                 document.getElementById("popup").src = "placeholder";
                 document.getElementById("frame").style.display = "none";
+                document.getElementById("upniffo").src = "img/upniffo-unclicked.png";
+                document.getElementById("downniffo").src = "img/downniffo-unclicked.png";
                 //start de scroll again
                 clickedVideo = false;
                 videoidtest = 0; 

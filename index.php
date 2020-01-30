@@ -48,10 +48,16 @@
                     <!--video info wordt er ook met javascript ingezet-->
                     <h4 id="titel"></h4>
                     <p id="beschrijving"></p>
-                    <button type="button" id="like" name="beoordeling" value="1"><img src="img/upniffo-unclicked.png" alt="upniffo" id="upniffo"></button>
-                    <button type="button" id="dislike" name="beoordeling" value="0"><img id="downniffo" src="img/downniffo-unclicked.png" alt="downniffo"></button>
-                    <div id="likes"><?php echo $likes ?></div>
-                    <div id="dislikes"><?php echo $dislikes ?></div>
+                    <div id="nifforating">
+                        <div id="nifforatingup">
+                            <button type="button" id="like" name="beoordeling" value="1"><img src="img/upniffo-unclicked.png" alt="upniffo" id="upniffo"></button>
+                            <div id="likes"><?php echo $likes ?></div>
+                        </div>
+                        <div id="nifforatingdown">
+                            <button type="button" id="dislike" name="beoordeling" value="0"><img id="downniffo" src="img/downniffo-unclicked.png" alt="downniffo"></button>
+                            <div id="dislikes"><?php echo $dislikes ?></div>
+                        </div>
+                    </div>
                     </script>
                 </div>
             </div>

@@ -162,7 +162,7 @@ function navBar() {
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
                 document.getElementById("likes").innerHTML = likes;
-                document.getElementById("dislikes").innerHTML = "Dislikes: " + dislikes;
+                document.getElementById("dislikes").innerHTML = dislikes;
                 console.log(videoid);
                 //            window.frames['frame'].location = url;
                 //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");

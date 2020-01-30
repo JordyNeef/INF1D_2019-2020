@@ -6,7 +6,7 @@ function likesystem (videoid, gebruikerid, totallikes, totaldislikes){
             likes++;
             dislikes--;
             document.getElementById("likes").innerHTML = likes;
-            document.getElementById("dislikes").innerHTML = "Dislikes " + dislikes;
+            document.getElementById("dislikes").innerHTML = dislikes;
             liked = 1;
             disliked = 0;
             beoordeling = 1;
@@ -24,7 +24,7 @@ function likesystem (videoid, gebruikerid, totallikes, totaldislikes){
         }
         else{
             likes--;
-            document.getElementById("likes").innerHTML = "Likes " + likes;
+            document.getElementById("likes").innerHTML = likes;
             liked = 0;
             beoordeling = 1;
             console.log("likedtest");
@@ -44,8 +44,8 @@ function likesystem (videoid, gebruikerid, totallikes, totaldislikes){
         if(liked == 1){
             likes--;
             dislikes++;
-            document.getElementById("likes").innerHTML = "Likes " + likes;
-            document.getElementById("dislikes").innerHTML = "Dislikes " + dislikes;
+            document.getElementById("likes").innerHTML = likes;
+            document.getElementById("dislikes").innerHTML = dislikes;
             disliked = 1;
             liked = 0;
             beoordeling = 0;
@@ -55,7 +55,7 @@ function likesystem (videoid, gebruikerid, totallikes, totaldislikes){
         }
         else if(disliked == 0){
             dislikes++;
-            document.getElementById("dislikes").innerHTML = "Dislikes " + dislikes;
+            document.getElementById("dislikes").innerHTML = dislikes;
             disliked = 1;
             beoordeling = 0;
             console.log("beoordeling = " + beoordeling);
@@ -63,7 +63,7 @@ function likesystem (videoid, gebruikerid, totallikes, totaldislikes){
         }
         else{
             dislikes--;
-            document.getElementById("dislikes").innerHTML = "Dislikes " + dislikes;
+            document.getElementById("dislikes").innerHTML = dislikes;
             disliked = 0;
             beoordeling = 0;
             console.log("beoordeling = " + beoordeling);

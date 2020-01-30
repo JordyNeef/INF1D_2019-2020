@@ -95,7 +95,7 @@ function frontvidthumb() {
             
             //}
             echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$a][2] . "</h3>"
-            . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "</h3>"
+            . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "+</h3>"
             . "<h3 class='likes'>Beoordeling:<br>Likes: " . $likes . "</br>Dislikes: " . $dislikes . "</h3></div></a>";
             $a++;
         }

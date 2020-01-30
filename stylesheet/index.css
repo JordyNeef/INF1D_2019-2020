@@ -257,6 +257,10 @@ h4{
     margin: 20px auto ;
 }
 
+#nifforating{
+    display: flex;
+}
+
 #downniffo{
     height: 20px;
     width: 20px;

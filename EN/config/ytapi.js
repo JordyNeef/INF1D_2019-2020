@@ -1,8 +1,9 @@
 var videoidtest;
+var sendtimestampajax;
 function timestamp (url, videoid, gebruikerid){
     console.log(clickedVideo);
     videoidtest = videoid
-        setInterval(function(){
+       sendtimestampajax = setInterval(function(){
             if(videoidtest >= 1){
                 $.ajax({
                     method: "POST",

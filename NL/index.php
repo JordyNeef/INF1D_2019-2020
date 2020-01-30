@@ -51,12 +51,12 @@
                         <p id="beschrijving"></p>
                         <div id="nifforating">
                             <div id="nifforatingup">
-                                <button type="button" id="like" name="beoordeling" value="1"><img src="img/upniffo-unclicked.png" alt="upniffo" id="upniffo"></button>
-                                <div id="likes"><?php echo $likes ?></div>
+                                <p><button type="button" id="like" name="beoordeling" value="1"><img src="img/upniffo-unclicked.png" alt="upniffo" id="upniffo"></button></p>
+                                <p id="likes"><?php echo $likes ?></p>
                             </div>
                             <div id="nifforatingdown">
-                                <button type="button" id="dislike" name="beoordeling" value="0"><img id="downniffo" src="img/downniffo-unclicked.png" alt="downniffo"></button>
-                                <div id="dislikes"><?php echo $dislikes ?></div>
+                                <p><button type="button" id="dislike" name="beoordeling" value="0"><img id="downniffo" src="img/downniffo-unclicked.png" alt="downniffo"></button></p>
+                                <p id="dislikes"><?php echo $dislikes ?></p>
                             </div>
                             <p id="videoId"></p>
                         </div>

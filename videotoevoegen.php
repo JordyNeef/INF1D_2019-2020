@@ -163,9 +163,6 @@
                                                 }
                                             }
                                             mysqli_stmt_close($VideoInsertstmt); 
-                                            } else {
-                                            
-                                                echo "<br> Dikke error";
                                             }
                                 ?>
                             </div>

@@ -56,13 +56,15 @@ function navBar() {
     ?>
     <div id="navBar">
         <div class="navCloseButton"  onclick="navClose();">&#10005;</div>
-         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> 
-        <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
-
-         </form>  
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> 
+            <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
+        </form>  
         <?php
         //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
-        $categorieQeury = "SELECT naam FROM categorie ORDER BY RAND() LIMIT 10;";
+        $categorieQeury = "SELECT naam FROM categorie 
+                            WHERE categorieid IN (SELECT categorieid 
+                            FROM video_categorie)
+                            ORDER BY RAND() LIMIT 10;";
         if ($categorieStmt = mysqli_prepare($conn, $categorieQeury)) {
             mysqli_execute($categorieStmt);
             mysqli_stmt_bind_result($categorieStmt, $categorieNaam);
@@ -143,16 +145,16 @@ function navBar() {
             function popup(playback, videoTitel, besch, videoid, gebruikerid) {
                 var currenttime;
                 $.ajax({
-                        method: "POST",
-                        dataType: "json",
-                        url: "config/gettimestamp.php",
-                        data: { gebruikerid: gebruikerid, videoid: videoid},
-                        success: function(data, succes){
-                            currenttime = data["timestamp"];
-                            console.log(currenttime);
-                            document.getElementById("popup").src = "https://www.youtube.com/embed/" + playback + "?enablejsapi=1&origin=http%3A%2F%2Flocalhost&widgetid=1&start=" + currenttime;
-                        }
-                    });
+                    method: "POST",
+                    dataType: "json",
+                    url: "config/gettimestamp.php",
+                    data: {gebruikerid: gebruikerid, videoid: videoid},
+                    success: function (data, succes) {
+                        currenttime = data["timestamp"];
+                        console.log(currenttime);
+                        document.getElementById("popup").src = "https://www.youtube.com/embed/" + playback + "?enablejsapi=1&origin=http%3A%2F%2Flocalhost&widgetid=1&start=" + currenttime;
+                    }
+                });
                 console.log(gebruikerid);
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
@@ -161,19 +163,19 @@ function navBar() {
                 //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
                 document.getElementById("frame").style.display = "block";
                 //            let video scroll stop
-                    clickedVideo = true;
+                clickedVideo = true;
             }
-            
-            
+
+
 
             //sluit video popup
             function closePopup() {
                 document.getElementById("popup").innnerHTML = '';
-                document.getElementById("popup").src="placeholder";
+                document.getElementById("popup").src = "placeholder";
                 document.getElementById("frame").style.display = "none";
                 //start de scroll again
                 clickedVideo = false;
-                videoidtest = 0; 
+                videoidtest = 0;
             }
 
             //de auto slide show
@@ -216,7 +218,7 @@ function navBar() {
                 }, 1);
             }
 
-             // function die wordt geactieveerd wanneer je in een div scrollt
+            // function die wordt geactieveerd wanneer je in een div scrollt
             // naam en nummer geven aan welke div het is
             function scrollHorizantal(e, naam, nummer) {
                 var item = document.getElementsByClassName(naam)[nummer];

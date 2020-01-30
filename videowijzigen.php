@@ -7,6 +7,7 @@
             header("login.php");
         }?>
         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <title>Beheer</title>
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
@@ -41,7 +42,7 @@
                                     } else{
                                         $videoId = filter_input(INPUT_POST, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                                         $table = "video";
-                                        $verwijderQeury = "DELETE FROM video WHERE videoid=$videoId";
+                                        $verwijderQeury = "DELETE video.*, video_categorie.* from video, video_categorie WHERE video.videoid=video_categorie.videoid AND video.videoid=".$videoId;
                                         if(mysqli_query($conn, $verwijderQeury)){
                                             echo "De video is met succes verwijderd.";
                                         } else{

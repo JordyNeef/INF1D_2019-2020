@@ -8,6 +8,7 @@
             }
             ?>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <title>Beheer</title>
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
@@ -37,7 +38,7 @@
                                 <?php
                                     if(isset($_POST['submit'])){
                                         if(empty($_POST['videourl']) || empty($_POST['titel']) || empty($_POST['catagorie']) || 
-                                        empty($_POST['beschrijving'])){
+                                        empty($_POST['beschrijving']) || empty($_POST['leeftijd'])){
                                             echo "<p>de volgende velden zijn nog leeg";
                                             if(empty($_POST['videourl'])){
                                                 echo ", video url";
@@ -52,6 +53,7 @@
                                                 echo ", beschrijving";
                                             }   
                                             echo ".</p>";
+                                            exit;
                                         } else{
                                             if($conn === FALSE){
                                                 echo "Unable to connect to database.";
@@ -162,11 +164,7 @@
                                                 }
                                             }
                                             mysqli_stmt_close($VideoInsertstmt); 
-                                            } else {
-                                            
-                                                echo "<br> Dikke error";
                                             }
-                                   
                                 ?>
                             </div>
                             <input type="submit" name="submit" value="Voeg video toe..." id="submitbutton">

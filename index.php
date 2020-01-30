@@ -13,7 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="config/ytapi.js">
+        <script src="config/ytapi.js"></script>
+        <script src="config/likesystem.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     </head>
@@ -47,6 +48,10 @@
                     <!--video info wordt er ook met javascript ingezet-->
                     <h4 id="titel"></h4>
                     <p id="beschrijving"></p>
+                    <button type="button" id="like" name="beoordeling" value="1"><img src="img/upniffo-unclicked.png" alt="upniffo" id="upniffo"></button>
+                    <button type="button" id="dislike" name="beoordeling" value="0"><img id="downniffo" src="img/downniffo-unclicked.png" alt="downniffo"></button>
+                    <div id="likes"><?php echo $likes ?></div>
+                    <div id="dislikes"><?php echo $dislikes ?></div>
                     </script>
                 </div>
             </div>

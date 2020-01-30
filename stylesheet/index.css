@@ -244,8 +244,6 @@ h4{
     cursor: pointer;
     font-size:120px;
 }
-<<<<<<< HEAD
-=======
 
 #popupHouder{
     transition: 1s;
@@ -257,6 +255,26 @@ h4{
 
 #popupHouder{
     margin: 20px auto ;
+}
+
+#downniffo{
+    height: 20px;
+    width: 20px;
+}
+
+#upniffo{
+    height: 20px;
+    width: 20px;
+}
+
+#like{
+    background: transparent;
+    border: none;
+}
+
+#dislike{
+    background: transparent;
+    border: none;
 }
 
 
@@ -311,4 +329,3 @@ h4{
         height: 500px;
     }
 }
->>>>>>> 08ea29e1f7afe25b00fb2c567fb00a9e35d24b35

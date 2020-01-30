@@ -31,10 +31,43 @@ function frontvidthumb() {
         mysqli_stmt_close($stmt);
         $gebruikerid = $_SESSION["ID"];
         while ($a < $i && $novideos == FALSE) {
+            //haalt de likes op van de video
+            $sqllikes = "SELECT COUNT(ratingid) FROM rating WHERE videoid = ? && beoordeling = 1";
+            if($stmt = mysqli_prepare($conn, $sqllikes)){
+                mysqli_stmt_bind_param($stmt, "i", $videoArray[$a][6]); 
+                if(mysqli_stmt_execute($stmt)){
+                    mysqli_stmt_bind_result($stmt, $likes);
+                    mysqli_stmt_fetch($stmt);
+                }
+                else{
+                    echo mysqli_error($connect);
+                }
+            }
+            else{
+                echo mysqli_error($connect);
+            }
+            mysqli_stmt_close($stmt);
+            
+            //haalt de dislikes op van de videos
+            $sqldislikes = "SELECT COUNT(ratingid) FROM rating WHERE videoid = ? && beoordeling = 0";
+            if($stmt = mysqli_prepare($conn, $sqldislikes)){
+                mysqli_stmt_bind_param($stmt, "i", $videoArray[$a][6]);
+                if(mysqli_stmt_execute($stmt)){
+                    mysqli_stmt_bind_result($stmt, $dislikes);
+                    mysqli_stmt_fetch($stmt);
+                }
+                else{
+                    echo mysqli_error($connect);
+                }
+            }
+            else{
+                echo mysqli_error($connect);
+            }
+            mysqli_stmt_close($stmt);
 //             <a> tag die als achtergrond plaatje de thumbnail heeft
 //            en een onklik event die de functie popup uitvoert (openen van videospeler)
 //            functie ziet er uit als: popup(playbackid, titel, beschrijving); (geef je mee voor het displayen in de popup in het text vak)
-            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\")'";
+            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
             echo" style='background-image: url(\"" . $videoArray[$a][0] . "\")'>";
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"
@@ -59,10 +92,11 @@ function frontvidthumb() {
             } else {
                 echo"prepare failed";
             }
+            
             //}
             echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$a][2] . "</h3>"
             . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "</h3>"
-            . "<h3 class='likes'>Beoordeling:<br>moet nog toegevoegd worden</h3></div></a>";
+            . "<h3 class='likes'>Beoordeling:<br>Likes: " . $likes . "</br>Dislikes: " . $dislikes . "</h3></div></a>";
             $a++;
         }
     } else {

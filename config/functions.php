@@ -1,3 +1,7 @@
+<script type="text/javascript">
+    var likestotal = <?php echo $likes?>;
+    var dislikestotal = <?php echo $dislikes ?>;
+</script>
 <?php
 session_start();
 //checkt of je ingelogd bent
@@ -12,7 +16,6 @@ if (isset($_SESSION["login"])) {
 } else {
     header("location:login.php");
 }
-
 function headerBar() {
     ?>
     <div class='header'>
@@ -140,7 +143,7 @@ function navBar() {
 
             //            open video popup
             //            
-            function popup(playback, videoTitel, besch, videoid, gebruikerid) {
+            function popup(playback, videoTitel, besch, videoid, gebruikerid, likes, dislikes) {
                 var currenttime;
                 $.ajax({
                         method: "POST",
@@ -156,6 +159,8 @@ function navBar() {
                 console.log(gebruikerid);
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
+                document.getElementById("likes").innerHTML = likes;
+                document.getElementById("dislikes").innerHTML = "Dislikes: " + dislikes;
                 console.log(videoid);
                 //            window.frames['frame'].location = url;
                 //            document.write(" <iframe  id='frame' name='frame' src='" + url + "' width='600'  height='315'   allowfullscreen></iframe>");
@@ -163,9 +168,8 @@ function navBar() {
                 //            let video scroll stop
                     clickedVideo = true;
             }
-            
-            
 
+            
             //sluit video popup
             function closePopup() {
                 document.getElementById("popup").innnerHTML = '';
@@ -174,6 +178,7 @@ function navBar() {
                 //start de scroll again
                 clickedVideo = false;
                 videoidtest = 0; 
+                beoordelinggebruiker = undefined
             }
 
             //de auto slide show
@@ -239,6 +244,5 @@ function navBar() {
                     }
                 }
             }
-
         </script>    
     <?php } ?>

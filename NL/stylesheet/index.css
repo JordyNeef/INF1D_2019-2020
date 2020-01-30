@@ -1,0 +1,335 @@
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    background-image: linear-gradient(to bottom,#203246, #1A1A1A);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+
+.video{
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 415px) {
+    .video {
+        border-radius: 27px;
+        margin-right: 15px;
+        width: 350px;
+        font-size: 15px;
+    }
+    .titel{
+        grid-area:titel;
+        font-size: 30px;
+        font-weight: lighter;
+    }
+    .topVideoContainer {
+        height: 200px;
+        margin: 0px 10px;
+        width: calc(100% - 20px);
+        margin-top: 20px;
+    }
+    .CatagorieVideoLists {
+        margin: 0 10px;
+        width: calc(100% - 20px);
+    }
+    .CatagorieVideoLists .video {
+        border-radius: 15px;
+        max-height: 100%;
+        width: 220px;
+    }
+    .videoCategorie{
+        height: 125px;
+    }
+    h1{
+        display: none;
+    }
+    h2{
+        margin: 10px 0;
+
+    }
+    h3{
+        display: none;
+    }
+    .video:hover .titel{
+        transition-delay: 4s;
+        display: block;
+    }
+    .videoInfo{
+        border-radius: 15px;
+    }
+}
+
+@media screen and (min-width: 415px) {
+    .video {
+        border-radius: 20px;
+        margin-right: 50px;
+        width: 800px;
+    }
+
+    .titel{
+        grid-area:titel;
+        font-size: 45px;
+        font-weight: bold;
+    }
+    .topVideoContainer{
+        height: 450px;
+        margin: 0px 50px ;
+        width: calc(100% - 100px);
+    }
+    .CatagorieVideoLists{
+        margin: 0 50px;
+        width: calc(100% - 100px);
+    }
+    .videoCategorie .video{
+        height: 175px;
+        width: 320px;
+    }
+    h1{
+        margin-left: 50px;
+    }
+    .videoInfo{
+        border-radius: 20px;
+    }
+}
+
+.titleAndAccountButton{
+    display: flex;
+    justify-content: space-between;
+}
+
+.topVideoContainer{
+    padding-bottom: 20px;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    float: left;
+    /*scrollbar-color:#203246 #1A1A1A;*/
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+.topVideoContainer::-webkit-scrollbar { width: 0 !important }
+.videoCategorie::-webkit-scrollbar { width: 0 !important }
+
+h1{
+    float: left;
+    color: white;
+    margin: 10px 50px;
+}
+
+h2{
+    margin: 20px 0;
+}
+.video{
+    max-height: 100%;
+    flex:0 0 auto;
+    background-color: black;
+    border: 2px solid white;
+    background-position-y: center;
+    background-size:100% auto;
+}
+
+.CatagorieVideoLists{
+    float: left;
+}
+
+.videoCategorie{
+    padding-bottom: 20px;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /*scrollbar-color:#203246 #1A1A1A;*/
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+    float: left;
+    width: 100%;
+}
+
+.footer{
+    width: 100%;
+    height:50px;
+    border-top: 1px solid white;
+    float: left;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer p{
+    font-size: 15px;
+    float: left;
+    padding: 10px 10px;
+}
+
+.videoInfo{
+    opacity: 0;
+    background: radial-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+    height: 100%;
+    transition: .7s ease;
+    display: grid;
+    grid-template-columns:25% 25% 25% 25%;
+    grid-template-areas:
+        'titel titel titel titel'
+        'cat cat cat cat'
+        'besch besch besch age'
+        'besch besch besch like'
+        'besch besch besch .';
+}
+
+.video:hover .videoInfo{
+    opacity: 1;
+}
+
+.categorie{
+    grid-area:cat;
+}
+.beschrijving{
+    grid-area:besch;
+}
+.leeftijd{
+    grid-area:age;
+}
+.likes{
+    grid-area:like;
+}
+h3{
+    text-align: left;
+    padding-left: 10px;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+/*alles voor de popup video*/
+
+#frame{
+    position: fixed; 
+    display:none;
+    background-color: rgba(0,0,0,0.75);
+    top:0;
+    bottom: 0;
+    width: 100%;
+    overflow: auto;
+}
+
+.videoCategorie .video h3{
+    font-size:12px;
+}
+
+#info{
+    float: left;
+    background-image: linear-gradient(to bottom,#203246, #1A1A1A);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 40px;
+    width: 100%;
+}
+
+h4{
+    padding: 5px 10px;
+    font-size: 25px;
+}
+
+#info p{
+    padding: 5px 10px;
+    font-size: 15px;
+}
+
+#back{
+    margin: auto;
+    cursor: pointer;
+    font-size:120px;
+}
+
+#popupHouder{
+    transition: 1s;
+}
+
+#popup{
+    width: 100%;
+}
+
+#popupHouder{
+    margin: 20px auto ;
+}
+
+#nifforating{
+    display: flex;
+}
+
+#downniffo{
+    height: 20px;
+    width: 20px;
+}
+
+#upniffo{
+    height: 20px;
+    width: 20px;
+}
+
+#like{
+    background: transparent;
+    border: none;
+}
+
+#dislike{
+    background: transparent;
+    border: none;
+}
+
+
+
+@media screen and (max-width: 430px){
+    #popupHouder{
+        width: auto;
+        margin: 20px 3% ;
+    }
+
+    #popup{
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 700px)and (min-width: 430px){
+    #popupHouder{
+        width: 400px;
+    }
+
+    #popup{
+        height: 230px;
+    }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    #popupHouder{
+        width: 600px;
+    }
+
+    #popup{
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1000px) {
+    #popupHouder{
+        width: 800px;
+    }
+
+    #popup{
+        height: 450px;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    #popupHouder{
+        width: 1000px;
+    }
+
+    #popup{
+        height: 500px;
+    }
+}

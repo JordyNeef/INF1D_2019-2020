@@ -1,0 +1,69 @@
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.flex-item {
+	margin: 20px;
+	text-align: center;
+	line-height: 70px;
+	color: #969396;
+	font-family: arial;
+}
+
+.changeitems{
+	width: 35vw;
+	height: 50px;
+	background-color: #443f44;
+	color: white;
+	border: 1px solid white;
+	border-radius: 15px;
+	transition: 0.2s ease-in-out;
+	text-align: center;
+	font-size: 24px;
+	opacity: 0.7;
+}
+
+input[type=text]:focus {
+	outline: none;
+  	border: 2px solid white;
+	transition: 0.2s ease-in-out;
+	text-align: center;
+	opacity: 1.0;
+}
+
+input, select, text{
+    color: white;
+}
+
+.changebutton{
+	background-color: #203246;
+	border: none;
+	color: white;
+	padding: 8px 24px;
+	border-radius: 10px;
+	transition: 0.2s ease-in-out;
+}
+
+.changebutton:hover{
+	padding: 9px 27px;
+	transition: 0.2s ease-in-out;
+	font-size: large;
+}
+
+input[type=submit]:focus {
+	outline: none;
+}
+
+/* Responsive  */
+
+@media screen and (max-width: 600px) 
+{
+	.changeitems{
+	width: 80vw;
+	}
+}

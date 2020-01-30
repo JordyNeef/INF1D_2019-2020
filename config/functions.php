@@ -59,10 +59,9 @@ function navBar() {
     ?>
     <div id="navBar">
         <div class="navCloseButton"  onclick="navClose();">&#10005;</div>
-         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> 
-        <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
-
-         </form>  
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="Get"> 
+            <input class="searchInput" type="text" name="searchbar" placeholder="Zoeken...">
+        </form>  
         <?php
         //select 10 random categorien uit de database en plaats deze in de navbar: veranderd elke keer dat je hem herlaad
         $categorieQeury = "SELECT naam FROM categorie 

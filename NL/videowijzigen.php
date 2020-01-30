@@ -25,7 +25,7 @@
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                     <h1>Wijzig een video</h1>
                     <div id="wijzigvideo">
-                            <input type="number" name="videoid" placeholder="videoid van een video..." class="textfield">
+                            <input type="number" name="videoid" placeholder="Videoid van een video..." class="textfield">
                             <div id="videowijzigenbuttons">
                                 <input type="submit" name="verwijder" value="Video verwijderen" id="verwijderbutton">
                                 <input type="submit" name="wijzig" value="wijzig video" id="wijzigbutton">
@@ -54,10 +54,10 @@
                             }
                             if(isset($_POST['wijzig'])){
                                 if(empty($_POST['videoid'])){
-                                    echo "kies welke video moet worden verwijderd.";
+                                    echo "Kies welke video moet worden verwijderd.";
                                 } else {
                                     if($conn === FALSE){
-                                        echo "Er kon niet worden verbonden met de database.";
+                                        echo "Er kon geen verbinding worden gemaakt met de database.";
                                     } else{
                                         $videoId = filter_input(INPUT_POST, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                                         header('Location: videoaanpassen.php?videoid= '.$videoId.'');

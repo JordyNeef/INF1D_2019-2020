@@ -160,7 +160,7 @@
                                             
                                                                 $videoCatInsertResult = mysqli_stmt_execute($VideoCatInsertstmt);
                                                                 if($videoCatInsertResult === FALSE){
-                                                                    echo "<p>Unable to execute the query.</p>"
+                                                                    echo "<p>De query kon niet uitgevoerd worden.</p>"
                                                                     . "<p>Error code "
                                                                     . mysqli_errno($conn)
                                                                     . ": "
@@ -176,7 +176,7 @@
                                                 if(mysqli_query($conn, $updateQeury)){
                                                     // echo "<p>video is met succes ge-update.</p><p><a href='videowijzigen.php'>Video wijzigen</a></p>";
                                                 } else{
-                                                    echo "er ging iets fout tijdens het updaten" . mysqli_error($conn);
+                                                    echo "Er ging iets verkeerd tijdens het updaten" . mysqli_error($conn);
                                                 }
                                                 
                                             }
@@ -185,7 +185,7 @@
                                     mysqli_stmt_close($stmt);
                                 }
                                 } else {
-                                    echo "Something went wrong with the qeury.";
+                                    echo "Er ging iets verkeerd met de query.";
                                 }
                                  mysqli_close($conn);
                             

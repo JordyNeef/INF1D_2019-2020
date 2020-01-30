@@ -16,7 +16,7 @@
 
 		// Validate username
 		if(empty(trim($_POST["username"]))){
-			$username_err = "Please enter a username ";
+			$username_err = "Vul a.u.b. een gebruikersnaam in.";
 			echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -41,7 +41,7 @@
 					mysqli_stmt_store_result($stmt);
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
-						$username_err = "This username is already taken ";
+						$username_err = "Deze gebruikersnaam is reeds in gebruik.";
 						echo "
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -56,7 +56,7 @@
 					echo "
 					<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-						Oops! Something went wrong. Please try again later.
+						Oeps! Er is iets verkeerd gegaan. Probeer het later opnieuw.
 					</div>";
 				}
 			}
@@ -92,7 +92,7 @@
 					mysqli_stmt_store_result($stmt);
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
-						$email_err = "This email is already taken";
+						$email_err = "Deze email is reeds in gebruik.";
 						echo "
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -102,7 +102,7 @@
 					else{
 						$email = trim($_POST["email"]);
 						if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-							$email_err = "Invalid email format";
+							$email_err = "Ongeldige email";
 							echo "
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -119,7 +119,7 @@
 					echo "
 					<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-						Oops! Something went wrong. Please try again later.
+						Oeps! Er is iets verkeerd gegaan. Probeer het later opnieuw.
 					</div>";
 				}
 			}	
@@ -127,7 +127,7 @@
 
 		// Validate password
 		if(empty(trim($_POST["password"]))){
-	        $password_err = "Please enter a password ";   
+	        $password_err = "Vul a.u.b. een wachtwoord in.";   
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -135,7 +135,7 @@
 				</div>";
 	    } 
 	    elseif(strlen(trim($_POST["password"])) < 6){
-	        $password_err = "Password must have atleast 6 characters ";
+	        $password_err = "Wachtwoord moet minstens uit 6 karakters bestaan.";
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -148,7 +148,7 @@
 	    
 	    // Validate confirm password
 	    if(empty(trim($_POST["confirm_password"]))){
-	        $confirm_password_err = "Please confirm password ";   
+	        $confirm_password_err = "Bevestig a.u.b. het wachtwoord.";   
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -158,7 +158,7 @@
 	    else{
 	        $confirm_password = trim($_POST["confirm_password"]);
 	        if(empty($password_err) && ($password != $confirm_password)){
-	            $confirm_password_err = "Password did not match. ";
+	            $confirm_password_err = "Wachtwoord komt niet overeen";
 	            echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -183,14 +183,14 @@
 	        else
 	        {
 	            // Checks if the file already exists, if it does not, it copies the file to the specified folder.
-	            if (file_exists("img/avatar/" . $_FILES["uploadedFile"]["name"]))
+	            if (file_exists("../img/avatar/" . $_FILES["uploadedFile"]["name"]))
 	            {
-	                echo $_FILES["uploadedFile"]["name"] . " already exists. ";
+	                echo $_FILES["uploadedFile"]["name"] . " bestaat al. ";
 	            } 
 	            else
 	            {
 	            	$userimagepath = $_FILES["uploadedFile"]["name"];
-	                move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "img/avatar/" . $_FILES["uploadedFile"]["name"]);
+	                move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], "../img/avatar/" . $_FILES["uploadedFile"]["name"]);
 	            }
 	        }
 	    } 
@@ -199,7 +199,7 @@
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-					Invalid File, default picture selected
+					Ongeldig bestand, standaard foto geselecteerd.
 				</div>
 				";
 	        $userimagepath = "account.png";
@@ -231,7 +231,7 @@
 	    			echo "
 					<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-	    				Something went wrong. Please try again later.
+	    				Er iets is verkeerd gegaan. Probeer het later opnieuw.
 	    			</div>";
 	    		}
 				//Close statement
@@ -240,7 +240,7 @@
 				echo "
 				<div class='alert'>
 				<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-					qeury werkt niet
+					Qeury werkt niet.
 				</div>";
 			}
 	 			// Close connection
@@ -259,28 +259,28 @@
 		<link href="stylesheet/main.css" type="text/css"  rel="stylesheet">
 		<link href="stylesheet/signup.css" type="text/css"  rel="stylesheet">
 		<title>
-			Sign Up
+			Meld je aan
 		</title>
 	</head>
 	<body>
 		<div class="flex-container">
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-				<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" /></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Gebruikersnaam" type="text" name="username" /></div>
 				<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email" /></div>
-				<div class="flex-item"><input class="changeitems" placeholder="Password" type="password" name="password" /></div>
-				<div class="flex-item"><input class="changeitems" placeholder="Confirm password" type="password" name="confirm_password" /></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Wachtwoord" type="password" name="password" /></div>
+				<div class="flex-item"><input class="changeitems" placeholder="Bevestig wachtwoord" type="password" name="confirm_password" /></div>
 				<div class="flex-item">
-					I would like a trial version
-					<input class="radiobuttons" type="radio" name="proefversie" value="1" checked="checked">Yes</input>
-					<input class="radiobuttons" type="radio" name="proefversie" value="0">No</input>
+					Ik wil graag een proefversie.
+					<input class="radiobuttons" type="radio" name="proefversie" value="1" checked="checked">Ja</input>
+					<input class="radiobuttons" type="radio" name="proefversie" value="0">Nee</input>
 				</div>
 				<div class="flex-item">
-					Add your own avatar:
+					Voeg je avatar toe:
 					<input class="file" type="file" name="uploadedFile" />
 				</div>
-				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Submit" /></div>
+				<div class="flex-item"><input class="submitbutton" type="submit" name="submit" value="Verzend" /></div>
 				<div class="flex-item">
-					Already have an account? <a href="login.php">Log in</a>
+					Heb je al een account? <a href="login.php">Log in</a>
 				</div>
 			</form>
 		</div>

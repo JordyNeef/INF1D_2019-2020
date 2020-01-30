@@ -9,6 +9,7 @@
             }
         ?>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'/>
         <title>Beheer</title>
         <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
@@ -83,7 +84,6 @@
                                                 } else{
                                                     echo "er ging iets fout tijdens het updaten" . mysqli_error($conn);
                                                 }
-                                                
                                             }
                                         }
                                     }

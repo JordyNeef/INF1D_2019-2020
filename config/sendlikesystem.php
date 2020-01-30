@@ -3,7 +3,6 @@ $connect = mysqli_connect("localhost", "root", "", "niffoflix");
 $videoid = $_POST["videoid"];
 $beoordeling = $_POST["beoordeling"];
 $gebruikerid = $_POST["gebruikerid"];
-
 $sql = "SELECT beoordeling FROM rating WHERE gebruikerid = ? AND videoid = ?";
 if($stmt = mysqli_prepare($connect, $sql)){
     mysqli_stmt_bind_param($stmt, "ii", $gebruikerid, $videoid);

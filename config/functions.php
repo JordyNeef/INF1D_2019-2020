@@ -170,12 +170,6 @@ function navBar() {
                 //            let video scroll stop
                 clickedVideo = true;
             }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 1dc2f3a7ee29bb798236310cf41e24087190f88c
-
             
             //sluit video popup
             function closePopup() {
@@ -184,12 +178,8 @@ function navBar() {
                 document.getElementById("frame").style.display = "none";
                 //start de scroll again
                 clickedVideo = false;
-<<<<<<< HEAD
                 videoidtest = 0; 
-                beoordelinggebruiker = undefined
-=======
-                videoidtest = 0;
->>>>>>> 1dc2f3a7ee29bb798236310cf41e24087190f88c
+                beoordelinggebruiker = undefined;
             }
 
             //de auto slide show

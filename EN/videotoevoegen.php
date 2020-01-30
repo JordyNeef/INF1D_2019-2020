@@ -90,17 +90,17 @@
                                                         if($cInsertSTMT = mysqli_prepare($conn,  $categorieInsert)){
                                                         //    for($a = 0; $a <2; $a++){
                                                             if($checkCategorie != $cSelectNaam){
-                                                                    // echo $insertCategorie . " " . $cSelectNaam . "<br>"; 
-                                            //---------------------------------Filter om niet de bestaande categorieën toe toevoegen maken----------------------------------------------------//
-                                                                    mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
-                                                                    if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
-                                                                        echo "Unable to execute the query.". "<p>Error code "
-                                                                        . mysqli_errno($conn)
-                                                                        . ": "
-                                                                        . mysqli_error($conn)
-                                                                        . "</p>";
-                                                                    }
-                                                                }  
+                                                                 //als de categorie nog niet bekend is wordt deze toegevoegd
+                                                                // echo $insertCategorie . " " . $cSelectNaam . "<br>"; 
+                                                                mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
+                                                                if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
+                                                                    echo "Unable to execute the query.". "<p>Error code "
+                                                                    . mysqli_errno($conn)
+                                                                    . ": "
+                                                                    . mysqli_error($conn)
+                                                                    . "</p>";
+                                                                }
+                                                            }  
                                                             // }
                                                         }
                                                         // echo 'De categorie "' . $categorieTest . '" bestaat nog niet!';
@@ -108,6 +108,7 @@
                                                 }
                                             }
                                             mysqli_stmt_close($cSelectSTMT);  
+                                            // de video wordt nu toegevoegd
                                             $videoInsertQeury = "INSERT INTO video VALUES(?, ?, ?, ?, ?, NULL)";
                                             if($VideoInsertstmt = mysqli_prepare($conn, $videoInsertQeury)){
                                                 mysqli_stmt_bind_param($VideoInsertstmt, 'ssssi', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd);
@@ -122,6 +123,7 @@
                                                 } else{
                                                     echo "<br>Video succesfully uploaded";
                                                 }
+                                                //selecteerd de hoogste videoid om deze te koppelen aan een categorie
                                                 $videoIdQeury = "SELECT MAX(videoid) as maxvideoid FROM video";
                                                 if($maxvideoSTMT = mysqli_prepare($conn, $videoIdQeury)){
                                                     mysqli_execute($maxvideoSTMT);

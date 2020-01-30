@@ -66,32 +66,33 @@
                                                 $categorieInput = filter_input(INPUT_POST, 'catagorie', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $beschrijving = filter_input(INPUT_POST, 'beschrijving', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $leeftijd = filter_input(INPUT_POST, 'leeftijd', FILTER_SANITIZE_SPECIAL_CHARS);
-                                                $explodeCategorie = explode(",", $categorieInput);
-                                                $countCategorie = count($explodeCategorie);
-                                                $videoTable = "video";
+                                                //de categorieén worden doormiddel van een comma ingevuld waardoor er meerdere in in input kunnen worden geplaatst
+                                                $explodeCategorie = explode(",", $categorieInput); 
+                                                // $countCategorie = count($explodeCategorie);
+                                                // $videoTable = "video";
                                                 $categorieTable = "categorie";
-                                                $checkQuery = "SELECT max(categorieid) as topid, categorieid, naam FROM categorie";
+                                                // $checkQuery = "SELECT max(categorieid) as topid, categorieid, naam FROM categorie";
                                                 $categorieTable = "categorie";
-                                                $videoTable = "video";
                                                 $categorieSelect = "SELECT * FROM categorie WHERE naam = ?";
-                                            //selecteer de hoogste categorieid om deze te koppelen aan de videocategorie
-                                        foreach($explodeCategorie as $checkCategorie){
+                                                //loopt door alle categorieën om zo meerdere te kunnen koppelen
+                                                foreach($explodeCategorie as $checkCategorie){
                                                 // echo $categorieSelect . "<br>";
-                                                if($cSelectSTMT = mysqli_prepare($conn, $categorieSelect)){
-                                                    mysqli_stmt_bind_param($cSelectSTMT, 's', $checkCategorie);
-                                                    mysqli_execute($cSelectSTMT);
-                                                    mysqli_stmt_bind_result($cSelectSTMT, $categorieid, $cSelectNaam);
-                                                    mysqli_stmt_store_result($cSelectSTMT);
-                                                    mysqli_stmt_fetch($cSelectSTMT);
-                                                    if(mysqli_stmt_num_rows($cSelectSTMT) > 0){
-                                                        //echo "De categorie $cSelectNaam bestaat al.";
-                                                    } else {
-                                                        $categorieInsert = "INSERT INTO $categorieTable VALUES(NULL, ?)";
-                                                        if($cInsertSTMT = mysqli_prepare($conn,  $categorieInsert)){
-                                                        //    for($a = 0; $a <2; $a++){
-                                                            if($checkCategorie != $cSelectNaam){
-                                                                    // echo $insertCategorie . " " . $cSelectNaam . "<br>"; 
-                                            //---------------------------------Filter om niet de bestaande categorieën toe toevoegen maken----------------------------------------------------//
+                                                //selecteert de gegevens van de categorie zodat deze kan worden gecontroleerd en als deze nog niet aanwezig is aangemaakt
+                                                    if($cSelectSTMT = mysqli_prepare($conn, $categorieSelect)){
+                                                        mysqli_stmt_bind_param($cSelectSTMT, 's', $checkCategorie);
+                                                        mysqli_execute($cSelectSTMT);
+                                                        mysqli_stmt_bind_result($cSelectSTMT, $categorieid, $cSelectNaam);
+                                                        mysqli_stmt_store_result($cSelectSTMT);
+                                                        mysqli_stmt_fetch($cSelectSTMT);
+                                                        if(mysqli_stmt_num_rows($cSelectSTMT) > 0){
+                                                            //echo "De categorie $cSelectNaam bestaat al.";
+                                                        } else {
+                                                            $categorieInsert = "INSERT INTO $categorieTable VALUES(NULL, ?)";
+                                                            if($cInsertSTMT = mysqli_prepare($conn,  $categorieInsert)){
+                                                            //    for($a = 0; $a <2; $a++){
+                                                                if($checkCategorie != $cSelectNaam){
+                                                                    //als de categorie nog niet bekend is wordt deze toegevoegd
+                                                                    // echo $insertCategorie . " " . $cSelectNaam . "<br>";    
                                                                     mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
                                                                     if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
                                                                         echo "Het was niet mogelijk om de query uit te voeren". "<p>Error code "
@@ -101,13 +102,14 @@
                                                                         . "</p>";
                                                                     }
                                                                 }  
-                                                            // }
+                                                                // }
+                                                            }
+                                                            // echo 'De categorie "' . $categorieTest . '" bestaat nog niet!';
                                                         }
-                                                        // echo 'De categorie "' . $categorieTest . '" bestaat nog niet!';
                                                     }
                                                 }
-                                            }
                                             mysqli_stmt_close($cSelectSTMT);  
+                                            // de video wordt nu toegevoegd
                                             $videoInsertQeury = "INSERT INTO video VALUES(?, ?, ?, ?, ?, NULL)";
                                             if($VideoInsertstmt = mysqli_prepare($conn, $videoInsertQeury)){
                                                 mysqli_stmt_bind_param($VideoInsertstmt, 'ssssi', $videoUrl, $titel, $beschrijving, $uploader , $leeftijd);
@@ -122,6 +124,7 @@
                                                 } else{
                                                     echo "<br>Video succesvol geüpload";
                                                 }
+                                                //selecteerd de hoogste videoid om deze te koppelen aan een categorie
                                                 $videoIdQeury = "SELECT MAX(videoid) as maxvideoid FROM video";
                                                 if($maxvideoSTMT = mysqli_prepare($conn, $videoIdQeury)){
                                                     mysqli_execute($maxvideoSTMT);

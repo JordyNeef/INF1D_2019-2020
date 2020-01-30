@@ -41,7 +41,8 @@
                                         echo "Unable to connect to database.";
                                     } else{
                                         $videoId = filter_input(INPUT_POST, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
-                                        $table = "video";
+                                        // $table = "video";
+                                        // als er wordt gekozen om een video te verwijderen wordt dat hier gedaan "checkt de ingevulde id"
                                         $verwijderQeury = "DELETE video.*, video_categorie.* from video, video_categorie WHERE video.videoid=video_categorie.videoid AND video.videoid=".$videoId;
                                         if(mysqli_query($conn, $verwijderQeury)){
                                             echo "Video has been succesfully removed.";
@@ -59,6 +60,7 @@
                                     if($conn === FALSE){
                                         echo "Unable to connect with database.";
                                     } else{
+                                         // als er wordt gekozen om een video te wijzigen wordt dat hier gedaan "checkt de ingevulde id"
                                         $videoId = filter_input(INPUT_POST, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                                         header('Location: videoaanpassen.php?videoid= '.$videoId.'');
                                     }

@@ -75,7 +75,7 @@ function frontvidthumb() {
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"
             . "<h3 class='titel'>" . $videoArray[$a][1] . "</h3>"
-            . "<h3 class='categorie'>Categorie(en):<br>";
+            . "<h3 class='categorie'>Catagory/Catagories:<br>";
 //            scheid de categorieids van elkaar
             $categorieArray = explode(',', $videoArray[$a][5]);
 //            echo alle categorieen waar een filmpje onder valt
@@ -93,13 +93,13 @@ function frontvidthumb() {
                 }
                 mysqli_stmt_close($stmt);
             } else {
-                echo"prepare failed";
+                echo"Prepare failed";
             }
             
             //}
-            echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$a][2] . "</h3>"
-            . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$a][4] . "+</h3>"
-            . "<h3 class='likes'>Beoordeling: <br> Upniffo's: " . $likes . "<br> Downniffo's: " . $dislikes . "</h3></div></a>";
+            echo "</h3><h3 class='beschrijving'>Discription:<br>" . $videoArray[$a][2] . "</h3>"
+            . "<h3 class='leeftijd'>Age:<br>" . $videoArray[$a][4] . "+</h3>"
+            . "<h3 class='likes'>Rating: <br> Upniffo's: " . $likes . "<br> Downniffo's: " . $dislikes . "</h3></div></a>";
             $a++;
         }
     } else {

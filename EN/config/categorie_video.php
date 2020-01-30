@@ -34,7 +34,7 @@ function categorieVideos() {
         }
         mysqli_stmt_close($stmt);
     } else {
-        echo'failed to select categorie.';
+        echo'Failed to select categorie.';
     }
     $a = 0;
     $b = 0;
@@ -53,7 +53,7 @@ function categorieVideos() {
         } else {
             $limit = 30;
 //            als searchbar in de url staat
-            echo'<h2> Zoekresultaten voor: ' . $_GET['searchbar'] . '</h2>';
+            echo'<h2> Search results for: ' . $_GET['searchbar'] . '</h2>';
         }
         echo"<div onwheel='scrollHorizantal(event,\" videoCategorie \"," . $a . ")' class ='videoCategorie'>";
 //        begin vooraan (wanneer hij voor de 2e keer in de loop gaat)
@@ -141,7 +141,7 @@ function categorieVideos() {
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"
             . "<h3 class='titel'>" . $videoArray[$c][1] . "</h3>"
-            . "<h3 class='categorie'>Categorie(en):<br>";
+            . "<h3 class='categorie'>Catagory/Catagories:<br>";
             $categorieStatement = "SELECT naam FROM `video_categorie` 
                 JOIN categorie ON video_categorie.categorieid = categorie.categorieid
                 WHERE videoid = " . $videoArray[$c][6];
@@ -153,11 +153,11 @@ function categorieVideos() {
                 }
                 mysqli_stmt_close($stmt);
             } else {
-                echo"prepare failed";
+                echo"Prepare failed";
             }
-            echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$c][2] . "</h3>"
-            . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$c][4] . "+</h3>"
-            . "<h3 class='likes'>Beoordeling: <br> Upniffo's: " . $likes . "<br> Downniffo's: " . $dislikes . "</h3></div></a>";
+            echo "</h3><h3 class='beschrijving'>Discription:<br>" . $videoArray[$c][2] . "</h3>"
+            . "<h3 class='leeftijd'>Age:<br>" . $videoArray[$c][4] . "+</h3>"
+            . "<h3 class='likes'>Rating: <br> Upniffo's: " . $likes . "<br> Downniffo's: " . $dislikes . "</h3></div></a>";
             $c++;
             $e++;
         }

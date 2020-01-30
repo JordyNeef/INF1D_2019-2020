@@ -70,7 +70,7 @@ function frontvidthumb() {
 //             <a> tag die als achtergrond plaatje de thumbnail heeft
 //            en een onklik event die de functie popup uitvoert (openen van videospeler)
 //            functie ziet er uit als: popup(playbackid, titel, beschrijving); (geef je mee voor het displayen in de popup in het text vak)
-            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
+            echo"<a class='video' onclick='popup(\"" . $videoArray[$a][7] . "\",\"" . htmlentities($videoArray[$a][1]) . "\",\"" . htmlentities($videoArray[$a][2]) . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\",\"" . $_SESSION['admin'] . "\"); timestamp(\"" . $videoArray[$a][7] . "\",\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
             echo" style='background-image: url(\"" . $videoArray[$a][0] . "\")'>";
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"

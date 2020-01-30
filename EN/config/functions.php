@@ -145,7 +145,7 @@ function navBar() {
 
             //            open video popup
             //            
-            function popup(playback, videoTitel, besch, videoid, gebruikerid, likes, dislikes) {
+            function popup(playback, videoTitel, besch, videoid, gebruikerid, likes, dislikes, admin) {
                 var currenttime;
                 $.ajax({
                     method: "POST",
@@ -159,6 +159,9 @@ function navBar() {
                     }
                 });
                 console.log(gebruikerid);
+                if(admin === '1'){
+                    document.getElementById("videoId").innerHTML = "videoid = " + videoid;
+                }
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
                 document.getElementById("likes").innerHTML = likes;

@@ -135,7 +135,7 @@ function categorieVideos() {
                 echo mysqli_error($connect);
             }
             mysqli_stmt_close($stmt);
-            echo"<a class='video' onclick='popup(\"" . $videoArray[$c][7] . "\",\"" . htmlentities($videoArray[$c][1]) . "\",\"" . htmlentities($videoArray[$c][2]) . "\",\"" . $videoArray[$c][6] .  "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\"); timestamp(\"" . $videoArray[$c][7] . "\",\"" . $videoArray[$c][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
+            echo"<a class='video' onclick='popup(\"" . $videoArray[$c][7] . "\",\"" . htmlentities($videoArray[$c][1]) . "\",\"" . htmlentities($videoArray[$c][2]) . "\",\"" . $videoArray[$c][6] .  "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes. "\",\"" . $_SESSION['admin'] . "\"); timestamp(\"" . $videoArray[$c][7] . "\",\"" . $videoArray[$c][6] . "\",\"" . $_SESSION["ID"] . "\"); likesystem(\"" . $videoArray[$a][6] . "\",\"" . $_SESSION["ID"] . "\",\"" . $likes . "\",\"" . $dislikes . "\")'";
             echo" style='background-image: url(\"" . $videoArray[$c][0] . "\")'>";
             //div in de a voor het displayen van info als je er over hovered
             echo"<div class='videoInfo'>"

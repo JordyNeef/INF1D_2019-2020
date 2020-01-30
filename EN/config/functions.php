@@ -186,6 +186,7 @@ function navBar() {
                 videoidtest = 0; 
                 beoordelinggebruiker = undefined;
                 clearInterval(sendtimestampajax);
+                location.reload(); 
             }
 
             //de auto slide show

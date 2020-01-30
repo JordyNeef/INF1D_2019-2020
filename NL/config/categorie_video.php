@@ -100,7 +100,7 @@ function categorieVideos() {
                 mysqli_stmt_close($stmt);
             } else {
 //                        stop loop zodat hij heel lege videos echoed
-                echo'failed to select videos';
+                echo'videos selecteren is niet gelukt';
                 break;
             }
             $sqllikes = "SELECT COUNT(ratingid) FROM rating WHERE videoid = ? && beoordeling = 1";

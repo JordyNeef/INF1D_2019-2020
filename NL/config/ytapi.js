@@ -1,9 +1,11 @@
 var videoidtest;
 var sendtimestampajax;
+// verstuurd de timestamp van de video elke 5 seconden naar sendtimestamp.php
 function timestamp (url, videoid, gebruikerid){
     console.log(clickedVideo);
     videoidtest = videoid
     sendtimestampajax =  setInterval(function(){
+            // checkt of de videoid groter of gelijk is aan 1 zodat hij niet doorgaat als de popup is gesloten
             if(videoidtest >= 1){
                 $.ajax({
                     method: "POST",
@@ -18,6 +20,8 @@ function timestamp (url, videoid, gebruikerid){
             }
         }, 5000);
 }
+
+//hier start de youtube api die de videos inlaad
 
 var tag = document.createElement('script');
 

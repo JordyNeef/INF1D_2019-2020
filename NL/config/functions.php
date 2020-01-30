@@ -146,6 +146,7 @@ function navBar() {
             //            open video popup
             //            
             function popup(playback, videoTitel, besch, videoid, gebruikerid, likes, dislikes, admin) {
+                // hiermee wordt de timestamp vanuit de database opgehaalt voor de video
                 var currenttime;
                 $.ajax({
                     method: "POST",
@@ -153,15 +154,19 @@ function navBar() {
                     url: "config/gettimestamp.php",
                     data: {gebruikerid: gebruikerid, videoid: videoid},
                     success: function (data, succes) {
+                        // dit haalt de timestamp op
                         currenttime = data["timestamp"];
                         console.log(currenttime);
+                        // dit zet de url in de iframe
                         document.getElementById("popup").src = "https://www.youtube.com/embed/" + playback + "?enablejsapi=1&origin=http%3A%2F%2Flocalhost&widgetid=1&start=" + currenttime;
                     }
                 });
                 console.log(gebruikerid);
+                // hiermee wordt de videoid laten zien bij de popup als je admin bent
                 if(admin === '1'){
                     document.getElementById("videoId").innerHTML = "videoid = " + videoid;
                 }
+                // hiermee wordt de data van de video in geladen
                 document.getElementById("titel").innerHTML = videoTitel;
                 document.getElementById("beschrijving").innerHTML = besch;
                 document.getElementById("likes").innerHTML = likes;
@@ -176,9 +181,11 @@ function navBar() {
             
             //sluit video popup
             function closePopup() {
+                // dit haalt de popup weg en zet in de src van de iframe een placeholder
                 document.getElementById("popup").innnerHTML = '';
                 document.getElementById("popup").src = "placeholder";
                 document.getElementById("frame").style.display = "none";
+                // dit zet de knoppen terug op dat er niet op is gedrukt
                 document.getElementById("upniffo").src = "img/upniffo-unclicked.png";
                 document.getElementById("downniffo").src = "img/downniffo-unclicked.png";
                 //start de scroll again

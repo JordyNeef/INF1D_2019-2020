@@ -103,6 +103,7 @@ function categorieVideos() {
                 echo'failed to select videos';
                 break;
             }
+            // haalt de likes op uit de database
             $sqllikes = "SELECT COUNT(ratingid) FROM rating WHERE videoid = ? && beoordeling = 1";
             if($stmt = mysqli_prepare($conn, $sqllikes)){
                 mysqli_stmt_bind_param($stmt, "i", $videoArray[$c][6]); 

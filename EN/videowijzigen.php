@@ -25,28 +25,28 @@
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                     <h1>Wijzig een video</h1>
                     <div id="wijzigvideo">
-                            <input type="number" name="videoid" placeholder="videoid van een video..." class="textfield">
+                            <input type="number" name="videoid" placeholder="Video ID of a video..." class="textfield">
                             <div id="videowijzigenbuttons">
-                                <input type="submit" name="verwijder" value="Video verwijderen" id="verwijderbutton">
-                                <input type="submit" name="wijzig" value="wijzig video" id="wijzigbutton">
+                                <input type="submit" name="verwijder" value="Remove video " id="verwijderbutton">
+                                <input type="submit" name="wijzig" value="Edit video" id="wijzigbutton">
                             </div>
                     </div>
                     <div id="formresult">
                         <?php
                             if(isset($_POST['verwijder'])){
                                 if(empty($_POST['videoid'])){
-                                    echo "kies welke video moet worden verwijderd.";
+                                    echo "Choose which video should be removed.";
                                 } else {
                                     if($conn === FALSE){
-                                        echo "Er kon niet worden verbonden met de database.";
+                                        echo "Unable to connect to database.";
                                     } else{
                                         $videoId = filter_input(INPUT_POST, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                                         $table = "video";
                                         $verwijderQeury = "DELETE video.*, video_categorie.* from video, video_categorie WHERE video.videoid=video_categorie.videoid AND video.videoid=".$videoId;
                                         if(mysqli_query($conn, $verwijderQeury)){
-                                            echo "De video is met succes verwijderd.";
+                                            echo "Video has been succesfully removed.";
                                         } else{
-                                            echo "Er ging iets fout met het verwijderen van de video" . mysqli_error($conn);
+                                            echo "Something went wrong with updating the video." . mysqli_error($conn);
                                         }
                                         mysqli_close($conn);
                                     }  
@@ -54,10 +54,10 @@
                             }
                             if(isset($_POST['wijzig'])){
                                 if(empty($_POST['videoid'])){
-                                    echo "kies welke video moet worden verwijderd.";
+                                    echo "Choose which video should be removed.";
                                 } else {
                                     if($conn === FALSE){
-                                        echo "Er kon niet worden verbonden met de database.";
+                                        echo "Unable to connect with database.";
                                     } else{
                                         $videoId = filter_input(INPUT_POST, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                                         header('Location: videoaanpassen.php?videoid= '.$videoId.'');

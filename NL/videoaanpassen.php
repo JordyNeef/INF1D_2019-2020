@@ -32,7 +32,8 @@
                         if(isset($videoId)){
                             $table = "video";
                             $categorieTable = "categorie";
-                            $cat = "";
+                            $cat = ""; // hier worden de categorieén in geplaatst
+                            // selecteerd alle data die nodig is om de video's aan te kunnen passen
                             $selectQeury = "SELECT playbackid, categorie.naam, titel, beschrijving, leeftijd, video_categorie.categorieid, video_categorie.vidcatid 
                                             FROM video 
                                             JOIN video_categorie ON video.videoid=video_categorie.videoid 
@@ -49,6 +50,7 @@
                                         while(mysqli_stmt_fetch($stmt)){
                                             $cat .= "$naam,";
                                         }
+                                        // als er data is gevonden wordt dit in een formulier geplaatst
                                         if(mysqli_stmt_num_rows($stmt)>0){
                                         echo '<form action="" method="post">
                                         <h1>Video Aanpassen</h1>
@@ -105,12 +107,12 @@
                                                         if(mysqli_stmt_num_rows($cSelectSTMT) > 0){
                                                             // echo "De categorie $cSelectNaam bestaat al.";
                                                         } else { 
+                                                            // koppelt de juiste categorieën aan de juiste video
                                                             $categorieInsert = "INSERT INTO $categorieTable VALUES(NULL, ?)";
                                                             if($cInsertSTMT = mysqli_prepare($conn,  $categorieInsert)){
                                                             //    for($a = 0; $a <2; $a++){
                                                                    if($checkCategorie != $cSelectNaam){
                                                                         // echo $insertCategorie . " " . $cSelectNaam . "<br>"; 
-                                                //---------------------------------Filter om niet de bestaande categorieën toe toevoegen maken----------------------------------------------------//
                                                                         mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
                                                                         if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
                                                                             echo "Het was niet mogelijk om de query uittevoeren". "<p>Error code "
@@ -128,20 +130,20 @@
                                                         }
                                                     }
                                                 }
-                                                $videoIdQeury = "SELECT MAX(videoid) as maxvideoid FROM video";
-                                                if($maxvideoSTMT = mysqli_prepare($conn, $videoIdQeury)){
-                                                    mysqli_execute($maxvideoSTMT);
-                                                    mysqli_stmt_bind_result($maxvideoSTMT, $maxvideoid);
-                                                    mysqli_stmt_store_result($maxvideoSTMT);
-                                                    mysqli_stmt_fetch($maxvideoSTMT);
-                                                    // echo "de laatste videoid = " . $maxvideoid . "<br>";
-                                                }
-                                                mysqli_stmt_close($maxvideoSTMT);
+                                                // $videoIdQeury = "SELECT MAX(videoid) as maxvideoid FROM video";
+                                                // if($maxvideoSTMT = mysqli_prepare($conn, $videoIdQeury)){
+                                                //     mysqli_execute($maxvideoSTMT);
+                                                //     mysqli_stmt_bind_result($maxvideoSTMT, $maxvideoid);
+                                                //     mysqli_stmt_store_result($maxvideoSTMT);
+                                                //     mysqli_stmt_fetch($maxvideoSTMT);
+                                                //     // echo "de laatste videoid = " . $maxvideoid . "<br>";
+                                                // }
+                                                // mysqli_stmt_close($maxvideoSTMT);
                                                 $deleteCategorie = "DELETE FROM video_categorie WHERE videoid =" . $videoId;
                                                 if (mysqli_query($conn, $deleteCategorie)) {
-                                                    echo "Record deleted successfully";
+                                                    echo "Recordis met success verwijderd.";
                                                 } else {
-                                                    echo "Error deleting record: " . mysqli_error($conn);
+                                                    echo "er ging iets fout tijdens het record verwijderen: " . mysqli_error($conn);
                                                 }
                                                
                                                 foreach($explodeCategorie as $vidCatCategorie){
@@ -168,22 +170,21 @@
                                                                     . "</p>";
                                                                 }
                                                             }
-                                                            
                                                         } 
                                                     }
                                                     mysqli_stmt_close($categorieSTMT); 
-                                                $updateQeury = "UPDATE video SET playbackid= '$videoUrl', titel= '$titel', beschrijving='$beschrijving', uploadedby= '$maker', leeftijd='$leeftijd' WHERE videoid=$videoId";
-                                                if(mysqli_query($conn, $updateQeury)){
-                                                    // echo "<p>video is met succes ge-update.</p><p><a href='videowijzigen.php'>Video wijzigen</a></p>";
-                                                } else{
-                                                    echo "Er ging iets verkeerd tijdens het updaten" . mysqli_error($conn);
+                                                    // veranderd de data die uit de formulier
+                                                    $updateQeury = "UPDATE video SET playbackid= '$videoUrl', titel= '$titel', beschrijving='$beschrijving', uploadedby= '$maker', leeftijd='$leeftijd' WHERE videoid=$videoId";
+                                                    if(mysqli_query($conn, $updateQeury)){
+                                                        // echo "<p>video is met succes ge-update.</p><p><a href='videowijzigen.php'>Video wijzigen</a></p>";
+                                                    } else{
+                                                        echo "Er ging iets verkeerd tijdens het updaten" . mysqli_error($conn);
+                                                    }
                                                 }
-                                                
                                             }
                                         }
+                                        mysqli_stmt_close($stmt);
                                     }
-                                    mysqli_stmt_close($stmt);
-                                }
                                 } else {
                                     echo "Er ging iets verkeerd met de query.";
                                 }

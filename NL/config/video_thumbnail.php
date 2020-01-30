@@ -19,7 +19,7 @@ function frontvidthumb() {
             mysqli_stmt_bind_result($stmt, $playbackid, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid, $score);
             mysqli_stmt_store_result($stmt);
             if (mysqli_stmt_num_rows($stmt) == 0) {
-                echo"Sorry but unfortunately there are no videos to display.";
+                echo"Sorry  helaas zijn er geen videos om weer te geven.";
                 $novideos = TRUE;
             }
             while (mysqli_stmt_fetch($stmt)) {
@@ -93,7 +93,7 @@ function frontvidthumb() {
                 }
                 mysqli_stmt_close($stmt);
             } else {
-                echo"prepare failed";
+                echo"voorbereiding mislukt.";
             }
             
             //}

@@ -1,1 +1,0 @@
-Hier komen alle avatars van de gebruikers

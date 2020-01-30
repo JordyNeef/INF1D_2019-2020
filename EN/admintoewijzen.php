@@ -37,6 +37,7 @@ if(!$_SESSION['admin'] == 1){
                             } else{
                                 $gebruikerTable = "gebruiker";
                                 $gebruikersnaam = filter_input(INPUT_POST, 'gebruikersnaam', FILTER_SANITIZE_SPECIAL_CHARS);
+                                // zet de admin op 1 waardoor er in de sessies bekend is dat dit een admin is
                                 $adminQuery = "UPDATE $gebruikerTable SET admin=1 WHERE gebruikersnaam='$gebruikersnaam'";
                                 if(mysqli_query($conn, $adminQuery)){
                                     echo "The user is now an admin.";

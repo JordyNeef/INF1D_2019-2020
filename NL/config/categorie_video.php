@@ -28,13 +28,13 @@ function categorieVideos() {
         if (empty($catArray[0])) {
             echo'<div class = "CatagorieVideoLists">';
             echo"<div class ='videoCategorie'>";
-            echo"<h2>Sorry but unfortunately there are no videos to display.</h2>";
+            echo"<h2>Sorry, helaas is er niks om te laten zien.</h2>";
             echo"</div>";
             echo"</div>";
         }
         mysqli_stmt_close($stmt);
     } else {
-        echo'failed to select categorie.';
+        echo'Er kon geen categorie worden geselecteerd.';
     }
     $a = 0;
     $b = 0;
@@ -84,7 +84,7 @@ function categorieVideos() {
                     mysqli_stmt_bind_result($stmt, $playbackid, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid);
                     mysqli_stmt_store_result($stmt);
                     if (mysqli_stmt_num_rows($stmt) == 0) {
-                        echo"Sorry but unfortunately there are no videos to display.";
+                        echo"Sorry, helaas is er niks om te laten zien.";
 //                        stop loop zodat hij heel lege videos echoed
                         break;
                     }
@@ -153,7 +153,7 @@ function categorieVideos() {
                 }
                 mysqli_stmt_close($stmt);
             } else {
-                echo"prepare failed";
+                echo"voorbereiden mislukt";
             }
             echo "</h3><h3 class='beschrijving'>Beschrijving:<br>" . $videoArray[$c][2] . "</h3>"
             . "<h3 class='leeftijd'>Leeftijd:<br>" . $videoArray[$c][4] . "+</h3>"

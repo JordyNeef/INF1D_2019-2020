@@ -26,7 +26,7 @@ function headerBar() {
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <?php $profile_avatar = "img/avatar/" . $_SESSION["profilepic"]; ?>
+                <?php $profile_avatar = "../img/avatar/" . $_SESSION["profilepic"]; ?>
                 <?php if (isset($_SESSION["profilepic"])) { ?>
                     <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">
                     <?php
@@ -185,7 +185,7 @@ function navBar() {
             function closePopup() {
                 // dit haalt de popup weg en zet in de src van de iframe een placeholder
                 document.getElementById("popup").innnerHTML = '';
-                document.getElementById("popup").src = "placeholder";
+                document.getElementById("popup").src = "youtube.com/embed/placeholder";
                 document.getElementById("frame").style.display = "none";
                 // dit zet de knoppen terug op dat er niet op is gedrukt
                 document.getElementById("upniffo").src = "img/upniffo-unclicked.png";

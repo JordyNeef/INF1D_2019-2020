@@ -73,7 +73,7 @@
 
 		if(empty(trim($_POST["email"])))
 		{
-			echo "Vul een mail in a.u.n.";
+			echo "Vul een mail in a.u.b.";
 		}
 		else
 		{

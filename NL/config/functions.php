@@ -179,6 +179,8 @@ function navBar() {
                 document.getElementById("popup").innnerHTML = '';
                 document.getElementById("popup").src = "placeholder";
                 document.getElementById("frame").style.display = "none";
+                document.getElementById("upniffo").src = "img/upniffo-unclicked.png";
+                document.getElementById("downniffo").src = "img/downniffo-unclicked.png";
                 //start de scroll again
                 clickedVideo = false;
                 videoidtest = 0; 

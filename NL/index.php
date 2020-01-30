@@ -58,7 +58,7 @@
                                 <button type="button" id="dislike" name="beoordeling" value="0"><img id="downniffo" src="img/downniffo-unclicked.png" alt="downniffo"></button>
                                 <div id="dislikes"><?php echo $dislikes ?></div>
                             </div>
-                            <p id="videoid"></p>
+                            <p id="videoId"></p>
                         </div>
                         </script>
                     </div>

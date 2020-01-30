@@ -25,19 +25,19 @@ if(!$_SESSION['admin'] == 1){
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                     <h1>Admin toewijzen</h1>
                     <div id="wijzigvideo">
-                        <input type="number" name="gebruikerid" placeholder="gebruikerid" class="textfield">
+                        <input type="text" name="gebruikersnaam" placeholder="gebruikersnaam" class="textfield">
                         <div id="videowijzigenbuttons">
                             <input type="submit" name="toewijzen" value="Admin toevoegen!" id="toewijzbutton">
                         </div>
                         <div id="toewijzresult">
                     <?php
                         if(isset($_POST['toewijzen'])){
-                            if(empty($_POST['gebruikerid'])){
+                            if(empty($_POST['gebruikersnaam'])){
                                 echo "Kies welke gebruiker u admin wilt maken.";
                             } else{
                                 $gebruikerTable = "gebruiker";
-                                $gebruikerId = filter_input(INPUT_POST, 'gebruikerid', FILTER_SANITIZE_SPECIAL_CHARS);
-                                $adminQuery = "UPDATE $gebruikerTable SET admin=1 WHERE gebruikerid=$gebruikerId";
+                                $gebruikersnaam = filter_input(INPUT_POST, 'gebruikersnaam', FILTER_SANITIZE_SPECIAL_CHARS);
+                                $adminQuery = "UPDATE $gebruikerTable SET admin=1 WHERE gebruikersnaam='$gebruikersnaam'";
                                 if(mysqli_query($conn, $adminQuery)){
                                     echo "De gebruiker is nu een admin.";
                                 } else {

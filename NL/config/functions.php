@@ -26,7 +26,7 @@ function headerBar() {
         </div>
         <div class="titleAndAccountButton">
             <div class="accountButton">
-                <?php $profile_avatar = "img/avatar/" . $_SESSION["profilepic"]; ?>
+                <?php $profile_avatar = "../img/avatar/" . $_SESSION["profilepic"]; ?>
                 <?php if (isset($_SESSION["profilepic"])) { ?>
                     <img class='profileimg' src= '<?php echo $profile_avatar; ?>' alt="account icoontje">
                     <?php
@@ -35,15 +35,15 @@ function headerBar() {
                 }
                 ?>
                 <div class="dropdown-content">
-                    <a href="accountsettings.php">Account settings</a>
+                    <a href="accountsettings.php">Account opties</a>
                     <?php
                     if ($_SESSION['admin'] == 1) {
-                        echo"<a href='videotoevoegen.php'>video toevoegen</a>";
-                        echo"<a href='videowijzigen.php'>video wijzigen</a>";
-                        echo"<a href='admintoewijzen.php'>admin toewijzen</a>";
+                        echo"<a href='videotoevoegen.php'>Video toevoegen</a>";
+                        echo"<a href='videowijzigen.php'>Video wijzigen</a>";
+                        echo"<a href='admintoewijzen.php'>Admin toewijzen</a>";
                     }
                     ?>
-                    <a href="config/logout.php">Logout</a>
+                    <a href="config/logout.php">Log uit</a>
                 </div>
             </div>
             <div class="title">

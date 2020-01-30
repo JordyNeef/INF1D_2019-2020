@@ -18,12 +18,12 @@ if($stmt = mysqli_prepare($conn, $sql)){
         echo json_encode($array);
     }
     else{
-        echo "not executed";
+        echo "Niet uitgevoerd";
         echo mysqli_error($conn);
     }
 }
 else{
-    echo "not prepared";
+    echo "Niet voorbereid";
     echo mysqli_error($conn);
 }
 ?>

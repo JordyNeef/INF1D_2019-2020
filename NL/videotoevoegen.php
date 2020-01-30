@@ -29,7 +29,7 @@
                         <div id="submitrowleft">
                             <input type="text" name="videourl" placeholder="videourl..." class="textfield">
                             <input type="text" name="titel" placeholder="titel van de video..." class="textfield">
-                            <input type="text" name="catagorie" placeholder="catagorie...(gebruik commas inplaats van spaties a.u.b.)." class="textfield">
+                            <input type="text" name="categorie" placeholder="categorie...(gebruik commas inplaats van spaties a.u.b.)." class="textfield">
                         </div>
                         <div id="submitrowright">
                             <input type="number" name="leeftijd" placeholder="minimale leeftijd..." class="textfield">
@@ -37,7 +37,7 @@
                             <div id="formresult">
                                 <?php
                                     if(isset($_POST['submit'])){
-                                        if(empty($_POST['videourl']) || empty($_POST['titel']) || empty($_POST['catagorie']) || 
+                                        if(empty($_POST['videourl']) || empty($_POST['titel']) || empty($_POST['categorie']) || 
                                         empty($_POST['beschrijving']) || empty($_POST['leeftijd'])){
                                             echo "<p>De volgende velden zijn nog leeg";
                                             if(empty($_POST['videourl'])){
@@ -46,7 +46,7 @@
                                             if(empty($_POST['titel'])){
                                                 echo ", Titel";
                                             }
-                                            if(empty($_POST['catagorie'])){
+                                            if(empty($_POST['categorie'])){
                                                 echo ", Categorie";
                                             }
                                             if(empty($_POST['beschrijving'])){
@@ -63,7 +63,7 @@
                                                 $videoUrl = str_replace("https://www.youtube.com/watch?v=","",$videoUrl);
                                                 $titel = filter_input(INPUT_POST, 'titel', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $uploader = $id;
-                                                $categorieInput = filter_input(INPUT_POST, 'catagorie', FILTER_SANITIZE_SPECIAL_CHARS);
+                                                $categorieInput = filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $beschrijving = filter_input(INPUT_POST, 'beschrijving', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $leeftijd = filter_input(INPUT_POST, 'leeftijd', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 //de categorieén worden doormiddel van een comma ingevuld waardoor er meerdere in in input kunnen worden geplaatst

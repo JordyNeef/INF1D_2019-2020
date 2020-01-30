@@ -44,7 +44,7 @@ if($stmt = mysqli_prepare($connect, $sql)){
                     echo mysqli_error($connect);
                 }
                 else{
-                    echo 'like/dislike inserted';
+                    echo 'Upniffo/Downniffo toegevoegd.';
                 }
             }
             else{
@@ -64,7 +64,7 @@ if($stmt = mysqli_prepare($connect, $sql)){
                     echo mysqli_error($stmt); 
                     }
                     else{
-                        echo "like/dislike deleted";
+                        echo "Upniffo/Downniffo verwijderd";
                     }
                 }
                 else{
@@ -81,7 +81,7 @@ if($stmt = mysqli_prepare($connect, $sql)){
                         echo  mysqli_error($connect);    
                     }
                     else{
-                        echo "like/dislike updated";
+                        echo "Upniffo/Downniffo bijgewerkt";
                     }
                 }
                 else{

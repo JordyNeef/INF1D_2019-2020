@@ -2,10 +2,13 @@
 
 function frontvidthumb() {
     require 'conn.php';
-    $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, video_categorie.categorieid, video.videoid
+    $vidstatement = "SELECT playbackid, titel, beschrijving, uploadedby, leeftijd, video_categorie.categorieid, video.videoid, COUNT(rating.videoid) as score 
     FROM video
     JOIN video_categorie ON video.videoid=video_categorie.videoid
+    JOIN rating ON video.videoid = rating.videoid
+    WHERE rating.beoordeling = 1
     GROUP BY video.videoid
+    ORDER BY score DESC
     LIMIT 10 ";
     $videoArray = array();
     $i = 0;
@@ -13,7 +16,7 @@ function frontvidthumb() {
     $novideos = FALSE;
     if ($stmt = mysqli_prepare($conn, $vidstatement)) {
         if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_bind_result($stmt, $playbackid, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid);
+            mysqli_stmt_bind_result($stmt, $playbackid, $titel, $beschrijving, $uploadedby, $leeftijd, $categorieid, $videoid, $score);
             mysqli_stmt_store_result($stmt);
             if (mysqli_stmt_num_rows($stmt) == 0) {
                 echo"Sorry but unfortunately there are no videos to display.";

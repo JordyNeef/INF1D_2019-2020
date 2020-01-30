@@ -23,25 +23,25 @@ if(!$_SESSION['admin'] == 1){
             </div>
             <div id="form">
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-                    <h1>Admin toewijzen</h1>
+                    <h1>Assign admin</h1>
                     <div id="wijzigvideo">
-                        <input type="text" name="gebruikersnaam" placeholder="gebruikersnaam" class="textfield">
+                        <input type="text" name="gebruikersnaam" placeholder="Username" class="textfield">
                         <div id="videowijzigenbuttons">
-                            <input type="submit" name="toewijzen" value="Admin toevoegen!" id="toewijzbutton">
+                            <input type="submit" name="toewijzen" value="Assign admin" id="toewijzbutton">
                         </div>
                         <div id="toewijzresult">
                     <?php
                         if(isset($_POST['toewijzen'])){
                             if(empty($_POST['gebruikersnaam'])){
-                                echo "Kies welke gebruiker u admin wilt maken.";
+                                echo "Choose which user you would like to make an admin.";
                             } else{
                                 $gebruikerTable = "gebruiker";
                                 $gebruikersnaam = filter_input(INPUT_POST, 'gebruikersnaam', FILTER_SANITIZE_SPECIAL_CHARS);
                                 $adminQuery = "UPDATE $gebruikerTable SET admin=1 WHERE gebruikersnaam='$gebruikersnaam'";
                                 if(mysqli_query($conn, $adminQuery)){
-                                    echo "De gebruiker is nu een admin.";
+                                    echo "The user is now an admin.";
                                 } else {
-                                    echo "er ging iets fout: De gebruiker kon geen admin worden gemaakt.";
+                                    echo "Something went wrong: The user could not be made an admin.";
                                 }
                             }
                         }

@@ -24,33 +24,33 @@
             </div>
             <div id="form">
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-                    <h1>Toevoegen van een video</h1>
+                    <h1>Add a video</h1>
                     <div id="formsubmit">
                         <div id="submitrowleft">
-                            <input type="text" name="videourl" placeholder="videourl..." class="textfield">
-                            <input type="text" name="titel" placeholder="titel van de video..." class="textfield">
-                            <input type="text" name="catagorie" placeholder="catagorie...(gebruik commas inplaats van spaties a.u.b.)." class="textfield">
+                            <input type="text" name="videourl" placeholder="Video url..." class="textfield">
+                            <input type="text" name="titel" placeholder="Video title" class="textfield">
+                            <input type="text" name="catagorie" placeholder="Catagory...(Use commas instead of whitespaces)." class="textfield">
                         </div>
                         <div id="submitrowright">
-                            <input type="number" name="leeftijd" placeholder="minimale leeftijd..." class="textfield">
-                            <textarea name="beschrijving" placeholder="beschrijving..."></textarea>
+                            <input type="number" name="leeftijd" placeholder="Minimum age..." class="textfield">
+                            <textarea name="beschrijving" placeholder="Discription..."></textarea>
                             <div id="formresult">
                                 <?php
                                     if(isset($_POST['submit'])){
                                         if(empty($_POST['videourl']) || empty($_POST['titel']) || empty($_POST['catagorie']) || 
                                         empty($_POST['beschrijving']) || empty($_POST['leeftijd'])){
-                                            echo "<p>de volgende velden zijn nog leeg";
+                                            echo "<p>The following fields are still empty.";
                                             if(empty($_POST['videourl'])){
-                                                echo ", video url";
+                                                echo ", Video url";
                                             }
                                             if(empty($_POST['titel'])){
-                                                echo ", titel";
+                                                echo ", Title";
                                             }
                                             if(empty($_POST['catagorie'])){
-                                                echo ", catagorie";
+                                                echo ", Catagory";
                                             }
                                             if(empty($_POST['beschrijving'])){
-                                                echo ", beschrijving";
+                                                echo ", Discription";
                                             }   
                                             echo ".</p>";
                                             exit;
@@ -94,7 +94,7 @@
                                             //---------------------------------Filter om niet de bestaande categorieën toe toevoegen maken----------------------------------------------------//
                                                                     mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
                                                                     if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
-                                                                        echo "Het was niet mogelijk om de query uittevoeren". "<p>Error code "
+                                                                        echo "Unable to execute the query.". "<p>Error code "
                                                                         . mysqli_errno($conn)
                                                                         . ": "
                                                                         . mysqli_error($conn)
@@ -159,7 +159,7 @@
                                                     mysqli_stmt_close($categorieSTMT); 
                                                 } 
                                                     } else {
-                                                        echo "De video kon niet worden toegevoegd.<br>";
+                                                        echo "The could not be added.<br>";
                                                     }
                                                 }
                                             }
@@ -167,7 +167,7 @@
                                             }
                                 ?>
                             </div>
-                            <input type="submit" name="submit" value="Voeg video toe..." id="submitbutton">
+                            <input type="submit" name="submit" value="Add video" id="submitbutton">
                         </div>
                     </div>
                 </form>

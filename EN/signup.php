@@ -16,7 +16,7 @@
 
 		// Validate username
 		if(empty(trim($_POST["username"]))){
-			$username_err = "Please enter a username ";
+			$username_err = "Please enter a username.";
 			echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -41,7 +41,7 @@
 					mysqli_stmt_store_result($stmt);
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
-						$username_err = "This username is already taken ";
+						$username_err = "This username is already taken.";
 						echo "
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -67,7 +67,7 @@
 
 		// Validate email
 		if(empty(trim($_POST["email"]))){
-			$email_err = "Please enter a email";
+			$email_err = "Please enter an email.";
 			echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -92,7 +92,7 @@
 					mysqli_stmt_store_result($stmt);
 
 					if(mysqli_stmt_num_rows($stmt) == 1){
-						$email_err = "This email is already taken";
+						$email_err = "This email is already taken.";
 						echo "
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -102,7 +102,7 @@
 					else{
 						$email = trim($_POST["email"]);
 						if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-							$email_err = "Invalid email format";
+							$email_err = "Invalid email format.";
 							echo "
 							<div class='alert'>
 								<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -127,7 +127,7 @@
 
 		// Validate password
 		if(empty(trim($_POST["password"]))){
-	        $password_err = "Please enter a password ";   
+	        $password_err = "Please enter a password.";   
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -135,7 +135,7 @@
 				</div>";
 	    } 
 	    elseif(strlen(trim($_POST["password"])) < 6){
-	        $password_err = "Password must have atleast 6 characters ";
+	        $password_err = "Password must have atleast 6 characters.";
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -148,7 +148,7 @@
 	    
 	    // Validate confirm password
 	    if(empty(trim($_POST["confirm_password"]))){
-	        $confirm_password_err = "Please confirm password ";   
+	        $confirm_password_err = "Please confirm password.";   
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -158,7 +158,7 @@
 	    else{
 	        $confirm_password = trim($_POST["confirm_password"]);
 	        if(empty($password_err) && ($password != $confirm_password)){
-	            $confirm_password_err = "Password did not match. ";
+	            $confirm_password_err = "Password did not match.";
 	            echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>" 
@@ -199,7 +199,7 @@
 	        echo "
 				<div class='alert'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-					Invalid File, default picture selected
+					Invalid File, default picture selected.
 				</div>
 				";
 	        $userimagepath = "account.png";
@@ -240,7 +240,7 @@
 				echo "
 				<div class='alert'>
 				<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-					qeury werkt niet
+					Qeury does not work.
 				</div>";
 			}
 	 			// Close connection

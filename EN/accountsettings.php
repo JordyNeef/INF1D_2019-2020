@@ -22,7 +22,7 @@
 	{
 		if(empty(trim($_POST["username"])))
 		{
-			echo "Please enter a username";
+			echo "Please enter a username.";
 		}
 		else
 		{
@@ -62,7 +62,7 @@
 
 		if(empty(trim($_POST["email"])))
 		{
-			echo "Please enter a email";
+			echo "Please enter an email.";
 		}
 		else
 		{
@@ -91,7 +91,7 @@
 				}
 				else
 				{
-					echo "Oops, something went wrong. Please try again later";
+					echo "Oops, something went wrong. Please try again later.";
 				}
 			}
 
@@ -107,18 +107,18 @@
 
 			if(mysqli_stmt_execute($stmt))
 			{
-				echo "Account has been updated";
+				echo "Account has been updated.";
 				header("location: index.php");
 			}
 			else
 			{
-				echo "Something went wrong.";
+				echo "Something went wrong. Please try again later.";
 			}
 			mysqli_stmt_close($stmt);
 		}
 		else
 		{
-			echo "something went horribly wrong......";
+			echo "Something went wrong. Please try again later.";
 		}
 
 	}

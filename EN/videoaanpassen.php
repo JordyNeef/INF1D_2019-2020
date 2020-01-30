@@ -26,7 +26,7 @@
             <div id="form">
                     <?php
                     if($conn === FALSE){
-                        echo "Er kon niet worden verbonden met de database.";
+                        echo "Unable to connect to database.";
                     } else{
                         $videoId = filter_input(INPUT_GET, 'videoid', FILTER_SANITIZE_SPECIAL_CHARS);
                         if(isset($videoId)){
@@ -44,7 +44,7 @@
                                     mysqli_stmt_bind_result($stmt, $pId, $naam, $titel, $beschrijving, $leeftijdR, $cId, $vcId);
                                     mysqli_stmt_store_result($stmt);
                                     if(mysqli_stmt_num_rows($stmt) == 0){
-                                        echo "deze videoid is niet bekend, kies een andere.";
+                                        echo "This videoid is not known, choose another one.";
                                     } else {
                                         while(mysqli_stmt_fetch($stmt)){
                                             $cat .= "$naam,";
@@ -61,25 +61,25 @@
                                             <div id="submitrowright">
                                                 <input type="text" name="categorie" value="'.$cat.'" class="textfield">
                                                 <textarea name="beschrijving">'.$beschrijving.'</textarea>
-                                                <input type="submit" name="wijzig" value="Voeg video toe..." id="submitbutton">
+                                                <input type="submit" name="wijzig" value="Add a video..." id="submitbutton">
                                             </div>';
                                         }
                                         echo "</table>";
                                         if(isset($_POST['wijzig'])){
                                             if(empty($_POST["videourl"])){
-                                                echo "Voer een videourl in.";
+                                                echo "Enter a videourl.";
                                             }
                                             if(empty($_POST["titel"])){
-                                                echo "Voer een titel in.";
+                                                echo "Enter a title.";
                                             }
                                             if(empty($_POST["leeftijd"])){
-                                                echo "Voer een leeftijd in.";
+                                                echo "Enter an age.";
                                             }
                                             if(empty($_POST["categorie"])){
-                                                echo "Voer een categorie in.";
+                                                echo "Enter a catagory.";
                                             }
                                             if(empty($_POST["beschrijving"])){
-                                                echo "Voer een beschrijving in.";
+                                                echo "Enter a discription.";
                                             } else{
                                                 $videoUrl = filter_input(INPUT_POST, 'videourl', FILTER_SANITIZE_SPECIAL_CHARS);
                                                 $videoUrl = str_replace("https://www.youtube.com/watch?v=","",$videoUrl);
@@ -113,13 +113,13 @@
                                                 //---------------------------------Filter om niet de bestaande categorieën toe toevoegen maken----------------------------------------------------//
                                                                         mysqli_stmt_bind_param($cInsertSTMT, 's', $checkCategorie);
                                                                         if(mysqli_stmt_execute($cInsertSTMT) === FALSE){
-                                                                            echo "Het was niet mogelijk om de query uittevoeren". "<p>Error code "
+                                                                            echo "Unabler to execute the query.". "<p>Error code "
                                                                             . mysqli_errno($conn)
                                                                             . ": "
                                                                             . mysqli_error($conn)
                                                                             . "</p>";
                                                                         } else {
-                                                                            echo "De categorie is met succes gewijzigd.";
+                                                                            echo "The catagory has been succesfully updated.";
                                                                         } 
                                                                     }  
                                                                 // }
@@ -139,7 +139,7 @@
                                                 mysqli_stmt_close($maxvideoSTMT);
                                                 $deleteCategorie = "DELETE FROM video_categorie WHERE videoid =" . $videoId;
                                                 if (mysqli_query($conn, $deleteCategorie)) {
-                                                    echo "Record deleted successfully";
+                                                    echo "Record deleted successfully.";
                                                 } else {
                                                     echo "Error deleting record: " . mysqli_error($conn);
                                                 }
@@ -176,7 +176,7 @@
                                                 if(mysqli_query($conn, $updateQeury)){
                                                     // echo "<p>video is met succes ge-update.</p><p><a href='videowijzigen.php'>Video wijzigen</a></p>";
                                                 } else{
-                                                    echo "er ging iets fout tijdens het updaten" . mysqli_error($conn);
+                                                    echo "Something went wrong while updating."; . mysqli_error($conn);
                                                 }
                                                 
                                             }

@@ -45,7 +45,7 @@
 					{
 						echo "<div class='alert'>
 							<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>
-							Password does not match Username.
+							Password does not match username.
 							</div>";
 					}
 				}

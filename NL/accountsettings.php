@@ -13,16 +13,27 @@
 	<link href="stylesheet/main.css" type="text/css"  rel="stylesheet">
 	<link href="stylesheet/accountsettings.css" type="text/css"  rel="stylesheet">
 	<title>
-		Account settings
+		gebruikers instellingen
 	</title>
 </head>
 <body>
+<div class="flex-container">
+		<form action="accountsettings.php" method="POST">
+			<div class="flex-item"><input class="changeitems" placeholder="gebruikersnaam" type="text" name="username" value="<?php echo $usernamesession ?>"></div>
+			<div class="flex-item"><input class="changeitems" placeholder="Mail" type="text" name="email" value="<?php echo $email ?>"></div>
+			<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="verander"></div>
+			<div class="flex-item">
+				terug naar <a href="index.php">Huis</a>
+			</div>
+		</form>
+	</div>
 	<?php
-	if($_SERVER["REQUEST_METHOD"] == "POST")
+	if(isset($_POST['submit']))
 	{
-		if(empty(trim($_POST["username"])))
+		if(empty(trim($_POST['username'])))
 		{
-			echo "Please enter a username";
+			echo "Vul een gebruikernaam in a.u.b.";
+			
 		}
 		else
 		{
@@ -42,7 +53,7 @@
 
 					if(mysqli_stmt_num_rows($stmt) == 1)
 					{
-						echo "This username has already been taken.";
+						echo "Deze gebruikersnaam is al in gebruik.";
 					}
 					else
 					{
@@ -51,7 +62,7 @@
 				}
 				else
 				{
-					echo "Oops, something went wrong. Please try again later";
+					echo "Oeps, er ging iets fout. Probeer het later opnieuw a.u.b.";
 				}
 			}
 
@@ -62,7 +73,7 @@
 
 		if(empty(trim($_POST["email"])))
 		{
-			echo "Please enter a email";
+			echo "Vul een mail in a.u.n.";
 		}
 		else
 		{
@@ -82,7 +93,7 @@
 
 					if(mysqli_stmt_num_rows($stmt) == 1)
 					{
-						echo "This email has already been taken.";
+						echo "deze mail is al in gebruik.";
 					}
 					else
 					{
@@ -91,7 +102,7 @@
 				}
 				else
 				{
-					echo "Oops, something went wrong. Please try again later";
+					echo "Oeps, er ging iets fout. Probeer het later opnieuw a.u.b.";
 				}
 			}
 
@@ -107,33 +118,23 @@
 
 			if(mysqli_stmt_execute($stmt))
 			{
-				echo "Account has been updated";
+				echo "de gebruiker is ge-update.";
 				header("location: index.php");
 			}
 			else
 			{
-				echo "Something went wrong.";
+				echo "Er ging iets fout.";
 			}
 			mysqli_stmt_close($stmt);
 		}
 		else
 		{
-			echo "something went horribly wrong......";
+			echo "Er ging iets heeel erg fout......";
 		}
 
 	}
 	mysqli_close($conn);
-
 	?>
-	<div class="flex-container">
-		<form action="accountsettings.php" method="POST">
-			<div class="flex-item"><input class="changeitems" placeholder="Username" type="text" name="username" value="<?php echo $usernamesession ?>"></div>
-			<div class="flex-item"><input class="changeitems" placeholder="Email" type="text" name="email" value="<?php echo $email ?>"></div>
-			<div class="flex-item"><input class="changebutton" type="submit" name="submit" value="Change"></div>
-			<div class="flex-item">
-				Back to <a href="index.php">home</a>
-			</div>
-		</form>
-	</div>
+	
 </body>
 </html>

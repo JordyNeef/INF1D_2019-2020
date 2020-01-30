@@ -176,7 +176,7 @@
                                                 if(mysqli_query($conn, $updateQeury)){
                                                     // echo "<p>video is met succes ge-update.</p><p><a href='videowijzigen.php'>Video wijzigen</a></p>";
                                                 } else{
-                                                    echo "Something went wrong while updating."; . mysqli_error($conn);
+                                                    echo "Something went wrong while updating." . mysqli_error($conn);
                                                 }
                                                 
                                             }
